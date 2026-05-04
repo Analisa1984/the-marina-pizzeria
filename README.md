@@ -141,3 +141,7 @@ Although The Marina Pizzeria is a fictitious restaurant, to demonstrate a websit
     - the product was designed to be responsive to all screen devices so that words on paragraphs or forms do not overflow the borders or tables.
     - In ALL pages there are links to the Home page and clicking on the logo (which is in all pages) will return the user to the home page.
     - The between section of the navigation bar on top and the footer below vary with each page. However the background color is the same and matches with the top and bottom color to give continuity.
+
+
+    ## Reference: 
+    1. https://www.geeksforgeeks.org/python/django-sign-up-and-login-with-confirmation-email-python/ (django code information for login, logout, registration form and email)
