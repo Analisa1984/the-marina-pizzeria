@@ -14,6 +14,10 @@ class Booking(models.Model):
     booking_time = models.TimeField(blank=False)
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.PositiveIntegerField(choices=STATUS, default=0)
+
+
+    class Meta:
+        ordering = ['-created_on']
     
 
     def __str__(self):
