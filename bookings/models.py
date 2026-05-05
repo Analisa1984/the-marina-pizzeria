@@ -17,7 +17,7 @@ class Booking(models.Model):
 
 
     class Meta:
-        ordering = ['-created_on']
+        ordering = ['booking_date', 'booking_time']
     
 
     def __str__(self):
