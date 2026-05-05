@@ -1,8 +1,162 @@
-{% extends "base.html" %}
-{% load crispy_forms_tags %}
+{% extends "base.html" %} 
+{% load static %} 
+{% load crispy_forms_tags %} 
+
 {% block start %}
 
-<div>
-  <p> Hello, {{ user.username }}!</p>
-</div>
-{% endblock start %} 
+<div class="container">
+  <div
+    id="carouselExampleCaptions"
+    class="carousel slide"
+    data-bs-ride="carousel"
+  >
+    <div class="carousel-indicators">
+      <button
+        type="button"
+        data-bs-target="#carouselExampleCaptions"
+        data-bs-slide-to="0"
+        class="active"
+        aria-current="true"
+        aria-label="Slide 1"
+      ></button>
+      <button
+        type="button"
+        data-bs-target="#carouselExampleCaptions"
+        data-bs-slide-to="1"
+        aria-label="Slide 2"
+      ></button>
+      <button
+        type="button"
+        data-bs-target="#carouselExampleCaptions"
+        data-bs-slide-to="2"
+        aria-label="Slide 3"
+      ></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img
+          src="{%static 'images/marina-pizzeria-pics/anthony-lim-pizza-oven.jpg'%}"
+          class="d-block w-100"
+          alt="clay pizza oven with pizza in it"
+        />
+        <div class="carousel-caption d-none d-md-block">
+          <h5>First slide label</h5>
+          <p>Some representative placeholder content for the first slide.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img
+          src="{%static 'images/marina-pizzeria-pics/maria-bobrova-sorrento-coast.jpg'%}"
+          class="d-block w-100"
+          alt="pizzeria on the coast of sorrento"
+        />
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Second slide label</h5>
+          <p>Some representative placeholder content for the second slide.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img
+          src="{%static 'images/marina-pizzeria-pics/sarang-pande-two-pizzas-on-table.jpg'%}"
+          class="d-block w-100"
+          alt="two pizzas on a table"
+        />
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Third slide label</h5>
+          <p>Some representative placeholder content for the third slide.</p>
+        </div>
+      </div>
+    </div>
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#carouselExampleCaptions"
+      data-bs-slide="prev"
+    >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#carouselExampleCaptions"
+      data-bs-slide="next"
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <br />
+  <br />
+  <div>
+    <h1 style="text-align: center; font-size: 3rem; font-family: 'Arial', sans-serif;">
+      Welcome to The Marina Pizzeria!
+    </h1>
+    <p style="text-align: center; font-size: 1.5rem; font-family: 'Arial', sans-serif;">
+      We are a family-owned pizzeria located on the coast of Sorrento. We serve delicious pizzas made with fresh ingredients and a lot of love. 
+      Our menu also includes a variety of appetizers, salads, and desserts. We have a great selection of drinks to go with your meal. 
+      Whether you want to dine in, try our catering services or try and event we are hosting or to host your own event, we are here to serve you. We look forward to seeing you soon!
+    </p>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card" style="width: 18rem">
+          <img
+            src="{%static 'images/marina-pizzeria-pics/klara-kulikova-dine-with-us.jpg'%}"
+            class="card-img-top"
+            alt="two pizzas on a table with  wine"
+          />
+          <div class="card-body">
+            <h5 class="card-title">Come and dine with us!</h5>
+            <p class="card-text">
+              We have a beautiful dining area with a great atmosphere. 
+              We have a wide variety of cuisine and an impressive drinks list.
+              You can even have a look at your pizza being made in our traditional clay pizza oven. We look forward to seeing you!
+            </p>
+            <a href="#" class="btn btn-primary">Book Now</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card" style="width: 18rem">
+          <img
+            src="{%static 'images/marina-pizzeria-pics/mathias-reding-catering.jpg'%}"
+            class="card-img-top"
+            alt="6 pizzas with pizza ingredientson top of a table"
+          />
+          <div class="card-body">
+            <h5 class="card-title">Catering!</h5>
+            <p class="card-text">
+              We do catering for small and large evets. We can cater for birthdays, weddings, corporate events and more! 
+              There is nothing too small or too big for us to handle. Contact us for more information. 
+              Let us do all the cooking while you enjoy your event!
+            </p>
+            <a href="#" class="btn btn-primary">Contact Us</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card" style="width: 18rem">
+          <img
+            src="{%static 'images/marina-pizzeria-pics/nahima-aparicio-host-events.jpg'%}"
+            class="card-img-top"
+            alt="happy birthday decorations on a plate"
+          />
+          <div class="card-body">
+            <h5 class="card-title">Events!</h5>
+            <p class="card-text">
+              We host various events throughout the year. From pizza-making workshops to special themed nights. 
+              We can even host your special event. Whether it's a birthday, anniversary, or any other celebration. 
+              Contact us for more info.
+            </p>
+            <a href="#" class="btn btn-primary">Contact Us</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock start %}
+
