@@ -23,29 +23,13 @@
       crossorigin="anonymous"
     />
 
-  <!-- jQuery -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
   <!-- main css -->
   <link rel="stylesheet" type="text/css" href="{% static "index.css" %}" />
 
 
-  <!-- message here -->
-
-  {% if messages %}
-  {% for message in messages %}
-
-  <script>
-    alert("{{ message }}");
-  </script>
-
-  {% endfor %}
-  {% endif %}
-
-  <!--_______________________________________________-->
 
 
 
@@ -78,8 +62,32 @@
         <div class="d-flex col-md-4 justify-content-center">
         <a class="navbar-brand" href="{% url 'index' %}">The Marina Pizzeria</a>
         </div>
-
+        {% if user.is_authenticated %}
+        <div class="d-flex col-md-4 justify-content-end">
+              <li class="nav-item">
+          <a class="nav-link" href="#">Menu</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Location</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Book Now</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+        </li>
+        </div>
+        {% else %}
          <div class="d-flex col-md-4 justify-content-end">
+            <li class="nav-item">
+          <a class="nav-link" href="#">Menu</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Location</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Book Now</a>
+        </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'register' %}">Sign Up</a>
         </li>
@@ -87,6 +95,7 @@
           <a class="nav-link" href="{% url 'login' %}">Log In</a>
         </li>
         </div>
+        {% endif %}
 
       </ul>
     </div>
@@ -95,23 +104,127 @@
 </nav>
     
   </header>
-  <br/>
-  <br>
-  <br>
-  <div class="row">
-    {% block start %}
-    {% if user.is_authenticated %}
-    <center><h1>welcome back {{user.username}}!</h1></center>
+  
+  <main>
+    <div class="row welcome"></div>
+  {% if user.is_authenticated %}
+    <h1>Hello, {{user.username}}!</h1>
     {% else %}
-    <center><h1>log in, plz . . .</h1></center>
+    <h1> Hi! Please log in to book a table or to contact us!</h1>
     {% endif %}
-    {% endblock %}
-  </div>
+    </div>
+
+    {% block start %}
+    <!-- Other Pages Content goes here -->
+    {% endblock start %}
+  </main>
+
+
+  <!-- footer Section -->
+
+    <footer class="mt-auto">
+      <div class="row">
+        <div class="col pt-3">
+          <a
+            href="{% url 'index' %}"
+            target="_self"
+            aria-label="logo links to Home Page"
+          >
+            <img
+              src="{% static 'images/marina-pizzeria-logo.png'%}"
+              alt="logo of the marina pizzeria"
+              class="pt-3"
+            />
+          </a>
+        </div>
+
+        <!-- Opening Hours of The Marina Pizzeria -->
+        <div class="col">
+          <table
+            class="my-3 py-3"
+            aria-label="opening hours of pizzeria shown in a table"
+          >
+            <caption hidden>
+              Opening hours of The Marina Pizzeria
+            </caption>
+            <tr>
+              <th colspan="2">Opening Hours:</th>
+            </tr>
+            <tr>
+              <td>Mon</td>
+              <td>12:00 - 22:00</td>
+            </tr>
+            <tr>
+              <td>Tues</td>
+              <td>12:00 - 22:00</td>
+            </tr>
+            <tr>
+              <td>Wed</td>
+              <td>12:00 - 22:00</td>
+            </tr>
+            <tr>
+              <td>Thurs</td>
+              <td>12:00 - 22:00</td>
+            </tr>
+            <tr>
+              <td>Fri</td>
+              <td>12:00 - 23:00</td>
+            </tr>
+            <tr>
+              <td>Sat</td>
+              <td>12:00 - 23:00</td>
+            </tr>
+            <tr>
+              <td>Sun</td>
+              <td>Closed</td>
+            </tr>
+          </table>
+        </div>
+
+        <!-- Social media links to join in footer section -->
+        <div class="col social-media">
+          <p class="join-us">JOIN US ON SOCIAL MEDIA</p>
+          <br />
+          <a
+            href="https://www.facebook.com"
+            target="_blank"
+            aria-label="facebook page"
+            ><i class="fa-brands fa-facebook"></i
+          ></a>
+          <a
+            href="https://www.instagram.com"
+            target="_blank"
+            aria-label="instagram page"
+            ><i class="fa-brands fa-instagram"></i
+          ></a>
+          <a
+            href="https://www.twitter.com"
+            target="_blank"
+            aria-label="twitter page"
+            ><i class="fa-brands fa-x-twitter"></i
+          ></a>
+          <br />
+          <a
+            href="#"
+            target="_self"
+            class="contact"
+            aria-label="link to contact us"
+            >Contact Us</a
+          >
+        </div>
+      </div>
+    </footer>
 
    <!-- Bootstrap 5 JavaScript  -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- favicon awesome kit JS code -->
+    <script
+      src="https://kit.fontawesome.com/8da35863e9.js"
       crossorigin="anonymous"
     ></script>
 </body>
