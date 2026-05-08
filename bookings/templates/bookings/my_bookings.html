@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block start %}
+
+<div class="container mt-4">
+    <h2 class="mb-4">My Bookings</h2>
+
+    <section class="mb-5">
+        <h3 class="text-primary">Current Bookings</h3>
+        <hr>
+        {% if current_bookings %}
+            <div class="list-group">
+                {% for booking in current_bookings %}
+                    <div class="list-group-item list-group-item-action border-primary">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">{{ booking.booking_date }}</h5>
+                            <small class="badge bg-primary text-white">Active Now</small>
+                        </div>
+                        <p class="mb-1"> {{ booking.booking_time }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="text-muted">No active bookings.</p>
+        {% endif %}
+    </section>
+
+    <section class="mb-5">
+        <h3 class="text-success">Upcoming Bookings</h3>
+        <hr>
+        <div class="row">
+            {% for booking in future_bookings %}
+                <div class="col-md-6 mb-3">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ booking.booking_date }}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{ booking.booking_time }}</h6>
+                            <button class="btn btn-outline-success btn-sm">Update My Booking</button>
+                            <button class="btn btn-outline-success btn-sm">Cancel My Booking</button>
+                        </div>
+                    </div>
+                </div>
+                
+            {% empty %}
+                <p class="ml-3 text-muted">No upcoming trips planned.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section>
+        <h3 class="text-secondary">Past Bookings</h3>
+        <hr>
+        <table class="table table-hover">
+            <thead class="table-light">
+                <tr>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in past_bookings %}
+                <tr>
+                    <td>{{ booking.start_date }}</td>
+                    <td>{{ booking.description }}</td>
+                    <td><span class="text-muted">Completed</span></td>
+                </tr>
+                {% empty %}
+                <tr><td colspan="3">No past records found.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+</div>
+
+{% endblock start %} 
