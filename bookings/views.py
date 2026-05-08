@@ -80,9 +80,9 @@ def register(request):
             username = form.cleaned_data.get('username')
             email = form.cleaned_data.get('email')
             phone_no = form.cleaned_data.get('phone_no')
-            htmly = get_template('bookings/Email.html')
+            htmly = get_template('bookings/email.html')
             d = { 'username': username }
-            subject, from_email, to = 'welcome', 'your_email@gmail.com', email
+            subject, from_email, to = 'welcome', 'tronadenison@gmail.com', email
             html_content = htmly.render(d)
             msg = EmailMultiAlternatives(subject, html_content, from_email, [to])
             msg.attach_alternative(html_content, "text/html")
