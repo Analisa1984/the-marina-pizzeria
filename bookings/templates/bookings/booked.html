@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block start %}
+
+
+<div class="container mt-5 border">
+    <h1>Booking Confirmed!</h1>
+   <p> Dear {{user.username}}, Your booking with The Marina Pizzeria has 
+    been carded for the date {{booked_data.booking_date}} at {{booked_data.booking_time}} 
+    for a party of {{booked_data.party_number}}. Your table number is {{booked_data.table_number}}.</p>
+    <p>Thank you for your reservation. We look forward to serving you at The Marina Pizzeria.</p>
+    <a href="{% url 'index' %}" class="btn btn-primary">Back to Home</a>
+
+
+{% endblock start %} 

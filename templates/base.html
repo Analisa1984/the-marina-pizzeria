@@ -10,7 +10,9 @@
   <meta name="title" content="project">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta name="language" content="English">
-  <meta name="author" content="vinayak sharma">
+  <meta name="The Marina Pizzeria" content="Pizza restaurant, Pizzeria in Sorrento, Italy, Italian cuisine, 
+  Traditional pizza, Mediterranean flavors, Cozy dining, Family-friendly restaurant, Authentic Italian dishes, Fresh ingredients, 
+  Wood-fired oven, Pizza menu, Pasta dishes, Seafood specialties, Local wines, Friendly service, Scenic location">
 
   <title>{{title}}</title>
 
@@ -27,7 +29,7 @@
 
 
   <!-- main css -->
-  <link rel="stylesheet" type="text/css" href="{% static "index.css" %}" />
+  <link rel="stylesheet" type="text/css" href="{% static "css/styles.css" %}" />
 
 
 
@@ -55,7 +57,7 @@
           <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href=" # ">About Us</a>
+          <a class="nav-link" href="{% url 'about' %}">About Us</a>
         </li>
         </div>
 
@@ -65,13 +67,13 @@
         {% if user.is_authenticated %}
         <div class="d-flex col-md-4 justify-content-end">
               <li class="nav-item">
-          <a class="nav-link" href="#">Menu</a>
+          <a class="nav-link" href="{% url 'menu' %}">Menu</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Location</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Book Now</a>
+          <a class="nav-link" href="{% url 'bookings' %}">Book Now</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
@@ -80,13 +82,13 @@
         {% else %}
          <div class="d-flex col-md-4 justify-content-end">
             <li class="nav-item">
-          <a class="nav-link" href="#">Menu</a>
+          <a class="nav-link" href="{% url 'menu' %}">Menu</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Location</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Book Now</a>
+          <a class="nav-link" href="{% url 'bookings' %}">Book Now</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'register' %}">Sign Up</a>
