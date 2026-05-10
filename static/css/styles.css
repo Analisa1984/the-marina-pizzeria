@@ -1,11 +1,6 @@
-body {
-    font-family: Arial, sans-serif;
-    font-size: 16px;
-    background-color: #e8dbd2;
-    margin: 0;
-    padding: 0;
-}
-
+/* =========================================
+   1. ORIGINAL TABLE STYLE (Unchanged)
+   ========================================= */
 .table-one {
     width: 50%;
     border: 7px solid #0649a2;
@@ -13,4 +8,109 @@ body {
     margin-left: 20%;
     text-align: center;
     padding: 5%;
+}
+
+/* =========================================
+   2. AMALFI COAST THEME VARIABLES
+   ========================================= */
+:root {
+  --marina-dark: #263749;       /* Navy Slate - Relaxing background for navigation and footer*/
+  --marina-white: #ffffff;      /* Pure white for headers */
+  --marina-text-muted: #e0ecef; /* Very light blue-tinted gray */
+  --marina-accent: #ffca28;     /* Soft gold for highlights */
+  --marina-body-bg: #fdfaf5;    /* Warm, off-white "Beach Sand" body */
+}
+
+/* =========================================
+   3. GLOBAL LAYOUT
+   ========================================= */
+body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  background-color: var(--marina-body-bg) !important;
+  color: #2c3e50; /* Deep blue-gray text instead of harsh black */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+/* =========================================
+   4. NAVIGATION (HEADER)
+   ========================================= */
+.bg-marina-custom {
+  background-color: var(--marina-dark) !important;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: var(--marina-text-muted) !important;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link:focus {
+  color: var(--marina-white) !important;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+.brand-text-custom {
+  color: var(--marina-white) !important;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  margin-top: 5px;
+}
+
+/* =========================================
+   5. FOOTER
+   ========================================= */
+footer {
+  background-color: var(--marina-dark) !important;
+  color: var(--marina-text-muted) !important;
+  border-top: 3px solid var(--marina-accent); /* Subtle gold accent line */
+}
+
+footer h5 {
+  color: var(--marina-white);
+  font-weight: 600;
+}
+
+.text-muted-custom {
+  color: var(--marina-text-muted) !important;
+  font-size: 0.95rem;
+}
+
+.table-dark-custom {
+  background: transparent;
+  color: var(--marina-text-muted);
+  width: 100%;
+}
+
+.table-dark-custom td {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.6rem 0;
+}
+
+/* Socials */
+footer .fa-brands:hover {
+  color: var(--marina-accent) !important;
+}
+
+footer .btn-outline-light {
+    border-color: var(--marina-accent); /* Using our gold accent */
+    color: var(--marina-white);
+    transition: all 0.3s ease;
+}
+
+footer .btn-outline-light:hover {
+    background-color: var(--marina-accent);
+    color: var(--marina-dark); /* Flips colors on hover */
+    border-color: var(--marina-accent);
 }

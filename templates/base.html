@@ -1,237 +1,145 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="title" content="project">
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta name="language" content="English">
-  <meta name="The Marina Pizzeria" content="Pizza restaurant, Pizzeria in Sorrento, Italy, Italian cuisine, 
-  Traditional pizza, Mediterranean flavors, Cozy dining, Family-friendly restaurant, Authentic Italian dishes, Fresh ingredients, 
-  Wood-fired oven, Pizza menu, Pasta dishes, Seafood specialties, Local wines, Friendly service, Scenic location">
+  <meta name="description" content="The Marina Pizzeria - Authentic Italian cuisine in Sorrento. Wood-fired pizza, pasta, and seafood specialties.">
+  <meta name="keywords" content="Pizza restaurant, Sorrento, Italy, Italian cuisine, Wood-fired oven, Pizzeria">
 
-  <title>{{title}}</title>
+  <title>{{ title|default:"The Marina Pizzeria" }}</title>
 
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-  <!-- Bootstrap 5 CSS link -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-      crossorigin="anonymous"
-    />
-
-
-
-
-  <!-- main css -->
-  <link rel="stylesheet" type="text/css" href="{% static "css/styles.css" %}" />
-
-
-
-
-
+  <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" />
 </head>
 
-<body>
-
+<body class="d-flex flex-column min-vh-100">
 
   <header>
+    <nav class="navbar navbar-expand-lg navbar-dark shadow-sm bg-marina-custom" aria-label="Main Navigation">
+      <div class="container-fluid">
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <!-- navbar-->
-     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid row">
-    <div>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav w-100 d-flex align-items-center">
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <div class="row w-100 align-items-center g-0">
+            
+            <div class="col-lg-4 d-flex justify-content-start">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link px-3" href="{% url 'index' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link px-3" href="{% url 'about' %}">About Us</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link px-3" href="{% url 'menu' %}">Menu</a>
+                </li>
+              </ul>
+            </div>
 
-        <div class="d-flex col-md-4 justify-content-start">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'about' %}">About Us</a>
-        </li>
-        </div>
+            <div class="col-lg-4 d-flex justify-content-center">
+              <a class="navbar-brand d-flex flex-column align-items-center me-0" href="{% url 'index' %}">
+                <img src="{% static 'images/marina-pizzeria-logo.png' %}" alt="The Marina Pizzeria Logo" height="50" class="mb-1">
+                <span class="brand-text-custom">The Marina Pizzeria</span>
+              </a>
+            </div>
 
-        <div class="d-flex col-md-4 justify-content-center">
-        <a class="navbar-brand" href="{% url 'index' %}">The Marina Pizzeria</a>
-        </div>
-        {% if user.is_authenticated %}
-        <div class="d-flex col-md-4 justify-content-end">
-              <li class="nav-item">
-          <a class="nav-link" href="{% url 'menu' %}">Menu</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Location</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'bookings' %}">Book Now</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'my_bookings' %}">My Bookings</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
-        </li>
-        </div>
-        {% else %}
-         <div class="d-flex col-md-4 justify-content-end">
-            <li class="nav-item">
-          <a class="nav-link" href="{% url 'menu' %}">Menu</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Location</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'bookings' %}">Book Now</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'register' %}">Sign Up</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'login' %}">Log In</a>
-        </li>
-        </div>
-        {% endif %}
+            <div class="col-lg-4 d-flex justify-content-end">
+              <ul class="navbar-nav align-items-center">
+                <li class="nav-item">
+                  <a class="nav-link px-3" href="{% url 'bookings' %}">Book Now</a>
+                </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                  <a class="nav-link px-3" href="{% url 'my_bookings' %}">My Bookings</a>
+                </li>
+                <li class="nav-item ms-lg-2">
+                  <a class="btn btn-outline-light btn-sm" href="{% url 'logout' %}">Log Out</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                  <a class="nav-link px-3" href="{% url 'register' %}">Sign Up</a>
+                </li>
+                <li class="nav-item ms-lg-2">
+                  <a class="btn btn-outline-light btn-sm" href="{% url 'login' %}">Log In</a>
+                </li>
+                {% endif %}
+              </ul>
+            </div>
 
-      </ul>
-    </div>
-    </div>
-  </div>
-</nav>
-    
+          </div> </div> </div> </nav>
   </header>
-  
-  <main>
-    <div class="row welcome"></div>
-  {% if user.is_authenticated %}
-    <h1>Hello, {{user.username}}!</h1>
-    {% else %}
-    <h1> Hi! Please log in to book a table or to contact us!</h1>
+
+  <main class="flex-grow-1 container py-4">
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      {% endfor %}
     {% endif %}
+
+    <div class="welcome-text mb-4 text-center">
+      {% if user.is_authenticated %}
+      <h1 class="h3">Welcome back, {{ user.username }}!</h1>
+      {% else %}
+      <h1 class="h4 text-muted">Please log in to book a table or manage your reservations.</h1>
+      {% endif %}
     </div>
 
     {% block start %}
-    <!-- Other Pages Content goes here -->
     {% endblock start %}
   </main>
 
-
-  <!-- footer Section -->
-
-    <footer class="mt-auto">
-      <div class="row">
-        <div class="col pt-3">
-          <a
-            href="{% url 'index' %}"
-            target="_self"
-            aria-label="logo links to Home Page"
-          >
-            <img
-              src="{% static 'images/marina-pizzeria-logo.png'%}"
-              alt="logo of the marina pizzeria"
-              class="pt-3"
-            />
+  <footer class="bg-marina-custom text-light py-5 mt-auto border-top border-secondary">
+    <div class="container">
+      <div class="row g-4 text-center text-md-start">
+        
+        <div class="col-md-4">
+          <a href="{% url 'index' %}" aria-label="Go to Home Page">
+            <img src="{% static 'images/marina-pizzeria-logo.png' %}" alt="Marina Pizzeria Logo" height="60" class="mb-3">
           </a>
+          <p class="small text-muted-custom">Authentic flavors from the heart of Sorrento.</p>
         </div>
 
-        <!-- Opening Hours of The Marina Pizzeria -->
-        <div class="col">
-          <table
-            class="my-3 py-3"
-            aria-label="opening hours of pizzeria shown in a table"
-          >
-            <caption hidden>
-              Opening hours of The Marina Pizzeria
-            </caption>
-            <tr>
-              <th colspan="2">Opening Hours:</th>
-            </tr>
-            <tr>
-              <td>Mon</td>
-              <td>12:00 - 22:00</td>
-            </tr>
-            <tr>
-              <td>Tues</td>
-              <td>12:00 - 22:00</td>
-            </tr>
-            <tr>
-              <td>Wed</td>
-              <td>12:00 - 22:00</td>
-            </tr>
-            <tr>
-              <td>Thurs</td>
-              <td>12:00 - 22:00</td>
-            </tr>
-            <tr>
-              <td>Fri</td>
-              <td>12:00 - 23:00</td>
-            </tr>
-            <tr>
-              <td>Sat</td>
-              <td>12:00 - 23:00</td>
-            </tr>
-            <tr>
-              <td>Sun</td>
-              <td>Closed</td>
-            </tr>
+        <div class="col-md-4">
+          <h5 class="text-uppercase mb-3 small fw-bold">Opening Hours</h5>
+          <table class="table table-sm table-dark-custom mb-0">
+            <caption class="visually-hidden">Weekly Opening Hours</caption>
+            <tbody>
+              <tr><td>Mon - Thu</td><td class="text-end">12:00 - 22:00</td></tr>
+              <tr><td>Fri - Sat</td><td class="text-end">12:00 - 23:00</td></tr>
+              <tr><td>Sun</td><td class="text-end text-danger">Closed</td></tr>
+            </tbody>
           </table>
         </div>
 
-        <!-- Social media links to join in footer section -->
-        <div class="col social-media">
-          <p class="join-us">JOIN US ON SOCIAL MEDIA</p>
-          <br />
-          <a
-            href="https://www.facebook.com"
-            target="_blank"
-            aria-label="facebook page"
-            ><i class="fa-brands fa-facebook"></i
-          ></a>
-          <a
-            href="https://www.instagram.com"
-            target="_blank"
-            aria-label="instagram page"
-            ><i class="fa-brands fa-instagram"></i
-          ></a>
-          <a
-            href="https://www.twitter.com"
-            target="_blank"
-            aria-label="twitter page"
-            ><i class="fa-brands fa-x-twitter"></i
-          ></a>
-          <br />
-          <a
-            href="#"
-            target="_self"
-            class="contact"
-            aria-label="link to contact us"
-            >Contact Us</a
-          >
+        <div class="col-md-4 text-center text-md-end">
+          <h5 class="text-uppercase mb-3 small fw-bold">Connect With Us</h5>
+          <div class="fs-4 mb-3">
+            <a href="https://facebook.com" class="text-light me-3" aria-label="Visit our Facebook"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://instagram.com" class="text-light me-3" aria-label="Visit our Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://twitter.com" class="text-light" aria-label="Visit our Twitter/X"><i class="fa-brands fa-x-twitter"></i></a>
+          </div>
+          <a href="{% url 'contact' %}" class="btn btn-sm btn-outline-light">Contact Us</a>
         </div>
+
       </div>
-    </footer>
+    </div>
+  </footer>
 
-   <!-- Bootstrap 5 JavaScript  -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-      crossorigin="anonymous"
-    ></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-    <!-- favicon awesome kit JS code -->
-    <script
-      src="https://kit.fontawesome.com/8da35863e9.js"
-      crossorigin="anonymous"
-    ></script>
+  <script src="https://kit.fontawesome.com/8da35863e9.js" crossorigin="anonymous"></script>
+
 </body>
-
 </html>
