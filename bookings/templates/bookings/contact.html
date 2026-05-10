@@ -8,6 +8,17 @@
 </div>
 
 <div>
-    <p>Contact Page</p>
+    <form method="post" class="mt-4">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit" class="btn btn-outline-dark">Send Message</button>
+</form>
 </div>
+{% if success %}
+  <div class="alert alert-success mt-3">
+    <strong>Hello, {% if request.user.is_authenticated %}{{ request.user.username }}{% else %}Friend{% endif %}!</strong> 
+    <p>Your message has been sent to The Marina Pizzeria team. We
+    will get in touch soon! </p>
+  </div>
+{% endif %}
 {% endblock start %} 
