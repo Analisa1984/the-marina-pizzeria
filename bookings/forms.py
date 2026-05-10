@@ -16,23 +16,39 @@ class RegistrationForm(UserCreationForm):
         model = User
         fields = ['username', 'email', 'phone_no', 'password1', 'password2']
 
+# booking form with time in 30minute intervals
+
+TIME_CHOICES = [
+    (time(hour, minute).strftime('%H:%M'), time(hour, minute).strftime('%H:%M'))
+    for hour in range(12, 23) 
+    for minute in (0, 30)
+]
 
 class BookingForm(forms.ModelForm):
+    
+    booking_time = forms.ChoiceField( 
+        choices=TIME_CHOICES,
+        widget=forms.Select(attrs={'class': 'form-control'})
+    )
+
     class Meta:
         model = Booking
         fields = ['booking_date', 'booking_time', 'party_number']
         widgets = {
             'booking_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
-            'booking_time': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
             'party_number': forms.NumberInput(attrs={'class': 'form-control', 'min': 1}),
         }
 
     def clean(self):
         cleaned_data = super().clean()
         booking_date = cleaned_data.get('booking_date')
-        booking_time = cleaned_data.get('booking_time')
+        booking_time_str = cleaned_data.get('booking_time')
 
-        if booking_date and booking_time:
+        if booking_date and booking_time_str:
+            # Convert the string from the drop-down into a real Python time object
+            hour, minute = map(int, booking_time_str.split(':'))
+            booking_time = time(hour, minute)
+
             # Sunday check
             if booking_date.weekday() == 6:
                 raise ValidationError("The Marina Pizzeria is closed on Sundays.")
@@ -45,6 +61,7 @@ class BookingForm(forms.ModelForm):
             
             if booking_time < opening or booking_time > closing:
                 raise ValidationError(f"We are only open from {opening.strftime('%H:%M')} to {closing.strftime('%H:%M')} on this day.")
+            cleaned_data['booking_time'] = booking_time
 
         return cleaned_data
     
