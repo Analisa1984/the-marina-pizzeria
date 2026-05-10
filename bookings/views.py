@@ -1,10 +1,9 @@
-from urllib import request
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
-from .forms import BookingForm, EditBookingForm, RegistrationForm
+from .forms import BookingForm, UpdateBookingForm, RegistrationForm
 from django.core.mail import send_mail
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import get_template
@@ -36,19 +35,17 @@ def bookings(request):
             if suitable_tables:
                 # We found a table! suitable_table.id is what you need.
                 booking.table_id = suitable_tables
-            else:
-                # No table large enough was found
-                form_booking.add_error('party_number', "No tables available for this many guests.")
-            booking.save()
-            
-            request.session['booked_data'] = {
+                booking.save()
+                request.session['booked_data'] = {
                 'booking_date': str(form_booking.cleaned_data['booking_date']), # Convert date to string
                 'booking_time': str(form_booking.cleaned_data['booking_time']), # Convert time to string
                 'party_number': form_booking.cleaned_data['party_number'],
                 'table_number': suitable_tables.table_number if suitable_tables else "None"
             }
-
-            return redirect('booked')
+                return redirect('booked')
+            else:           
+                # No table large enough was found
+                form_booking.add_error('party_number', "No tables available for this many guests.")
     else:
         form_booking = BookingForm()
     
@@ -60,7 +57,7 @@ def my_bookings(request):
     
     # Filter bookings based on the current date
     past_bookings = Booking.objects.filter(User_id=request.user, booking_date__lt=today).order_by('-booking_date', '-booking_time')
-    current_bookings = Booking.objects.filter(User_id=request.user, booking_date__lte=today, booking_date__gte=today)
+    current_bookings = Booking.objects.filter(User_id=request.user, booking_date=today)
     future_bookings = Booking.objects.filter(User_id=request.user, booking_date__gt=today).order_by('-booking_date', '-booking_time')
 
     context = {
@@ -70,44 +67,41 @@ def my_bookings(request):
     }
     return render(request, 'bookings/my_bookings.html', context)
 
-# for editing bookings page
-# @login_required
-# def edit_booking(request, booking_id):
-#     # only the user who made the booking can edit the booking if it exists, otherwise it will return a 404 error
-#     booking = get_object_or_404(Booking, id=booking_id, user=request.user)
+# for cancelling the bookings made by user
 
-#     if request.method == 'POST':
-#         form = EditBookingForm(request.POST, instance=booking)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('bookings/my_bookings.html') 
-#     else:
-#         form = EditBookingForm(instance=booking)
-
-#     return render(request, 'bookings/edit_booking.html', {'form': form})
-
-# Update View
-@login_required
-def edit_booking(request, booking_id):
-    booking = get_object_or_404(Booking, booking_id=booking_id, User_id=request.user)
-    if request.method == 'POST':
-        form = BookingForm(request.POST, instance=booking)
-        if form.is_all_valid():
-            form.save()
-            messages.success(request, 'Booking updated successfully!')
-            return redirect('my_bookings')
-    else:
-        form = BookingForm(instance=booking)
-
-    return render(request, 'edit_booking.html', {'form': form})
-
- # Delete View
 def cancel_booking(request, booking_id):
     booking = get_object_or_404(Booking, booking_id=booking_id, User_id=request.user)
-    if request.method == 'POST':
+    if request.method == "POST":
         booking.delete()
-        messages.success(request, 'Booking cancelled successfully!')
-    return redirect('my_bookings')       
+        messages.success(request, "Booking cancelled successfully.")
+        return redirect('my_bookings') 
+    return redirect('my_bookings')
+
+
+# for editing the bookings made by user
+def update_booking(request, booking_id):
+    booking = get_object_or_404(Booking, booking_id=booking_id, User_id=request.user)
+    
+    if request.method == "POST":
+        form = BookingForm(request.POST, instance=booking)
+        if form.is_valid():
+            new_party_size = form.cleaned_data['party_number']
+            
+            # Check table capacity
+            if new_party_size > booking.table_id.seating_capacity:
+                suitable_table = Table.objects.filter(seating_capacity__gte=new_party_size).first()
+                if suitable_table:
+                    booking.table_id = suitable_table
+                else:
+                    messages.error(request, f"Could not update: No tables available for {new_party_size} guests.")
+                    return redirect('my_bookings')
+            
+            form.save()
+            messages.success(request, "Booking updated successfully!")
+        else:
+            messages.error(request, "There was an error in your update. Please check the details.")
+            
+    return redirect('my_bookings')  
 
 
 # for menu page
@@ -119,8 +113,37 @@ def about(request):
     return render(request, 'bookings/about.html', {'title': 'about'})
 
 # for contact page
+class ContactForm(forms.Form):
+    name = forms.CharField(max_length=100)
+    email = forms.EmailField()
+    message = forms.CharField(widget=forms.Textarea)
+
 def contact(request):
-    return render(request, 'bookings/contact.html', {'title': 'contact'})
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            message = form.cleaned_data['message']
+            
+            # This prints the message to your terminal for testing
+            print(f"New Message from {name} ({email}): {message}")
+
+            # Return the page with a success flag
+            return render(request, 'bookings/contact.html', {
+                'form': ContactForm(), # Reset to a blank form
+                'success': True,
+                'title': 'Thank You'
+            })
+    else:
+        # The user is just visiting the page (GET request)
+        form = ContactForm()
+
+    return render(request, 'bookings/contact.html', {
+        'form': form, 
+        'title': 'Contact Us'
+    })
 
 # for booked page
 def booked(request):
@@ -152,20 +175,16 @@ def register(request):
     return render(request, 'bookings/register.html', {'form': form, 'title': 'register here'}) 
 
 # for login page
+
 def Login(request):
     if request.method == 'POST':
- 
-        # AuthenticationForm_can_also_be_used__
- 
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username = username, password = password)
-        if user is not None:
-            form = login(request, user)
-            messages.success(request, f' Hello, {username} !!')
+        form = AuthenticationForm(request, data=request.POST) # Better to use the form class
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user) # Just call it
+            messages.success(request, f' Hello, {user.username} !!')
             return redirect('index')
-        else:
-            messages.info(request, f'account done not exit plz sign in')
-    form = AuthenticationForm()
-    return render(request, 'bookings/login.html', {'form':form, 'title':'log in'}) 
+    else:
+        form = AuthenticationForm()
+    return render(request, 'bookings/login.html', {'form':form, 'title':'log in'})
 
