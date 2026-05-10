@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
 {% load crispy_forms_tags %}
-{% block start %}
 
+{% block start %}
 <div class="container mt-4">
     <h2 class="mb-4">My Bookings</h2>
 
@@ -12,17 +12,17 @@
         {% if current_bookings %}
             <div class="list-group">
                 {% for booking in current_bookings %}
-                    <div class="list-group-item list-group-item-action border-primary">
+                    <div class="list-group-item list-group-item-action border-primary mb-2 shadow-sm">
                         <div class="d-flex w-100 justify-content-between">
                             <h5 class="mb-1">{{ booking.booking_date }}</h5>
                             <small class="badge bg-primary text-white">Active Now</small>
                         </div>
-                        <p class="mb-1"> {{ booking.booking_time }}</p>
+                        <p class="mb-1">Time: {{ booking.booking_time }} | Party of {{ booking.party_number }}</p>
                     </div>
                 {% endfor %}
             </div>
         {% else %}
-            <p class="text-muted">No active bookings.</p>
+            <p class="text-muted">No active bookings for today.</p>
         {% endif %}
     </section>
 
@@ -31,19 +31,62 @@
         <hr>
         <div class="row">
             {% for booking in future_bookings %}
-                <div class="col-md-6 mb-3">
-                    <div class="card shadow-sm">
+                <div class="col-md-6 mb-4">
+                    <div class="card shadow-sm h-100">
                         <div class="card-body">
-                            <h5 class="card-title">{{ booking.booking_date }}</h5>
+                            <h5 class="card-title text-success">{{ booking.booking_date }}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">{{ booking.booking_time }}</h6>
-                            <button class="btn btn-outline-success btn-sm">Update My Booking</button>
-                            <button class="btn btn-outline-success btn-sm">Cancel My Booking</button>
+                            <p class="card-text">Party Size: {{ booking.party_number }}</p>
+                            
+                            <div class="d-flex gap-2">
+                                <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editModal{{ booking.booking_id }}">
+                                    Update Details
+                                </button>
+
+                                <form action="{% url 'cancel_booking' booking.booking_id %}" method="POST" onsubmit="return confirm('Are you sure you want to cancel this booking?');">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-outline-danger btn-sm">Cancel</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-                
+
+                <div class="modal fade" id="editModal{{ booking.booking_id }}" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="editModalLabel">Update Booking Details</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <form action="{% url 'edit_booking' booking.booking_id %}" method="POST">
+                                <div class="modal-body">
+                                    {% csrf_token %}
+                                    <div class="mb-3">
+                                        <label class="form-label">New Date</label>
+                                        <input type="date" name="booking_date" class="form-control" value="{{ booking.booking_date|date:'Y-m-d' }}" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">New Time</label>
+                                        <input type="time" name="booking_time" class="form-control" value="{{ booking.booking_time|time:'H:i' }}" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Party Size</label>
+                                        <input type="number" name="party_number" class="form-control" value="{{ booking.party_number }}" min="1" max="20" required>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-success">Save Changes</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             {% empty %}
-                <p class="ml-3 text-muted">No upcoming trips planned.</p>
+                <div class="col-12">
+                    <p class="text-muted">No upcoming trips planned.</p>
+                </div>
             {% endfor %}
         </div>
     </section>
@@ -51,28 +94,33 @@
     <section>
         <h3 class="text-secondary">Past Bookings</h3>
         <hr>
-        <table class="table table-hover">
-            <thead class="table-light">
-                <tr>
-                    <th>Date</th>
-                    <th>Description</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for booking in past_bookings %}
-                <tr>
-                    <td>{{ booking.start_date }}</td>
-                    <td>{{ booking.description }}</td>
-                    <td><span class="text-muted">Completed</span></td>
-                </tr>
-                {% empty %}
-                <tr><td colspan="3">No past records found.</td></tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead class="table-light">
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Party Size</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for booking in past_bookings %}
+                    <tr>
+                        <td>{{ booking.booking_date }}</td>
+                        <td>{{ booking.booking_time }}</td>
+                        <td>{{ booking.party_number }}</td>
+                        <td><span class="badge bg-secondary">Completed</span></td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4" class="text-center text-muted">No past records found.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </section>
 
 </div>
-
-{% endblock start %} 
+{% endblock start %}
