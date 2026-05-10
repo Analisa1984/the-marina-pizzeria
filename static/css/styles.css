@@ -105,3 +105,97 @@ footer .btn-outline-light:hover {
     color: var(--marina-dark); /* Flips colors on hover */
     border-color: var(--marina-accent);
 }
+
+/* =========================================
+   6. RESPONSIVE UTILITIES & FIXES
+   ========================================= */
+
+/* Adjust Logo and Text for Mobile */
+@media (max-width: 991.98px) {
+  .navbar-brand img {
+    height: 30px !important; /* Smaller logo for mobile tight spaces */
+  }
+
+  .brand-text-custom {
+    font-size: 0.85rem !important; /* Prevents text from pushing icons off-screen */
+    letter-spacing: 1px;
+    margin-top: 0;
+  }
+  
+  /* Ensure the icons on the right have enough breathing room */
+  .d-flex.d-lg-none .nav-link {
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+  }
+}
+
+/* Footer Table Fix */
+@media (max-width: 767.98px) {
+  .table-dark-custom {
+    width: 100% !important; /* Table takes full width on mobile */
+    margin: 0 auto;
+  }
+  
+  .table-dark-custom td {
+    font-size: 0.9rem;
+  }
+}
+
+/* Global Button Hover for Accents */
+.btn-outline-light:hover {
+  background-color: var(--marina-accent) !important;
+  color: var(--marina-dark) !important;
+  border-color: var(--marina-accent) !important;
+}
+
+/* =========================================
+   7. FINAL BRAND STACK & TABLE FIXES
+   ========================================= */
+
+/* Footer Brand Stacking Logic */
+.footer-brand-stack {
+  display: flex;
+  flex-direction: column; /* FORCES the vertical stack */
+  line-height: 0.9;         /* Pulls the lines tighter together */
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-align: left;
+}
+
+.footer-brand-stack .small-word {
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+.footer-brand-stack .main-word {
+  font-size: 1.8rem;        /* Makes "MARINA" prominent */
+  letter-spacing: 2px;
+}
+
+.footer-brand-stack .sub-word {
+  font-size: 1.1rem;
+  color: var(--marina-accent) !important; /* Gold color for PIZZERIA */
+}
+
+/* Force Table Transparency */
+
+
+footer .table td {
+    background-color: transparent !important;
+    padding: 0.5rem 0;
+    color: var(--marina-white) !important; 
+    font-size: 1rem; /* Slightly larger for better readability */
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    border-bottom: 3px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Location Pin Styling */
+.text-warning {
+    color: var(--marina-accent) !important;
+}
+
+.footer-location-link:hover {
+    color: var(--marina-accent) !important;
+    text-decoration: underline !important;
+}
