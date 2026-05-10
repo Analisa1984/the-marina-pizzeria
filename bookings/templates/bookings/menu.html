@@ -3,165 +3,44 @@
 {% load crispy_forms_tags %}
 {% block start %}
 
-<div class="table-one">
-  <table class="primary-table">
-    <tr>
-      <th>Starters</th>
-      <th> Price (£)</th>
-    </tr>
-    <tr>
-      <td>Garlic Bread</td>
-      <td>3.50</td>
-    </tr>
-    <tr>
-      <td>Bruschetta</td>
-      <td>4.00</td>
-    </tr>
-    <tr>
-      <td>Caprese Salad</td>
-      <td>5.00</td>
-    </tr>
-    <tr>
-      <td>Arancini</td>
-      <td>4.50</td>
-    </tr>
-    <tr>
-      <td>Calamari</td>
-      <td>5.50</td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr class="table-secondary">
-      <th>Main Courses</th>
-      <th> Price (£)</th>
-    </tr>
-    <tr>
-      <td>Margherita Pizza</td>
-      <td>8.00</td>
-    </tr>
-    <tr>
-      <td>Pepperoni Pizza</td>
-      <td>9.00</td>
-    </tr>
-    <tr>
-      <td>Vegetarian Pizza</td>
-      <td>8.50</td>
-    </tr>
-    <tr>
-      <td>Proscuitto Pizza</td>
-      <td>9.50</td>
-    </tr>
-    <tr>
-      <td>Vegan Pizza</td>
-      <td>8.50</td>
-    </tr>
-    <tr>
-      <td>Seafood Pizza</td>
-      <td> 10.00</td>
-    </tr>
-    <tr>
-      <td>pepperoni Pizza</td>
-      <td>10.00</td>
-    </tr>
-    <tr>
-      <td>Four Cheese Pizza</td>
-      <td>9.50</td>
-    </tr>
-    <tr>
-      <td>Hawaiian Pizza</td>
-      <td>9.00</td>
-    </tr>
-    <tr>
-      <td>BBQ Chicken Pizza</td>
-      <td>9.50</td>
-    </tr>
-    <tr>
-      <td>Meat Lovers Pizza</td>
-      <td>10.00</td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr class="third-table">
-      <th>Desserts</th>
-      <th> Price (£)</th>
-    </tr>
-    <tr>
-      <td>Tiramisu</td>
-      <td>5.00</td>
-    </tr>
-    <tr>
-      <td>Panna Cotta</td>
-      <td>4.50</td>
-    </tr>
-    <tr>
-      <td>Gelato</td>
-      <td>3.50</td>
-    </tr>
-    <tr>
-      <td>Cannoli</td>
-      <td>4.00</td>
-    </tr>
-    <tr>
-      <td>Chocolate Lava Cake</td>
-      <td>5.50</td>
-    </tr>
-    <tr>
-      <tr>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-    </tr>
-      <th class="fourth-table">Drinks</th>
-      <th> Price (£)</th>
-    </tr>
-    <tr>
-      <td>Soft Drinks</td>
-      <td>2.00</td>
-    </tr>
-    <tr>
-      <td>Beer</td>
-      <td>3.50</td>
-    </tr>
-    <tr>
-      <td>Wine (glass)</td>
-      <td>4.00</td>
-    </tr>
-    <tr>
-      <td>Cocktails</td>
-      <td>6.00</td>
-    </tr>
+<div class="container my-5"> <h2 class="text-center mb-4">Our Menu</h2>
+    
+    <div class="table-responsive"> <table class="table table-hover table-striped align-middle"> <thead class="table-dark"> <tr>
+                    <th scope="col" style="width: 70%;">Starters</th>
+                    <th scope="col" style="width: 30%;">Price (£)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Garlic Bread</td><td>3.50</td></tr>
+                <tr><td>Bruschetta</td><td>4.00</td></tr>
+                <tr><td>Caprese Salad</td><td>5.00</td></tr>
+                <tr><td>Arancini</td><td>4.50</td></tr>
+                <tr><td>Calamari</td><td>5.50</td></tr>
 
-  </table>
+                <tr class="table-primary">
+                    <th colspan="2" class="text-uppercase fw-bold">Main Courses</th>
+                </tr>
+                <tr><td>Margherita Pizza</td><td>8.00</td></tr>
+                <tr><td>Pepperoni Pizza</td><td>9.00</td></tr>
+                <tr><td>Vegetarian Pizza</td><td>8.50</td></tr>
+                <tr><td>Seafood Pizza</td><td>10.00</td></tr>
+
+                <tr class="table-info">
+                    <th colspan="2" class="text-uppercase fw-bold">Desserts</th>
+                </tr>
+                <tr><td>Tiramisu</td><td>5.00</td></tr>
+                <tr><td>Panna Cotta</td><td>4.50</td></tr>
+                <tr><td>Gelato</td><td>3.50</td></tr>
+
+                <tr class="table-warning">
+                    <th colspan="2" class="text-uppercase fw-bold">Drinks</th>
+                </tr>
+                <tr><td>Soft Drinks</td><td>2.00</td></tr>
+                <tr><td>Beer</td><td>3.50</td></tr>
+                <tr><td>Wine (glass)</td><td>4.00</td></tr>
+            </tbody>
+        </table>
+    </div>
 </div>
-{% endblock start %} 
+
+{% endblock start %}
