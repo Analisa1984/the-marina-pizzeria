@@ -1,17 +1,7 @@
-/* =========================================
-   1. ORIGINAL TABLE STYLE (Unchanged)
-   ========================================= */
-.table-one {
-    width: 50%;
-    border: 7px solid #0649a2;
-    font-size: 2.2em;
-    margin-left: 20%;
-    text-align: center;
-    padding: 5%;
-}
+
 
 /* =========================================
-   2. AMALFI COAST THEME VARIABLES
+   1. AMALFI COAST THEME VARIABLES
    ========================================= */
 :root {
   --marina-dark: #263749;       /* Navy Slate - Relaxing background for navigation and footer*/
@@ -22,7 +12,7 @@
 }
 
 /* =========================================
-   3. GLOBAL LAYOUT
+   2. GLOBAL LAYOUT
    ========================================= */
 body {
   font-family: Arial, sans-serif;
