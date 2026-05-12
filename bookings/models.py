@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 STATUS = ((0, 'Pending'), (1, 'Confirmed'), (2, 'Cancelled'), (3, 'Completed'))
+USER_TYPE = ((0, 'Patron'), (1, 'Staff'))
 
 # Create your models here.
 class Booking(models.Model):

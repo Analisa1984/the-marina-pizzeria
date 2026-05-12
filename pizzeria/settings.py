@@ -139,3 +139,9 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+
+# After login, sending everyone to the redirect page
+LOGIN_REDIRECT_URL = 'login_redirect'
+
+# After logout, sending them back to the home page
+LOGOUT_REDIRECT_URL = 'index'

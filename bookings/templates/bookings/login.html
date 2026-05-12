@@ -1,20 +1,37 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
-{% block start %}
 
- <div class="content-section col-md-8 col-md-offset-2">
-  <center>
-  <form method="POST" style="border: 1px solid black; margin: 4%; padding:10%; border-radius:1%;">
-    {% csrf_token %}
-    <!-- <fieldset class="form-group"> -->
-      {{ form|crispy}}
-    <!-- </fieldset> -->
-   <center>
-    <button style="background: black; font-size: 2rem; padding:1%;" class="btn btn-outline-info" type="submit"><span class="glyphicon glyphicon-log-in"></span>   login</button>
-  </center>
-  <br/>
-  <sub style="text-align: left;"><a href="{% url 'register' %}" style="text-decoration: none; color: blue; padding:2%; cursor:pointer; margin-right:2%;">don't have account,sign up</a></sub>
-  </form>
-</center>
- </div>
+{% block start %}
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6 col-lg-5">
+            
+            <div class="card shadow-sm border-dark p-4 p-md-5 rounded-3">
+                <h2 class="text-center mb-4">Login</h2>
+                
+                <form method="POST">
+                    {% csrf_token %}
+                    
+                    <div class="mb-3">
+                        {{ form|crispy }}
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-dark btn-lg py-2 mt-3" style="background-color: #263749;">
+                            <i class="bi bi-box-arrow-in-right"></i> Login
+                        </button>
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <small class="text-muted">
+                            Don't have an account? 
+                            <a href="{% url 'register' %}" class="text-decoration-none fw-bold">Sign up</a>
+                        </small>
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock start %}

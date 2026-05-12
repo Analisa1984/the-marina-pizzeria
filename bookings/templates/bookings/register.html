@@ -2,33 +2,45 @@
 {% load crispy_forms_tags %}
 
 {% block start %}
-<div class="container mt-5">
+<div class="container py-5">
     <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card shadow">
-                <div class="card-body p-5">
-                    <h2 class="text-center mb-4" style="color: #001f3f;">Join the Pizzeria Family</h2>
-                    <p class="text-muted text-center">Create an account to book tables and save your favorite pizzas.</p>
+        <div class="col-md-8 col-lg-5">
+            
+            <div class="card shadow-sm border-0 rounded-4">
+                <div class="card-body p-4 p-md-5">
+                    
+                    <div class="text-center mb-4">
+                        <div class="display-6 mb-2">🍕</div>
+                        <h2 class="fw-bold" style="color: #001f3f;">Join the Pizzeria Family</h2>
+                        <p class="text-muted small">Create an account to book tables and save your favorite pizzas.</p>
+                    </div>
                     
                     <form method="POST">
                         {% csrf_token %}
-                        <fieldset class="form-group">
+                        
+                        <div class="mb-4">
                             {{ form|crispy }}
-                        </fieldset>
-                        <div class="text-center mt-4">
-                            <button class="btn btn-dark btn-lg w-100" type="submit" style="background-color: #001f3f;">
-                                Sign Up
+                        </div>
+                        
+                        <div class="d-grid">
+                            <button class="btn btn-dark btn-lg py-3 shadow-sm fw-bold" type="submit" style="background-color: #001f3f;">
+                                <i class="bi bi-person-plus me-2"></i> Sign Up
                             </button>
                         </div>
                     </form>
                     
-                    <div class="border-top pt-3 mt-3 text-center">
-                        <small class="text-muted">
-                            Already have an account? <a href="{% url 'login' %}" class="ml-2" style="color: #007bff; text-decoration: none;">Log In</a>
-                        </small>
+                    <div class="border-top pt-4 mt-4 text-center">
+                        <p class="mb-0 small text-muted">
+                            Already have an account? 
+                            <a href="{% url 'login' %}" class="text-primary fw-bold text-decoration-none ms-1">
+                                Log In <i class="bi bi-arrow-right-short"></i>
+                            </a>
+                        </p>
                     </div>
+                    
                 </div>
             </div>
+
         </div>
     </div>
 </div>
