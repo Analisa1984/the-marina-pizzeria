@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block start %}
+<div class="container py-5">
+    <div class="p-5 mb-4 bg-light rounded-4 ">
+        <div class="text-center">
+            <h1 class="display-4 fw-bold">🍕 Staff Command Portal</h1>
+            <p class="lead">Logged in as: <span class="badge bg-dark">{{ request.user.username }}</span></p>
+            <hr class="my-4 mx-auto w-25">
+        </div>
+        
+        <div class="row justify-content-center">
+            <div class="col-md-10 col-lg-8">
+                <div class="d-grid gap-4 mt-2">
+                    
+                    <a href="{% url 'staff_register_customer' %}" class="btn btn-warning btn-lg py-4 shadow-sm transition-hover">
+                       <div class="d-flex align-items-center justify-content-center">
+                           <i class="bi bi-person-plus-fill fs-2 me-3"></i>
+                           <div class="text-start">
+                               <div class="fw-bold">REGISTER NEW GUEST</div>
+                               <small class="d-block opacity-75">Create a login for a walk-in or phone customer</small>
+                           </div>
+                       </div>
+                    </a>
+                    
+                    <a href="{% url 'bookings' %}" class="btn btn-dark btn-lg py-4 shadow-sm transition-hover">
+                       <div class="d-flex align-items-center justify-content-center">
+                           <i class="bi bi-calendar-check-fill fs-2 me-3"></i> 
+                           <div class="text-start">
+                               <div class="fw-bold text-uppercase">Manual Guest Booking</div>
+                               <small class="d-block opacity-75">Book for customers who don't use computers</small>
+                           </div>
+                       </div>
+                    </a>
+
+                    <a href="{% url 'staff_dashboard' %}" class="btn btn-outline-dark btn-lg py-3 d-flex align-items-center justify-content-center">
+                       <i class="bi bi-table me-2"></i> VIEW ALL RESERVATIONS
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Subtle hover effect for the main button */
+    .transition-hover {
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    }
+    .transition-hover:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+    }
+</style>
+{% endblock start %}

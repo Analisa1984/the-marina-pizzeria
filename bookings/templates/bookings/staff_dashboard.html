@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block start %}
+<div class="container py-5">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
+        <div>
+            <h1 class="display-6 fw-bold text-dark mb-0">
+                <i class="bi bi-journal-bookmark-fill text-warning me-2"></i> Master Reservation List
+            </h1>
+            <p class="text-muted mb-0">Overview of all current and past bookings for Marina Pizzeria</p>
+        </div>
+        <a href="{% url 'staff_portal' %}" class="btn btn-dark shadow-sm px-4 rounded-pill">
+            <i class="bi bi-arrow-left"></i> Back to Portal
+        </a>
+    </div>
+
+    <div class="card shadow-sm border-0 rounded-4 overflow-hidden">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light border-bottom">
+                        <tr class="text-uppercase small fw-bold text-muted">
+                            <th class="ps-4 py-3">Date</th>
+                            <th class="py-3">Time</th>
+                            <th class="py-3">Guest Name</th>
+                            <th class="text-center py-3">Party Size</th>
+                            <th class="text-center py-3">Table #</th>
+                            <th class="py-3">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for booking in all_bookings %}
+                        <tr class="{% if booking.booking_date == today %}table-warning-subtle border-start border-warning border-4{% endif %}">
+                            <td class="ps-4">
+                                <span class="fw-bold">{{ booking.booking_date|date:"D, d M" }}</span>
+                                {% if booking.booking_date == today %}
+                                    <span class="badge rounded-pill bg-warning text-dark ms-1">TODAY</span>
+                                {% endif %}
+                            </td>
+                            <td class="text-secondary fw-semibold">{{ booking.booking_time|time:"H:i" }}</td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-person-circle me-2 text-muted"></i>
+                                    {{ booking.User_id.username|title }}
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <span class="badge bg-light text-dark border fw-bold px-3">
+                                    <i class="bi bi-people-fill me-1 small"></i> {{ booking.party_number }}
+                                </span>
+                            </td>
+                            <td class="text-center">
+                                <span class="badge bg-dark px-3 py-2">Table {{ booking.table_id.table_number }}</span>
+                            </td>
+                            <td>
+                                {% if booking.booking_date < today %}
+                                    <span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle">Past</span>
+                                {% else %}
+                                    <span class="badge bg-success-subtle text-success border border-success-subtle">Confirmed</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="6" class="text-center py-5">
+                                <div class="text-muted">
+                                    <i class="bi bi-patch-question fs-1 mb-3 d-block text-warning"></i>
+                                    <p class="h5">No reservations found</p>
+                                    <p class="small">When guests book a table, they will appear here.</p>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock start %}
