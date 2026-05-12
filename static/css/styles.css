@@ -1,22 +1,18 @@
-/* =========================================
-   1. AMALFI COAST THEME VARIABLES
-   ========================================= */
+/* using root varialbles to make easier for design and styling and changing colors and themes */
 :root {
-  --marina-dark: #263749;       /* Navy Slate - Relaxing background for navigation and footer*/
+  --marina-dark: #263749;       /* Navy Slate color for headers*/
   --marina-white: #ffffff;      /* Pure white for headers */
   --marina-text-muted: #e0ecef; /* Very light blue-tinted gray */
   --marina-accent: #ffca28;     /* Soft gold for highlights */
   --marina-body-bg: #fdfaf5;    /* Warm, off-white "Beach Sand" body */
 }
 
-/* =========================================
-   2. GLOBAL LAYOUT
-   ========================================= */
+/* general styling for body */
 body {
   font-family: Arial, sans-serif;
   font-size: 16px;
   background-color: var(--marina-body-bg) !important;
-  color: #2c3e50; /* Deep blue-gray text instead of harsh black */
+  color: #2c3e50; 
   margin: 0;
   padding: 0;
   display: flex;
@@ -28,9 +24,7 @@ main {
   flex: 1;
 }
 
-/* =========================================
-   4. NAVIGATION (HEADER)
-   ========================================= */
+/* Navigation Styling */
 .bg-marina-custom {
   background-color: var(--marina-dark) !important;
 }
@@ -56,13 +50,11 @@ main {
   margin-top: 5px;
 }
 
-/* =========================================
-   5. FOOTER
-   ========================================= */
+/* footer styling */
 footer {
   background-color: var(--marina-dark) !important;
   color: var(--marina-text-muted) !important;
-  border-top: 3px solid var(--marina-accent); /* Subtle gold accent line */
+  border-top: 3px solid var(--marina-accent);
 }
 
 footer h5 {
@@ -87,50 +79,46 @@ footer h5 {
   text-align: center;
 }
 
-/* Socials */
+/* Social link styling including highlights when hovered over*/
 footer .fa-brands:hover {
   color: var(--marina-accent) !important;
 }
 
 footer .btn-outline-light {
-    border-color: var(--marina-accent); /* Using our gold accent */
+    border-color: var(--marina-accent); 
     color: var(--marina-white);
     transition: all 0.3s ease;
 }
 
 footer .btn-outline-light:hover {
     background-color: var(--marina-accent);
-    color: var(--marina-dark); /* Flips colors on hover */
+    color: var(--marina-dark); 
     border-color: var(--marina-accent);
 }
 
-/* =========================================
-   6. RESPONSIVE UTILITIES & FIXES
-   ========================================= */
-
 /* Adjust Logo and Text for Mobile */
-@media (max-width: 991.98px) {
+@media (max-width: 991px) {
   .navbar-brand img {
-    height: 30px !important; /* Smaller logo for mobile tight spaces */
+    height: 30px !important; 
   }
 
   .brand-text-custom {
-    font-size: 0.85rem !important; /* Prevents text from pushing icons off-screen */
+    font-size: 0.85rem !important; 
     letter-spacing: 1px;
     margin-top: 0;
   }
   
-  /* Ensure the icons on the right have enough breathing room */
+  /* Ensure the icons on the right have enough space */
   .d-flex.d-lg-none .nav-link {
     padding-left: 0.5rem !important;
     padding-right: 0.5rem !important;
   }
 
-  /* FIX FOR SCATTERED MOBILE MENU ALIGNMENT */
+  /* Mobile Burger Menu items all ceter aligned */
   .navbar-collapse {
-    text-align: center; /* Centers all links */
-    padding: 1.5rem 0;   /* Adds breathing room */
-    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Subtle divider when open */
+    text-align: center; 
+    padding: 1.5rem 0;  
+    border-top: 1px solid rgba(255, 255, 255, 0.1); 
     margin-top: 10px;
   }
 
@@ -141,15 +129,15 @@ footer .btn-outline-light:hover {
   }
 
   .navbar-nav .nav-link {
-    padding: 0.8rem 0 !important; /* Makes links easier to tap */
+    padding: 0.8rem 0 !important; 
     font-size: 1.1rem;
   }
 }
 
 /* Footer Table Fix */
-@media (max-width: 767.98px) {
+@media (max-width: 767px) {
   .table-dark-custom {
-    width: 100% !important; /* Table takes full width on mobile */
+    width: 100% !important; 
     margin: 0 auto;
   }
   
@@ -165,15 +153,13 @@ footer .btn-outline-light:hover {
   border-color: var(--marina-accent) !important;
 }
 
-/* =========================================
-   7. FINAL BRAND STACK & TABLE FIXES
-   ========================================= */
 
-/* Footer Brand Stacking Logic */
+
+/* Footer logo Stacking  */
 .footer-brand-stack {
   display: flex;
-  flex-direction: column; /* FORCES the vertical stack */
-  line-height: 0.9;         /* Pulls the lines tighter together */
+  flex-direction: column; /* creates the vertical stack */
+  line-height: 0.9;         
   font-weight: 900;
   letter-spacing: 1px;
   text-align: left;
@@ -185,16 +171,16 @@ footer .btn-outline-light:hover {
 }
 
 .footer-brand-stack .main-word {
-  font-size: 1.8rem;        /* Makes "MARINA" prominent */
+  font-size: 1.8rem;        
   letter-spacing: 2px;
 }
 
 .footer-brand-stack .sub-word {
   font-size: 1.1rem;
-  color: var(--marina-accent) !important; /* Gold color for PIZZERIA */
+  color: var(--marina-accent) !important; 
 }
 
-/* Force Table Transparency and Contrast */
+/*  Make Opening Hours table transparent */
 footer .table td {
     background-color: transparent !important;
     padding: 0.5rem 0;
@@ -205,7 +191,7 @@ footer .table td {
     border-bottom: 3px solid rgba(255, 255, 255, 0.15);
 }
 
-/* Location Pin Styling */
+/* Location Pin Styling for google maps locator */
 .text-warning {
     color: var(--marina-accent) !important;
 }
