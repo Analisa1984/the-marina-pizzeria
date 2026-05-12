@@ -145,3 +145,5 @@ LOGIN_REDIRECT_URL = 'login_redirect'
 
 # After logout, sending them back to the home page
 LOGOUT_REDIRECT_URL = 'index'
+
+LOGIN_URL = 'login'
