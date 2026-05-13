@@ -308,7 +308,7 @@ def Login(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user) # Just call it
-            messages.success(request, f' Hello, {user.username} !!')
+            messages.success(request, f' Hello, {user.username}!')
             return redirect('login_redirect')
     else:
         form = AuthenticationForm()
