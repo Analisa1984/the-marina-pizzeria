@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block start %}
+<div class="container py-5">
+    <div class="card shadow border-0 rounded-4">
+        <div class="card-header bg-primary text-white py-4">
+            <h2 class="mb-0">Manual Booking for Existing Guest</h2>
+        </div>
+        <div class="card-body p-4">
+            <form method="post">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-success btn-lg">Confirm Reservation</button>
+                    <a href="{% url 'staff_portal' %}" class="btn btn-outline-secondary">Back to Portal</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock start %}

@@ -16,22 +16,41 @@
                 
                 <div class="card-body p-4 p-md-5">
                     <form method="post" novalidate>
-                        {% csrf_token %}
-                        
-                        <div class="mb-3">
-                            {{ form|crispy }}
-                        </div>
-                        
-                        <div class="d-grid gap-3 mt-4">
-                            <button type="submit" class="btn btn-dark btn-lg py-3 fw-bold shadow-sm">
-                                <i class="bi bi-check-circle-fill me-2"></i> Create Customer Account
-                            </button>
-                            
-                            <a href="{% url 'staff_portal' %}" class="btn btn-outline-secondary py-2">
-                                <i class="bi bi-arrow-left-short"></i> Cancel & Return to Portal
-                            </a>
-                        </div>
-                    </form>
+    {% csrf_token %}
+    
+    <div class="mb-4">
+        <h5 class="text-muted border-bottom pb-2">Step 1: Customer Account</h5>
+        {{ form|crispy }}
+    </div>
+
+    <div class="mb-3">
+        <h5 class="text-muted border-bottom pb-2">Step 2: Reservation Details</h5>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label class="form-label fw-bold">Booking Date</label>
+                <input type="date" name="booking_date" class="form-control" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label class="form-label fw-bold">Booking Time</label>
+                <input type="time" name="booking_time" class="form-control" required>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label fw-bold">Number of Guests</label>
+            <input type="number" name="party_number" class="form-control" min="1" max="20" value="2" required>
+        </div>
+    </div>
+    
+    <div class="d-grid gap-3 mt-4">
+        <button type="submit" class="btn btn-dark btn-lg py-3 fw-bold shadow-sm">
+            <i class="bi bi-check-circle-fill me-2"></i> Create Account & Book Table
+        </button>
+        
+        <a href="{% url 'staff_portal' %}" class="btn btn-outline-secondary py-2">
+            <i class="bi bi-arrow-left-short"></i> Cancel & Return
+        </a>
+    </div>
+</form>
                 </div>
             </div>
             
