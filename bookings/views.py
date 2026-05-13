@@ -45,7 +45,6 @@ def bookings(request):
             
         # this will check the table capacity to assign to guest with party number
             suitable_tables = Table.objects.filter(seating_capacity__gte=party_number).order_by('seating_capacity')
-
             assigned_table = None
 
             # buffer of 1 hour 59 minutes before and after
