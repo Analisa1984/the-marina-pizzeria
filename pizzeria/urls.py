@@ -21,17 +21,8 @@ from django.contrib.auth import views as auth
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-#    path('bookings/', bookings_views.my_bookings, name='my_bookings'),
     path('', include('bookings.urls')),
     path('login/', bookings_views.Login, name='login'),
     path('logout/', auth.LogoutView.as_view(template_name ='bookings/index.html'), name='logout'),
     path('register/', bookings_views.register, name='register'),
-    path('contact/', bookings_views.contact, name='contact'),
-    path('bookings/', bookings_views.bookings, name='bookings'),
-    path('menu/', bookings_views.menu, name='menu'),
-    path('about/', bookings_views.about, name='about'),
-    path('booked/', bookings_views.booked, name='booked'),
-    path('my_bookings/', bookings_views.my_bookings, name='my_bookings'),
-    path('update_booking/<int:booking_id>/', bookings_views.update_booking, name='update_booking'),
-    path('cancel/<int:booking_id>/', bookings_views.cancel_booking, name='cancel_booking'),
 ]
