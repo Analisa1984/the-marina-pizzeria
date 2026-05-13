@@ -18,11 +18,6 @@ from django.contrib.auth.models import Group, User
 from django.contrib.admin.views.decorators import staff_member_required
 
 
-
-# Create your views here.
-
-
-# for index page
 def index(request):
     return render(request, 'bookings/index.html', {'title': 'index'})
 
@@ -42,7 +37,7 @@ def bookings(request):
                 messages.error(request, "Oops You Made an Error there lol! We can't travel back in time. Please pick a future date.")
 
             requested_datetime = datetime.combine(booking_date, booking_time)
-            
+
         # this will check the table capacity to assign to guest with party number
             suitable_tables = Table.objects.filter(seating_capacity__gte=party_number).order_by('seating_capacity')
             assigned_table = None
@@ -50,10 +45,7 @@ def bookings(request):
             # buffer of 1 hour 59 minutes before and after
             start_buffer = (requested_datetime - timedelta(hours=1, minutes=59)).time()
             end_buffer = (requested_datetime + timedelta(hours=1, minutes=59)).time()
-
-            
             for table in suitable_tables:
-
                 # Check if this specific table is already booked in that 4-hour window
                 is_occupied = Booking.objects.filter(
                     table_id=table,
@@ -76,7 +68,7 @@ def bookings(request):
                 # Format time for the emails
                 standard_time = booking_time.strftime('%I:%M %p')
                 
-                # --- EMAIL TO CUSTOMER ---
+                # Email to Customer
                 customer_msg = (
                     f"Hi there, {request.user.username}!\n\n"
                     f"Your table at The Marina Pizzeria is confirmed.\n"
@@ -93,7 +85,7 @@ def bookings(request):
                     fail_silently=True,
                 )
 
-                # --- EMAIL TO ADMIN ---
+                # Email to Admin
                 admin_msg = (
                     f"New Booking Alert!\n\n"
                     f"User: {request.user.username}\n"
@@ -105,11 +97,11 @@ def bookings(request):
                     f'NEW BOOKING: {booking_date}',
                     admin_msg,
                     settings.DEFAULT_FROM_EMAIL,
-                    ['themarinapizzeria@gmail.com'], 
+                    ['themarinapizzeria@gmail.com'],
                     fail_silently=True,
                 )
 
-                # 7. Store data in session for the confirmation page
+                # Store data in session for the confirmation page
                 request.session['booked_data'] = {
                     'booking_date': str(booking_date),
                     'booking_time': str(booking_time),
@@ -117,15 +109,16 @@ def bookings(request):
                     'table_number': assigned_table.table_number
                 }
                 return redirect('booked')
-            
-            else:           
+
+            else:    
                 # No tables free for that time slot
                 form_booking.add_error('booking_time', "All tables for this size are occupied for this 2-hour window. Please try a different time.")
-    
+
     else:
         form_booking = BookingForm()
-    
+
     return render(request, 'bookings/bookings.html', {'form_booking': form_booking})
+
 
 # for a list of my bookings (past, current, future), this is for the my bookings page
 def my_bookings(request):
@@ -142,12 +135,12 @@ def my_bookings(request):
         'past_bookings': past_bookings,
         'current_bookings': current_bookings,
         'future_bookings': future_bookings,
-        'form': form, # Now the template can see the dropdown options
+        'form': form,
     }
     return render(request, 'bookings/my_bookings.html', context)
 
-# for cancelling the bookings made by user
 
+# for cancelling the bookings made by user
 def cancel_booking(request, booking_id):
     booking = get_object_or_404(Booking, booking_id=booking_id, User_id=request.user)
     if request.method == "POST":
@@ -161,10 +154,10 @@ def cancel_booking(request, booking_id):
 @login_required
 def update_booking(request, booking_id):
     booking = get_object_or_404(Booking, booking_id=booking_id, User_id=request.user)
-    
+
     if request.method == "POST":
         form = UpdateBookingForm(request.POST, instance=booking)
-        
+
         if form.is_valid():
             new_date = form.cleaned_data['booking_date']
             #  Prevents guests from updating to a past date
@@ -173,8 +166,6 @@ def update_booking(request, booking_id):
                 return redirect('my_bookings')
 
             time_data = form.cleaned_data['booking_time'] 
-            
-        
             if isinstance(time_data, str):
                 # 'H:M' matches '12:00', '13:30', etc.
                 new_time = datetime.strptime(time_data, '%H:%M').time()
@@ -202,7 +193,7 @@ def update_booking(request, booking_id):
 
             if assigned_table:
                 updated_booking = form.save(commit=False)
-                updated_booking.booking_time = new_time # Ensure object is saved
+                updated_booking.booking_time = new_time
                 updated_booking.table_id = assigned_table
                 updated_booking.save()
                 messages.success(request, "Booking updated successfully!")
@@ -210,7 +201,7 @@ def update_booking(request, booking_id):
                 messages.error(request, "No tables available for this time.")
         else:
             messages.error(request, "Invalid data.")
-            
+ 
     return redirect('my_bookings')
 
 
@@ -218,9 +209,11 @@ def update_booking(request, booking_id):
 def menu(request):
     return render(request, 'bookings/menu.html', {'title': 'menu'})
 
+
 # for about page
 def about(request):
     return render(request, 'bookings/about.html', {'title': 'about'})
+
 
 # for contact us
 class ContactForm(forms.Form):
@@ -232,14 +225,14 @@ class ContactForm(forms.Form):
 def contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
-        
+
         if form.is_valid():
             # Extract cleaned data
             name = form.cleaned_data['name']
             user_email = form.cleaned_data['email']
             message = form.cleaned_data['message']
-            
-            # EMAIL A: To the Customer (The "Grazie" email)
+
+            # EMAIL A: To the Customer (The thank you email)
             send_mail(
                 subject='Thank You, from The Marina Pizzeria!',
                 message=f'Hello {name},\n\nWe received your message: "{message}". Our team will be in touch shortly!\n\nBest,\nThe Marina Team',
@@ -248,20 +241,26 @@ def contact(request):
                 fail_silently=True,
             )
 
-            # EMAIL B: To You (The Admin Notification)
+            # EMAIL B: To Admin to notify
             send_mail(
                 subject=f'NEW CONTACT FORM: {name}',
                 message=f'New inquiry received from {name} ({user_email}):\n\n{message}',
                 from_email=settings.DEFAULT_FROM_EMAIL,
-                recipient_list=['themarinapizzeria@gmail.com'], # Replace with your real email
+                recipient_list=['themarinapizzeria@gmail.com'],
                 fail_silently=True,
             )
-
-            # Return the page with success=True
             messages.success(request, 'The Marina Pizzeria team have received your email and will get in touch soon.')
             return redirect('contact')
-            
+
     else:
+        initial_data = {}
+        if request.user.is_authenticated:
+            initial_data = {
+                'name': f"{request.user.first_name} {request.user.last_name}".strip() or request.user.username,
+                'email': request.user.email
+            }
+        form = ContactForm(initial=initial_data)
+
         # Initial visit to the page
         form = ContactForm()
 
@@ -271,10 +270,12 @@ def contact(request):
         'user': request.user
     })
 
+
 # for booked page
 def booked(request):
     booked_data = request.session.get('booked_data')
     return render(request, 'bookings/booked.html', {'title': 'booked', 'booked_data': booked_data})
+
 
 # for registration page
 def register(request):
@@ -288,7 +289,7 @@ def register(request):
             email = form.cleaned_data.get('email')
             phone_no = form.cleaned_data.get('phone_no')
             htmly = get_template('bookings/email.html')
-            d = { 'username': username }
+            d = {'username': username}
             subject, from_email, to = 'welcome', 'tronadenison@gmail.com', email
             html_content = htmly.render(d)
             msg = EmailMultiAlternatives(subject, html_content, from_email, [to])
@@ -300,19 +301,20 @@ def register(request):
         form = RegistrationForm()
     return render(request, 'bookings/register.html', {'form': form, 'title': 'register here'}) 
 
-# for login page
 
+# for login page
 def Login(request):
     if request.method == 'POST':
-        form = AuthenticationForm(request, data=request.POST) # Better to use the form class
+        form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
             user = form.get_user()
-            login(request, user) # Just call it
+            login(request, user)
             messages.success(request, f' Hello, {user.username}!')
             return redirect('login_redirect')
     else:
         form = AuthenticationForm()
-    return render(request, 'bookings/login.html', {'form':form, 'title':'log in'})
+    return render(request, 'bookings/login.html', {'form': form, 'title': 'log in'})
+
 
 @login_required
 def login_redirect(request):
@@ -328,6 +330,7 @@ def login_redirect(request):
         # Regular customer? Send them to their bookings
         return redirect('my_bookings')
 
+
 @staff_member_required
 def staff_portal_view(request):
     """
@@ -339,8 +342,9 @@ def staff_portal_view(request):
     if not request.user.groups.filter(name='Staff').exists() and not request.user.is_staff:
         messages.error(request, "Access denied. Staff only area!")
         return redirect('index')
-        
+
     return render(request, 'bookings/staff_portal.html')
+
 
 @staff_member_required(login_url='login')
 def staff_register_customer(request):
@@ -400,6 +404,7 @@ def staff_register_customer(request):
         'booking_form': booking_form
     })
 
+
 # function for staff portal where they can choose to view reservations of all guests, make reservations, register guests at the marina pizzeria
 @staff_member_required
 def staff_dashboard_view(request):
@@ -418,6 +423,7 @@ def staff_dashboard_view(request):
         'today': today
     })
 
+
 # function for staff to be able to updatemake a guest booking
 @staff_member_required
 def staff_manual_booking(request):
@@ -433,15 +439,13 @@ def staff_manual_booking(request):
             booking_time = form.cleaned_data['booking_time']
             party_number = int(form.cleaned_data['party_number'])
             selected_customer = form.cleaned_data['customer']
-
-            
             requested_datetime = datetime.combine(booking_date, booking_time)
             buffer = timedelta(hours=1, minutes=59)
             start_buffer = (requested_datetime - buffer).time()
             end_buffer = (requested_datetime + buffer).time()
 
             suitable_tables = Table.objects.filter(seating_capacity__gte=party_number).order_by('seating_capacity')
-            
+
             assigned_table = None
             for table in suitable_tables:
                 is_occupied = Booking.objects.filter(
@@ -458,7 +462,7 @@ def staff_manual_booking(request):
                 booking = form.save(commit=False)
                 booking.User_id = selected_customer
                 booking.table_id = assigned_table
-                booking.status = 1 # Confirmed
+                booking.status = 1
                 booking.save()
                 messages.success(request, f"Confirmed! Booking created for {selected_customer.username}.")
                 return redirect('staff_dashboard')
@@ -466,8 +470,9 @@ def staff_manual_booking(request):
                 messages.error(request, "Conflict: No tables available for this time slot.")
     else:
         form = StaffBookingForm()
-    
+
     return render(request, 'bookings/staff_manual_booking.html', {'form': form})
+
 
 # function for staff to be able to cancel guest bookings
 @staff_member_required
@@ -478,11 +483,11 @@ def staff_cancel_booking(request, booking_id):
         return redirect('index')
 
     booking = get_object_or_404(Booking, booking_id=booking_id)
-    
+
     if request.method == "POST":
         booking.delete()
         messages.success(request, "The reservation has been deleted.")
-    
+
     return redirect('staff_dashboard')
 
 
@@ -541,7 +546,7 @@ def staff_update_booking(request, booking_id):
                 updated_booking.table_id = assigned_table
                 updated_booking.save()
                 messages.success(request, f"Booking for {booking.User_id.username} updated successfully!")
-                return redirect('staff_dashboard') # Staff goes back to dashboard
+                return redirect('staff_dashboard')
             else:
                 messages.error(request, f"No tables available for {new_party} guests at {new_time.strftime('%H:%M')}.")
         else:
