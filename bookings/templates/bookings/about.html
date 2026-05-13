@@ -1,12 +1,85 @@
 {% extends "base.html" %}
 {% load static %}
 {% load crispy_forms_tags %}
-{% block start %}
 
-<div>
-  <p> Hello, {{ user.username }}!</p>
+{% block start %}
+<!-- Hero Section -->
+<div class="bg-light py-5 mb-5 border-bottom shadow-sm">
+    <div class="container text-center py-5">
+        <h1 class="display-3 fw-bold text-dark mb-3">Welcome to <br> <span class="text-success">The Marina Pizzeria</span></h1>
+        <p class="lead text-muted mx-auto fs-4" style="max-width: 800px;">
+            A slice of Sorrento, served in the heart of Whitby. Since 1870.
+        </p>
+    </div>
 </div>
-<div>
-    <p>About Us Page</p>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-9">
+            <!-- Main Story Section -->
+            <section class="mb-5">
+                <h2 class="h1 fw-bold mb-4 border-start border-4 border-success ps-3">Our Heritage</h2>
+                <div class="fs-5 text-secondary lh-lg mb-4">
+                    <p>
+                        We are a family-owned Pizzeria that started in <strong>1870</strong> on the sun-drenched coasts of 
+                        <span class="text-success fw-bold">Sorrento, Italy</span>. After 30 beautiful years in Italy, 
+                        we fell in love with Whitby and decided to bring our heritage across the sea.
+                    </p>
+                    <p>
+                        Today, we carry the same handed-down recipes and fresh ingredients into every pizza, 
+                        stretched with our heritage and love. We enjoy making our traditional pizzas very much 
+                        and we love to serve you. Come dine with us and taste a piece of Sorrento right here in Whitby.
+                    </p>
+                </div>
+            </section>
+
+            <hr class="my-5 opacity-25">
+
+            <!-- Information Section  -->
+            <section class="mb-5">
+                <h3 class="h2 fw-bold mb-4 text-center">Beyond the Pizzeria</h3>
+                <div class="row g-4">
+                    <!-- Catering Card -->
+                    <div class="col-md-6">
+                        <div class="card h-100 border-0 shadow-sm bg-dark text-white rounded-4">
+                            <div class="card-body p-4">
+                                <div class="d-flex align-items-center mb-3">
+                                    <i class="bi bi-truck text-warning fs-1 me-3"></i>
+                                    <h4 class="h5 mb-0 fw-bold">Catering Services</h4>
+                                </div>
+                                <p class="text-light-50 mb-0">Bring the taste of Sorrento to your next party or office event with our professional catering packages.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Events Card -->
+                    <div class="col-md-6">
+                        <div class="card h-100 border-0 shadow-sm bg-dark text-white rounded-4">
+                            <div class="card-body p-4">
+                                <div class="d-flex align-items-center mb-3">
+                                    <i class="bi bi-calendar2-heart text-warning fs-1 me-3"></i>
+                                    <h4 class="h5 mb-0 fw-bold">Special Events</h4>
+                                </div>
+                                <p class="text-light-50 mb-0">From pizza making workshops to charity events and private hosting—we make every occasion special.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-5">
+                    <a href="{% url 'bookings' %}" class="btn btn-success btn-lg px-5 py-3 fw-bold shadow">
+                        Book a Table or Event
+                    </a>
+                </div>
+            </section>
+        </div>
+    </div>
 </div>
-{% endblock start %} 
+
+<!-- Simple Brand Bar -->
+<div class="container-fluid bg-success text-white py-3 mt-5">
+    <div class="container text-center">
+        <small class="text-uppercase tracking-wider fw-bold">Fresh Ingredients • Traditional Recipes • Handed Down Since 1870</small>
+    </div>
+</div>
+{% endblock start %}
