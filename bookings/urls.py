@@ -17,5 +17,8 @@ urlpatterns = [
          path('staff-portal/', views.staff_portal_view, name='staff_portal'),
          path('staff-register/', views.staff_register_customer, name='staff_register_customer'),
          path('staff-dashboard/', views.staff_dashboard_view, name='staff_dashboard'),
+         path('staff-manual-booking/', views.staff_manual_booking, name='staff_manual_booking'),
+         path('staff/cancel/<int:booking_id>/', views.staff_cancel_booking, name='staff_cancel_booking'),
+         path('staff/update/<int:booking_id>/', views.staff_update_booking, name='staff_update_booking'),
 
 ]
