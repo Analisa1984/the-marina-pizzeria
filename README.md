@@ -71,7 +71,7 @@ Acceptance Criteria:
 10. As a user, I can cancel my account so that I can have no personal information at the establishment should I move locations or decide I no longer want to dine there.
 
 Acceptance criteria: 
- -  Patron should be able to cancel their registration process by first contacting the staff/Admin and letting them know. This is to prevent ghost bookings that can be potentially left if the bookings were made and then the patron decides they will like to delete their registration. 
+ - Patron should be able to cancel their registration process by first contacting the staff/Admin and letting them know. This is to prevent ghost bookings that can be potentially left if the bookings were made and then the patron decides they will like to delete their registration. 
 
 ## Wireframes:
 
