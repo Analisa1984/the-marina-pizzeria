@@ -52,6 +52,7 @@
 Although The Marina Pizzeria is a fictitious restaurant, to demonstrate a website, possible user stories could include:
 
 1. As a user, I can see the menu options and prices so that I can decide if I would like to dine there.
+
 2. As a user, I can book online so that I don't have to call the staff to book my table for me.
 3. As a user, I can change the date, time or cancel my booking so that I don't have to call the staff at the pizzeria if my plans change.
 4. As a user, I can add dietary restrictions so that the staff can properly prepare for my visit.
@@ -60,7 +61,17 @@ Although The Marina Pizzeria is a fictitious restaurant, to demonstrate a websit
 7. As a manager, I can ensure the correct number of seated tables are listed so that efficiency is maximized (e.g. a single person does not book a table for 6).
 8. As a manager, I can be know of any dietary restrictions of any patron so that the staff is well informed.
 9. As a manager, I can see all bookings for all tables at the establishment so that the staff can make amendments, or cancel bookings on behalf of the patrons.
+
+Acceptance Criteria:
+
+- The Staff and Admin can create a new profile for a guest
+- The Staff or Admin can make a booking or multiple bookings for their guests
+- The Staff or Admin can delete booking on behalf their guests if they are unable to be there at the allocated booked time.
+
 10. As a user, I can cancel my account so that I can have no personal information at the establishment should I move locations or decide I no longer want to dine there.
+
+Acceptance criteria: 
+ -  Patron should be able to cancel their registration process by first contacting the staff/Admin and letting them know. This is to prevent ghost bookings that can be potentially left if the bookings were made and then the patron decides they will like to delete their registration. 
 
 ## Wireframes:
 
