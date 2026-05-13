@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
-from .forms import BookingForm, UpdateBookingForm, RegistrationForm
+from .forms import BookingForm, UpdateBookingForm, RegistrationForm, StaffBookingForm, ContactForm
 from django.core.mail import EmailMultiAlternatives, send_mail
 from django.template.loader import get_template
 from django.template import Context
@@ -15,6 +15,7 @@ from django.conf import settings
 from datetime import datetime, timedelta
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import Group, User
+from django.contrib.admin.views.decorators import staff_member_required
 
 
 
@@ -25,38 +26,33 @@ from django.contrib.auth.models import Group, User
 def index(request):
     return render(request, 'bookings/index.html', {'title': 'index'})
 
-
-@login_required # This replaces your 'if not authenticated' check more cleanly
+# function for guests to make their own bookings
+@login_required 
 def bookings(request):
-    # 1. Start by handling the POST request (when the user clicks "Book Now")
     if request.method == 'POST':
         form_booking = BookingForm(request.POST)
         
-        # 2. Check if the form data (date, time, guests) is valid
         if form_booking.is_valid():
                    
-            # Extract cleaned data to use for our availability logic
             booking_date = form_booking.cleaned_data['booking_date'] 
             booking_time = form_booking.cleaned_data['booking_time']
             party_number = form_booking.cleaned_data['party_number']
 
             if booking_date < timezone.now().date():
-                messages.error(request, "Ciao! We can't travel back in time. Please pick a future date.")
+                messages.error(request, "Oops You Made an Error there lol! We can't travel back in time. Please pick a future date.")
 
-            # 3. Create a 'datetime' object to allow for easy time math
             requested_datetime = datetime.combine(booking_date, booking_time)
             
-            # 4. Get a list of all tables that can fit this many people
-            # We order by capacity so we use the smallest appropriate table first
+        # this will check the table capacity to assign to guest with party number
             suitable_tables = Table.objects.filter(seating_capacity__gte=party_number).order_by('seating_capacity')
 
             assigned_table = None
 
-            # Set a buffer of 1 hour 59 minutes before and after
+            # buffer of 1 hour 59 minutes before and after
             start_buffer = (requested_datetime - timedelta(hours=1, minutes=59)).time()
             end_buffer = (requested_datetime + timedelta(hours=1, minutes=59)).time()
 
-            # 5. THE SMART LOOP: Check each table for availability
+            
             for table in suitable_tables:
 
                 # Check if this specific table is already booked in that 4-hour window
@@ -83,7 +79,7 @@ def bookings(request):
                 
                 # --- EMAIL TO CUSTOMER ---
                 customer_msg = (
-                    f"Ciao {request.user.username}!\n\n"
+                    f"Hi there, {request.user.username}!\n\n"
                     f"Your table at The Marina Pizzeria is confirmed.\n"
                     f"Date: {booking_date}\n"
                     f"Time: {standard_time}\n"
@@ -110,7 +106,7 @@ def bookings(request):
                     f'NEW BOOKING: {booking_date}',
                     admin_msg,
                     settings.DEFAULT_FROM_EMAIL,
-                    ['tronadenison@gmail.com'], 
+                    ['themarinapizzeria@gmail.com'], 
                     fail_silently=True,
                 )
 
@@ -124,10 +120,9 @@ def bookings(request):
                 return redirect('booked')
             
             else:           
-                # 8. No tables were free for that time slot
+                # No tables free for that time slot
                 form_booking.add_error('booking_time', "All tables for this size are occupied for this 2-hour window. Please try a different time.")
     
-    # 9. Handle the GET request (when user first visits the page)
     else:
         form_booking = BookingForm()
     
@@ -175,31 +170,25 @@ def update_booking(request, booking_id):
             new_date = form.cleaned_data['booking_date']
             #  Prevents guests from updating to a past date
             if new_date < timezone.now().date():
-                messages.error(request, "You cannot update a booking to a past date.")
+                messages.error(request, "Time travel hasn't been invented yet! You cannot book a table in the past.")
                 return redirect('my_bookings')
 
-            time_data = form.cleaned_data['booking_time'] # This is the string from the dropdown
+            time_data = form.cleaned_data['booking_time'] 
             
-            # --- THE FIX: Convert string to datetime.time object ---
+        
             if isinstance(time_data, str):
                 # 'H:M' matches '12:00', '13:30', etc.
                 new_time = datetime.strptime(time_data, '%H:%M').time()
             else:
                 new_time = time_data
-            # -------------------------------------------------------
 
             new_party = int(form.cleaned_data['party_number'])
-            
-            # Now this will work because new_time is a time object, not a string!
             requested_dt = datetime.combine(new_date, new_time)
-            
-            # ... rest of your buffer logic ...
             buffer = timedelta(hours=1, minutes=59)
             start_buffer = (requested_dt - buffer).time()
             end_buffer = (requested_dt + buffer).time()
-
             suitable_tables = Table.objects.filter(seating_capacity__gte=new_party).order_by('seating_capacity')
-            
+
             assigned_table = None
             for table in suitable_tables:
                 is_occupied = Booking.objects.filter(
@@ -265,17 +254,13 @@ def contact(request):
                 subject=f'NEW CONTACT FORM: {name}',
                 message=f'New inquiry received from {name} ({user_email}):\n\n{message}',
                 from_email=settings.DEFAULT_FROM_EMAIL,
-                recipient_list=['tronadenison@gmail.com'], # Replace with your real email
+                recipient_list=['themarinapizzeria@gmail.com'], # Replace with your real email
                 fail_silently=True,
             )
 
             # Return the page with success=True
-            return render(request, 'bookings/contact.html', {
-                'form': ContactForm(),  # Reset to a blank form
-                'success': True,
-                'title': 'Thank You',
-                'user': request.user   # Keeps the username fix active
-            })
+            messages.success(request, 'The Marina Pizzeria team have received your email and will get in touch soon.')
+            return redirect('contact')
             
     else:
         # Initial visit to the page
@@ -344,7 +329,7 @@ def login_redirect(request):
         # Regular customer? Send them to their bookings
         return redirect('my_bookings')
 
-@login_required
+@staff_member_required
 def staff_portal_view(request):
     """
     Step 2: The actual Portal page.
@@ -358,36 +343,66 @@ def staff_portal_view(request):
         
     return render(request, 'bookings/staff_portal.html')
 
-@login_required
+@staff_member_required(login_url='login')
 def staff_register_customer(request):
-    """
-    This view allows a staff member to create a new user account 
-    for a customer who is standing in front of them or on the phone.
-    """
-    # Security: Kick out anyone who isn't staff
-    if not request.user.groups.filter(name='Staff').exists() and not request.user.is_staff:
-        messages.error(request, "You do not have permission to register customers.")
+    if not request.user.is_staff:
+        messages.error(request, "Access denied.")
         return redirect('index')
 
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            # 1. Save the new user
-            new_user = form.save()
-            
-            # 2. Automatically put them in the 'Customer' group
-            customer_group, created = Group.objects.get_or_create(name='Customer')
+        user_form = UserCreationForm(request.POST)
+        # 1. We include the BookingForm here to catch the date/time errors
+        booking_form = BookingForm(request.POST) 
+
+        if user_form.is_valid() and booking_form.is_valid():
+            # Create the User
+            new_user = user_form.save()
+            customer_group, _ = Group.objects.get_or_create(name='Customer')
             new_user.groups.add(customer_group)
+
+            # 2. Get the cleaned data from the booking form
+            b_date = booking_form.cleaned_data['booking_date']
+            b_time = booking_form.cleaned_data['booking_time']
+            p_num = int(booking_form.cleaned_data['party_number'])
+
+            # 3. Table search logic (same as your other views)
+            requested_dt = datetime.combine(b_date, b_time)
+            suitable_tables = Table.objects.filter(seating_capacity__gte=p_num).order_by('seating_capacity')
             
-            messages.success(request, f"Success! Account created for {new_user.username}.")
-            return redirect('staff_portal') # Send staff back to their command center
+            assigned_table = None
+            buffer = timedelta(hours=1, minutes=59)
+            start_buf, end_buf = (requested_dt - buffer).time(), (requested_dt + buffer).time()
+
+            for table in suitable_tables:
+                if not Booking.objects.filter(table_id=table, booking_date=b_date, booking_time__range=(start_buf, end_buf)).exists():
+                    assigned_table = table
+                    break
+
+            if assigned_table:
+                Booking.objects.create(
+                    User_id=new_user,
+                    party_number=p_num,
+                    booking_date=b_date,
+                    booking_time=b_time,
+                    table_id=assigned_table,
+                    status=1
+                )
+                messages.success(request, f"Account & Table reserved for {new_user.username}!")
+            else:
+                messages.warning(request, f"Account created for {new_user.username}, but no tables were available.")
+            
+            return redirect('staff_dashboard')
     else:
-        form = UserCreationForm()
+        user_form = UserCreationForm()
+        booking_form = BookingForm()
 
-    return render(request, 'bookings/staff_register.html', {'form': form})
+    return render(request, 'bookings/staff_register.html', {
+        'form': user_form, 
+        'booking_form': booking_form
+    })
 
-
-@login_required
+# function for staff portal where they can choose to view reservations of all guests, make reservations, register guests at the marina pizzeria
+@staff_member_required
 def staff_dashboard_view(request):
     if not request.user.groups.filter(name='Staff').exists() and not request.user.is_staff:
         messages.error(request, "Access denied.")
@@ -404,3 +419,141 @@ def staff_dashboard_view(request):
         'today': today
     })
 
+# function for staff to be able to updatemake a guest booking
+@staff_member_required
+def staff_manual_booking(request):
+    if not request.user.is_staff:
+        messages.error(request, "Access denied.")
+        return redirect('index')
+
+    if request.method == 'POST':
+        form = StaffBookingForm(request.POST)
+        if form.is_valid():
+            # This 'booking_time' is now a proper time object thanks to our new clean() method
+            booking_date = form.cleaned_data['booking_date']
+            booking_time = form.cleaned_data['booking_time']
+            party_number = int(form.cleaned_data['party_number'])
+            selected_customer = form.cleaned_data['customer']
+
+            
+            requested_datetime = datetime.combine(booking_date, booking_time)
+            buffer = timedelta(hours=1, minutes=59)
+            start_buffer = (requested_datetime - buffer).time()
+            end_buffer = (requested_datetime + buffer).time()
+
+            suitable_tables = Table.objects.filter(seating_capacity__gte=party_number).order_by('seating_capacity')
+            
+            assigned_table = None
+            for table in suitable_tables:
+                is_occupied = Booking.objects.filter(
+                    table_id=table,
+                    booking_date=booking_date,
+                    booking_time__range=(start_buffer, end_buffer)
+                ).exists()
+
+                if not is_occupied:
+                    assigned_table = table
+                    break
+
+            if assigned_table:
+                booking = form.save(commit=False)
+                booking.User_id = selected_customer
+                booking.table_id = assigned_table
+                booking.status = 1 # Confirmed
+                booking.save()
+                messages.success(request, f"Confirmed! Booking created for {selected_customer.username}.")
+                return redirect('staff_dashboard')
+            else:
+                messages.error(request, "Conflict: No tables available for this time slot.")
+    else:
+        form = StaffBookingForm()
+    
+    return render(request, 'bookings/staff_manual_booking.html', {'form': form})
+
+# function for staff to be able to cancel guest bookings
+@staff_member_required
+def staff_cancel_booking(request, booking_id):
+    # Only allow staff members to delete
+    if not request.user.is_staff and not request.user.groups.filter(name='Staff').exists():
+        messages.error(request, "Access denied.")
+        return redirect('index')
+
+    booking = get_object_or_404(Booking, booking_id=booking_id)
+    
+    if request.method == "POST":
+        booking.delete()
+        messages.success(request, "The reservation has been deleted.")
+    
+    return redirect('staff_dashboard')
+
+
+# function for staff to be able to update guest bookings
+@staff_member_required
+def staff_update_booking(request, booking_id):
+    # 1. FETCH: Get the booking (Staff can edit ANY booking, not just their own)
+    booking = get_object_or_404(Booking, booking_id=booking_id)
+
+    if request.method == "POST":
+        form = UpdateBookingForm(request.POST, instance=booking)
+        
+        if form.is_valid():
+            new_date = form.cleaned_data['booking_date']
+            
+            # --- CHECK A: THE TIME MACHINE ---
+            if new_date < timezone.now().date():
+                messages.error(request, "Error: You cannot move a booking into the past.")
+                # Stay on the page so they can fix it
+                return render(request, 'bookings/bookings.html', {'form_booking': form, 'booking': booking})
+
+            # --- CHECK B: TIME CONVERSION ---
+            time_data = form.cleaned_data['booking_time'] 
+            if isinstance(time_data, str):
+                new_time = datetime.strptime(time_data, '%H:%M').time()
+            else:
+                new_time = time_data
+
+            # --- CHECK C: TABLE AVAILABILITY (The "Engine") ---
+            new_party = int(form.cleaned_data['party_number'])
+            requested_dt = datetime.combine(new_date, new_time)
+            buffer = timedelta(hours=1, minutes=59)
+            start_buffer = (requested_dt - buffer).time()
+            end_buffer = (requested_dt + buffer).time()
+            
+            # Find suitable tables
+            suitable_tables = Table.objects.filter(seating_capacity__gte=new_party).order_by('seating_capacity')
+
+            assigned_table = None
+            for table in suitable_tables:
+                # IMPORTANT: .exclude(booking_id=booking_id) so the booking doesn't block itself
+                is_occupied = Booking.objects.filter(
+                    table_id=table,
+                    booking_date=new_date,
+                    booking_time__range=(start_buffer, end_buffer)
+                ).exclude(booking_id=booking_id).exists()
+
+                if not is_occupied:
+                    assigned_table = table
+                    break
+
+            # 2. SAVE: If a table was found, commit changes
+            if assigned_table:
+                updated_booking = form.save(commit=False)
+                updated_booking.booking_time = new_time 
+                updated_booking.table_id = assigned_table
+                updated_booking.save()
+                messages.success(request, f"Booking for {booking.User_id.username} updated successfully!")
+                return redirect('staff_dashboard') # Staff goes back to dashboard
+            else:
+                messages.error(request, f"No tables available for {new_party} guests at {new_time.strftime('%H:%M')}.")
+        else:
+            messages.error(request, "Invalid data. Please check the form fields.")
+            
+    else:
+        # 3. GET: Pre-fill the form (the dropdowns will handle the rest)
+        form = UpdateBookingForm(instance=booking)
+    
+    # Render the same "Smart" template from yesterday
+    return render(request, 'bookings/bookings.html', {
+        'form_booking': form, 
+        'booking': booking
+    })
