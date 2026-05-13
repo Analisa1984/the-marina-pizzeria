@@ -100,8 +100,7 @@
           <div class="d-flex align-items-center">
             <i class="bi {% if message.tags == 'success' %}bi-check-circle-fill{% else %}bi-exclamation-triangle-fill{% endif %} fs-4 me-3"></i>
             <div>
-              <strong class="d-block">Hello, {% if user.is_authenticated %}{{ user.username }}{% else %}Friend{% endif %}!</strong>
-              <span>{{ message }}</span>
+              <strong class="d-block">{{ message }}</strong>
             </div>
           </div>
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
