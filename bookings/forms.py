@@ -81,7 +81,7 @@ class BookingForm(forms.ModelForm):
 
             cleaned_data['booking_time'] = booking_time
 
-        if booking_date < date.today():
+        if booking_date and booking_date < date.today():
             raise forms.ValidationError(
                 "You cannot book a table in the past."
             )
