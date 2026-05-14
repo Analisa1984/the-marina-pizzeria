@@ -23,6 +23,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('bookings.urls')),
     path('login/', bookings_views.Login, name='login'),
-    path('logout/', auth.LogoutView.as_view(template_name ='bookings/index.html'), name='logout'),
+    path(
+        'logout/',
+        auth.LogoutView.as_view(template_name='bookings/index.html'),
+        name='logout'
+    ),
     path('register/', bookings_views.register, name='register'),
 ]
