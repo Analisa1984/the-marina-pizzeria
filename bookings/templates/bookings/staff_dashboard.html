@@ -98,6 +98,31 @@
                                 <label class="form-label fw-bold">Date</label>
                                 <input type="date" name="booking_date" class="form-control" value="{{ booking.booking_date|date:'Y-m-d' }}" required>
                                 </div>
+
+                                <div class="mb-3">
+                                <label class="form-label fw-bold">Booking Time</label>
+                                <select name="booking_time" class="form-select" required>
+                                    {% for val, label in form.fields.booking_time.choices %}
+                                <option value="{{ val }}" {% if booking.booking_time|time:'H:i' == val %}selected{% endif %}>
+                                {{ label }}
+                                </option>
+        {% endfor %}
+    </select>
+</div>
+
+<div class="mb-3">
+    <label class="form-label fw-bold">Party Size</label>
+    <select name="party_number" class="form-select" required>
+        {% for val, label in form.fields.party_number.choices %}
+            <option value="{{ val }}" {% if booking.party_number == val|add:0 %}selected{% endif %}>
+                {{ label }}
+            </option>
+        {% endfor %}
+    </select>
+</div>
+                                <label class="form-label fw-bold">Date</label>
+                                <input type="date" name="booking_date" class="form-control" value="{{ booking.booking_date|date:'Y-m-d' }}" required>
+                                </div>
                     
                                 <div class="mb-3">
                                 <label class="form-label fw-bold">Party Size</label>
