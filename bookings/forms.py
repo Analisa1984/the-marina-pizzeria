@@ -60,8 +60,12 @@ class BookingForm(forms.ModelForm):
         party_number = cleaned_data.get('party_number')
 
         if booking_date and booking_time_str:
-            hour, minute = map(int, booking_time_str.split(':'))
-            booking_time = time(hour, minute)
+            try:
+                hour, minute = map(int, booking_time_str.split(':'))
+                booking_time = time(hour, minute)
+            except (ValueError, AttributeError):
+                # If the time is missing, stop here
+                raise ValidationError("Please select a valid booking time.")
 
             if booking_date.weekday() == 6:
                 raise ValidationError(
@@ -81,10 +85,19 @@ class BookingForm(forms.ModelForm):
 
             cleaned_data['booking_time'] = booking_time
 
-        if booking_date and booking_date < date.today():
+        if not booking_date:
+            return cleaned_data
+
+        if booking_date < date.today():
             raise forms.ValidationError(
                 "You cannot book a table in the past."
             )
+        if booking_date and booking_time_str:
+            try:
+                hour, minute = map(int, booking_time_str.split(':'))
+                booking_time = time(hour, minute)
+            except (ValueError, AttributeError):
+                raise ValidationError("Please select a valid booking time.")
 
         if party_number:
             cleaned_data['party_number'] = int(party_number)
