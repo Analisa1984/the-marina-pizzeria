@@ -414,7 +414,7 @@ def staff_register_customer(request):
             b_date = booking_form.cleaned_data['booking_date']
             time_data = booking_form.cleaned_data['booking_time']
 
-            # This converts the dropdown text into a real time object
+            # converts the dropdown text into a real time object
             if isinstance(time_data, str):
                 b_time = datetime.strptime(time_data, '%H:%M').time()
             else:
