@@ -227,7 +227,9 @@ def update_booking(request, booking_id):
             else:
                 messages.error(request, "No tables available for this time.")
         else:
-            messages.error(request, "Invalid data.")
+            for field, errors in form.errors.items():
+                for error in errors:
+                    messages.error(request, error)
     return redirect('my_bookings')
 
 
