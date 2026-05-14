@@ -22,13 +22,12 @@ PARTY_SIZE_CHOICES = [(i, str(i)) for i in range(1, 11)]
 
 class RegistrationForm(UserCreationForm):
     email = forms.EmailField()
-    phone_no = forms.CharField(max_length=20)
     first_name = forms.CharField(max_length=20)
     last_name = forms.CharField(max_length=20)
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'phone_no', 'first_name', 'last_name']
+        fields = ['username', 'email', 'first_name', 'last_name']
 
 
 class BookingForm(forms.ModelForm):
@@ -179,13 +178,6 @@ class UpdateBookingForm(forms.ModelForm):
             cleaned_data['party_number'] = int(party_number)
 
         return cleaned_data
-
-    class Meta:
-        model = Booking
-        fields = ['booking_date', 'booking_time', 'party_number']
-        widgets = {
-            'booking_date': forms.DateInput(attrs={'type': 'date'}),
-        }
 
 
 class ContactForm(forms.Form):

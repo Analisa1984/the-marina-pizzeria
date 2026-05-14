@@ -1,22 +1,24 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import login  # authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import BookingForm, UpdateBookingForm, RegistrationForm
 from .forms import StaffBookingForm, ContactForm
 from django.core.mail import EmailMultiAlternatives, send_mail
 from django.template.loader import get_template
-from django.template import Context
-from django.http import HttpResponse
+#  from django.template import Context
 from .models import Booking, Table
-from django import forms
+# from django import forms
 from django.utils import timezone
 from django.conf import settings
 from datetime import datetime, timedelta
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import Group, User
+from django.contrib.auth.models import Group  # , User
+from django.contrib.auth import get_user_model
 from django.contrib.admin.views.decorators import staff_member_required
+
+User = get_user_model()
 
 
 def index(request):
@@ -240,10 +242,10 @@ def about(request):
 
 
 # for contact us
-class ContactForm(forms.Form):
-    name = forms.CharField(max_length=100)
-    email = forms.EmailField()
-    message = forms.CharField(widget=forms.Textarea)
+# class ContactForm(forms.Form):
+#     name = forms.CharField(max_length=100)
+#     email = forms.EmailField()
+#     message = forms.CharField(widget=forms.Textarea)
 
 
 def contact(request):
@@ -318,9 +320,8 @@ def register(request):
             last_name = form.cleaned_data.get('last_name')
             username = form.cleaned_data.get('username')
             email = form.cleaned_data.get('email')
-            phone_no = form.cleaned_data.get('phone_no')
             htmly = get_template('bookings/email.html')
-            d = {'username': username}
+            d = {'first_name': first_name, 'last_name': last_name}
             subject = 'welcome'
             from_email = 'tronadenison@gmail.com'
             to = email
@@ -410,7 +411,15 @@ def staff_register_customer(request):
 
             # Get the cleaned data from the booking form
             b_date = booking_form.cleaned_data['booking_date']
-            b_time = booking_form.cleaned_data['booking_time']
+            b_date = booking_form.cleaned_data['booking_date']
+            time_data = booking_form.cleaned_data['booking_time']
+
+            # This converts the dropdown text into a real time object
+            if isinstance(time_data, str):
+                b_time = datetime.strptime(time_data, '%H:%M').time()
+            else:
+                b_time = time_data
+
             p_num = int(booking_form.cleaned_data['party_number'])
 
             # Table search logic
@@ -478,10 +487,11 @@ def staff_dashboard_view(request):
     all_bookings = Booking.objects.all().order_by(
         'booking_date', 'booking_time'
     )
-
+    form = UpdateBookingForm()
     return render(request, 'bookings/staff_dashboard.html', {
         'all_bookings': all_bookings,
-        'today': today
+        'today': today,
+        'form': form
     })
 
 
