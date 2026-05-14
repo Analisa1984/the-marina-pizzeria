@@ -384,7 +384,7 @@ def login_redirect(request):
 @staff_member_required
 def staff_portal_view(request):
     """
-    This just opens the 'staff_portal.html' file you built.
+    This opens the 'staff_portal.html' file built.
     """
     # Security check for staff only
     if not request.user.groups.filter(
@@ -411,10 +411,16 @@ def staff_register_customer(request):
             customer_group, _ = Group.objects.get_or_create(name='Customer')
             new_user.groups.add(customer_group)
 
-            # Get the cleaned data from the booking form
-            b_date = booking_form.cleaned_data['booking_date']
-            b_date = booking_form.cleaned_data['booking_date']
-            time_data = booking_form.cleaned_data['booking_time']
+            # Get cleaned data from booking form, use get() prevent crash-empty
+            b_date = booking_form.cleaned_data.get('booking_date')
+            time_data = booking_form.cleaned_data.get('booking_time')
+
+            if not b_date or not time_data:
+                messages.error(request, "Please select both a date and a time")
+                return render(request, 'bookings/staff_register.html', {
+                    'form': user_form,
+                    'booking_form': booking_form
+                })
 
             # converts the dropdown text into a real time object
             if isinstance(time_data, str):
