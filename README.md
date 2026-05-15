@@ -18,7 +18,8 @@
 10. [Fixed](#fixed)
 11. [Manual Testing of the website](#manual-testing)
 12. [Responsiveness](#responsive-testing)
-12. [Final Product](#final-product)
+13. [Final Product](#final-product)
+14. [Mobile Screen Views](#mobile-screen-views)
 13. [Business Goals and User Stories met](#business-goals-and-user-stories-met)
 14. [Deployment](#deployment)
 15. [Issues](#issues)
@@ -675,64 +676,64 @@ Footer view
 ### Mobile Screen Views
 
 Home Page Mobile View
-![Home Page MObile](assets/images/final-product/final-product-mobile/mobile-home-page-1.png)
+![Home Page Mobile](assets/images/final-product/final-product-mobile/mobile-home-page-1.png)
 
-![Home Page MObile](assets/images/final-product/final-product-mobile/mobile-home-page-2.png)
+![Home Page Mobile](assets/images/final-product/final-product-mobile/mobile-home-page-2.png)
 
-![Home Page MObile](assets/images/final-product/final-product-mobile/mobile-home-page-3.png)
+![Home Page Mobile](assets/images/final-product/final-product-mobile/mobile-home-page-3.png)
 
-![Home Page MObile](assets/images/final-product/final-product-mobile/mobile-home-page-4.png)
+![Home Page Mobile](assets/images/final-product/final-product-mobile/mobile-home-page-4.png)
 
 About Us Mobile View
-![About Us Page MObile](assets/images/final-product/final-product-mobile/mobile-about-us-1.png)
+![About Us Page Mobile](assets/images/final-product/final-product-mobile/mobile-about-us-1.png)
 
-![About Us Page MObile](assets/images/final-product/final-product-mobile/mobile-about-us-2.png)
+![About Us Page Mobile](assets/images/final-product/final-product-mobile/mobile-about-us-2.png)
 
-![About Us Page MObile](assets/images/final-product/final-product-mobile/mobile-home-page-3.png)
+![About Us Page Mobile](assets/images/final-product/final-product-mobile/mobile-home-page-3.png)
 
 --------------------------------
 Menu Page Mobile View
-![Menu Page MObile](assets/images/final-product/final-product-mobile/mobile-menu-1.png)
+![Menu Page Mobile](assets/images/final-product/final-product-mobile/mobile-menu-1.png)
 
-![Menu Page MObile](assets/images/final-product/final-product-mobile/mobile-menu-2.png)
+![Menu Page Mobile](assets/images/final-product/final-product-mobile/mobile-menu-2.png)
 
 -------------------------------
 
 Sign Up Mobile View
-![Sign Up Page MObile](assets/images/final-product/final-product-mobile/mobile-sign-up-1.png)
+![Sign Up Page Mobile](assets/images/final-product/final-product-mobile/mobile-sign-up-1.png)
 
-![Sign Up Page MObile](assets/images/final-product/final-product-mobile/mobile-sign-up-2.png)
+![Sign Up Page Mobile](assets/images/final-product/final-product-mobile/mobile-sign-up-2.png)
 
 --------------------------------
 
 Log In View in Mobile
-![Log In Page MObile](assets/images/final-product/final-product-mobile/mobile-login.png)
+![Log In Page Mobile](assets/images/final-product/final-product-mobile/mobile-login.png)
 
 ---------------------------------
 
 Book Now View in Mobile
-![Book Now Page MObile](assets/images/final-product/final-product-mobile/mobile-book-now.png)
+![Book Now Page Mobile](assets/images/final-product/final-product-mobile/mobile-book-now.png)
 
 -----------------------------------
 
 Staff Portal View in Mobiles
-![Staff Portal Page MObile](assets/images/final-product/final-product-mobile/mobile-staff-portal-1.png)
+![Staff Portal Page Mobile](assets/images/final-product/final-product-mobile/mobile-staff-portal-1.png)
 
-![Staff Portal Page MObile](assets/images/final-product/final-product-mobile/mobile-staff-portal-2.png)
+![Staff Portal Page Mobile](assets/images/final-product/final-product-mobile/mobile-staff-portal-2.png)
 
 ----------------------------------
 
 Staff Register Guests View in Mobiles
-![Staff Register Page MObile](assets/images/final-product/final-product-mobile/mobile-staff-register-and-book-1.png)
+![Staff Register Page Mobile](assets/images/final-product/final-product-mobile/mobile-staff-register-and-book-1.png)
 
-![Staff Register Page MObile](assets/images/final-product/final-product-mobile/mobile-staff-register-and-book-2.png)
+![Staff Register Page Mobile](assets/images/final-product/final-product-mobile/mobile-staff-register-and-book-2.png)
 
 ----------------------------------
 
-Master Reservations List in MObile View seen by Staff and Admin Only:
-![Master Reservations List Page MObile](assets/images/final-product/final-product-mobile/mobile-staff-view-all-left-1.png)
+Master Reservations List in Mobile View seen by Staff and Admin Only:
+![Master Reservations List Page Mobile](assets/images/final-product/final-product-mobile/mobile-staff-view-all-left-1.png)
 
-![Master Reservations List Page MObile](assets/images/final-product/final-product-mobile/mobile-staff-view-all-left-2.png)
+![Master Reservations List Page Mobile](assets/images/final-product/final-product-mobile/mobile-staff-view-all-left-2.png)
 
 -----------------------------------
 
@@ -908,7 +909,7 @@ Issues:
 1.    
 
 ## Reference: 
-    1. https://www.geeksforgeeks.org/python/django-sign-up-and-login-with-confirmation-email-python/ (django code information for login, logout, registration form and email)
+    1. https://www.geeksforgeeks.org/python/django-sign-up-and-login-with-confirmation-email-python/ (django code for login, logout, registration form and email)
 
     2. Django documentation at https://docs.djangoproject.com/en/6.0/ (django for information about forms, users, authentication, deleting, queryset, models to create tables, migrations, views, template, messages, registration, timezone).
 
