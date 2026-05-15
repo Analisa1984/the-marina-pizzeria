@@ -13,16 +13,16 @@
 8. [Media Used](#media-used)
 9. [LightHouse Accessibility Checks](#lighthouse-accessibility-checks)
 10. [HTML Validation Checks](#html-validation-checks)
-11. [CSS Validsation Checks](#css-validation-checks)
+11. [CSS Validation Checks and Explanation of Results](#css-validation-checks)
 10. [Fixed](#fixed)
 11. [Manual Testing of the website](#manual-testing)
 12. [Responsiveness](#responsive-testing)
 12. [Final Product](#final-product)
 13. [Business Goals and User Stories met](#business-goals-and-user-stories-met)
 14. [Deployment](#deployment)
-15. [References](#references)
-16. [Issues](#issues)
-17. [Limitations](#limitations)
+15. [Issues](#issues)
+16. [Limitations](#limitations)
+17. [References](#references)
 18. [Acknowlegements](#acknowlegements)
 19. [Thank You](#thank-you-for-reviewing-this-product)
 
@@ -55,7 +55,8 @@
 12. The Admin or Staff should be able to make a booking for any user. 
 13. The Admin or Staff should eb able to update any booking or cancel anybooking
 14. Whenever a booking is made, the pizzeria should receive an email of the booking made. 
-
+15. The Admin or Staff should be able to see all the bookings made at the Pizzeria.
+------------------------------------------
 
 ## User Stories:
 
@@ -625,6 +626,7 @@ Should be tested as one complete set of tests.
 
 3. Business Goal #3: Public can contact the pizzeria via a contact form
 ![Contact Form](assets/images/goals-met/contact-us.png)
+![Contact Us Forms](assets/images/goals-met/events-catering-contact-us.png)
 
 4. User Story #5: Email Confirmation of bookings
 ![Email confirmation of bookings](assets/images/goals-met/email-confirmation.png)
@@ -645,6 +647,28 @@ Should be tested as one complete set of tests.
 9. Business Goals #7 & User story 3:: allow guests to update or delete their bookings
 ![Guests can edit their bookings or delete it](assets/images/goals-met/cancel-booking.png)
 ![Guests can update their bookings](assets/images/goals-met/update-booking.png)
+
+10. Business goals #5: to increase online awareness of the Marina Pizzeria through Search Engine Optimizations(SEO)
+![Search Engine Optimization](assets/images/goals-met/metatags.png)
+
+11. Business Goals #11: Admin or Staff should be able to create an account for any patron
+![Admin or Staff can register any patron](assets/images/goals-met/staff-register-and-book-guest.png)
+
+12.Business Goals #12: Admin or Staff should be able to make a booking for for any patron
+![Admin or Staff can make a booking for any patron](assets/images/goals-met/staff-manual-booking.png)
+
+13. Business Goals #11: Admin or Staff should be able to see all the bookings/reservations made
+![Admin or Staff can see all the reservations made](assets/images/goals-met/staff-master-reservation-list.png)
+
+14. Business Goals #11: Admin or Staff should be able to update any booking for the pizzeria
+![Admin or Staff can register any patron](assets/images/goals-met/staff-master-reservation-list-edit.png)
+
+15. Business Goal #15: Staff or Admin should be able to see all the bookings
+![Admin or Staff can see all the bookings ](assets/images/goals-met/staff-view-all-reservations.png)
+
+16. Business Goal 16: Admin or staff is notified when a booing is made by email
+![Admin or Staff notified by email when a booking is made](assets/images/goals-met/admin-booking-email.png)
+
 
 
 
@@ -695,8 +719,28 @@ Create the application
 - Go back to deploy and click the deploy button to deploy the application.
 - Confirm gunicorn is running in the resources tab.
 
+Project Constraints or Limitations (Area for Future Features and Future Developement):
+1. Capacity and Party Size maximum number:
+   - Currently:  the maximum number of guests that a person can book in one booking is 10. The reason for this is that the largest table available for booking a 10 seat table. Therefore, the maximum number of guests that I allowed a single person booking was 10 persons. Also, if a person has a party of 10 and that particular table of 10 is already booked (there is only one table oif 10). Then the booking app will respond with no available tables at that time, try another time. 
+   - Real occurrence: Perhaps in restuarants, the staff will check how many guests are in the party and join tables together. However, those systems are usually non-booked entry. 
+   - Solution: In the current product, to resolved this problem a person can book twice. For example, if a person would like to book the pizzeria for 12 people, he/she would first have to book a table of 10, then a table of 2 (hopefully the staff would happily join the two tables together if they are not very far apart). Also, the person can try to book 3 tables of 4 etc. 
+   - Ideally: Given, that tables can be joined and to maximize efficiency and profits, the algorithm should be revised to check is smaller tables are available to meet the requirements of the person booking for that time. The algorithm should also be revised to take into consideration that total number of people that can be hosted and that number should be set as the limit (not just 10 people).
 
+2. Time intervals for bookings: 
+   - Currently: The booking system, whethere for the patrons booking in themselves or the staff booking in the users, is designed in such a way that the bookings can only occur in 30 minute intervals. This was done, so that a clean booking system was accomplished and not messy in terms of time management. Also, in terms of an app, it looked neater to have a drop down menu with available intervals. 
+   - In Reality: Restaurants in real welcome anyone at any time, one there are free tables available. If a person needed to book for a meal direct;y after a meeting which was not close to a 30 min interval, they can choose to dine elsewhere. 
+   - Solution: The algorithm could be revised to include capacity check that looks at overlapping time blocks before allowing a person to book. Also, allow for a manual input time to be entered.
 
+3. Search Box feature: 
+   - Currently: There are no search box features for bookings for guests who would like to find their bookings by date or for staff who would like to find bookings by username or date. 
+   - In Reality: Patrons may not have that many bookings where they need to endlessly sift through large number of booking and their bookings are ordered by date which is fine. However, for the staff who manages and prepares for guests arrivals, this feature can be a game changer. Having a search feature by username can be very good. The bookings in the Master reservations list are already ordered and listed  from the soonest to the latest. However, is a person called to cancel their reservation, to find the booking of that person if they cant find the exact date might be a problem!
+   - Solution: A search bar feature can be beneficial to add to the booking are for both the personal bookings of guests whio do so themselves as well as in the staff update bookings area. 
+
+4. Fake Bookings:
+   - Currently: We are being very hopeful that guests that make their bookings will actually show up for their meals. 
+   - In Reality: Many restaurants that have a booking system have a non-refundable fee charge for booking a table and this fee can sometimes contribute towards their total bill for meals on that day or it can be separate just for booking only. 
+   - Solution: A pre-payment system can be done so that the booking wont be complete unless the booking fee is paid first. 
+   
 
 ## Reference: 
     1. https://www.geeksforgeeks.org/python/django-sign-up-and-login-with-confirmation-email-python/ (django code information for login, logout, registration form and email)
