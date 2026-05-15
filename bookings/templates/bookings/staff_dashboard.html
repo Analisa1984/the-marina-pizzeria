@@ -22,7 +22,7 @@
         </div>
     </header>
 
-    <!-- Main Content Card -->
+    <!-- Main Layout -->
     <section class="card shadow-sm border-0 rounded-4 overflow-hidden">
         <div class="card-body p-0">
             <div class="table-responsive">
@@ -84,7 +84,7 @@
                                 <div class="modal-dialog">
                                  <div class="modal-content rounded-4 shadow">
             
-                                <!-- The Header -->
+                                <!-- Edit -->
                                 <div class="modal-header bg-primary text-white">
                                 <h5 class="modal-title">Edit: {{ booking.User_id.username }}</h5>
                                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
@@ -130,7 +130,7 @@
                                 </div>
                                 </div>
 
-                                <!-- The Footer (Buttons) -->
+                                <!-- Buttons -->
                                 <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-primary">Save Changes</button>
@@ -141,7 +141,7 @@
                                 </div>
                                 </div>
 
-                                <!-- Delete button code-->
+                                <!-- Delete booking -->
                                 <form action="{% url 'staff_cancel_booking' booking.booking_id %}" method="POST" class="d-inline">
                                     {% csrf_token %}
                                     <button type="submit" 
@@ -171,7 +171,7 @@
         </div>
     </section>
 
-    <!-- Footer Meta -->
+    <!-- Footer -->
     <footer class="mt-4 text-center">
         <p >
             <a href="#" class="text-decoration-none text-warning fw-bold">Back to top</a>
@@ -179,16 +179,4 @@
     </footer>
 </div>
 
-<style>
-    /* Custom hover effect for rows */
-    .table-hover tbody tr:hover {
-        background-color: rgba(0, 0, 0, 0.02);
-        transition: background-color 0.2s ease;
-    }
-    
-    /* make responsive to smaller mobile screens */
-    @media (max-width: 768px) {
-        .display-6 { font-size: 1.5rem; }
-    }
-</style>
 {% endblock start %}

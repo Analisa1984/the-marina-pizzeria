@@ -153,7 +153,27 @@ footer .btn-outline-light:hover {
   border-color: var(--marina-accent) !important;
 }
 
+/* Styles for Staff Dashboard */
+/* Custom hover effect for rows */
+.table-hover tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+  transition: background-color 0.2s ease;
+}
+    
+/* make responsive to smaller mobile screens */
+@media (max-width: 768px) {
+  .display-6 { font-size: 1.5rem; }
+}
 
+/* Styles for Staff Portal */
+/* Subtle hover effect for the main button */
+.transition-hover {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+.transition-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+}
 
 /* Footer logo Stacking  */
 .footer-brand-stack {

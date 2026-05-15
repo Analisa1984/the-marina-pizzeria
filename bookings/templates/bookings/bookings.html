@@ -5,7 +5,7 @@
 {% block start %}
 <div class="container py-5">
     <div class="text-center mb-5">
-        <!-- SMART HEADING: Switches based on whether 'booking' is passed from the view -->
+        <!-- Switches based on whether 'booking' is passed from the view -->
         <h1 class="display-5 fw-bold">
             {% if booking %} 
                 Update Reservation 
@@ -37,7 +37,7 @@
     {% endfor %}
 {% endif %}
                     
-                    <!-- SMART ACTION: Directs to staff view if editing, otherwise to standard booking view -->
+                    <!-- Directs to staff view if editing, otherwise to standard booking view -->
                     <form method="POST" action="{% if booking %}{% url 'staff_update_booking' booking.booking_id %}{% else %}{% url 'bookings' %}{% endif %}">
                         {% csrf_token %}
                         
@@ -46,13 +46,13 @@
                         </div>
 
                         <div class="d-grid gap-2">
-                            <!-- SMART BUTTON: Changes text to match the action -->
+                            <!-- Changes text to match the action -->
                             <button type="submit" class="btn btn-success btn-lg py-3 fw-bold shadow-sm">
                                 <i class="bi {% if booking %}bi-pencil-square{% else %}bi-calendar-check-fill{% endif %} me-2"></i> 
                                 {% if booking %} Save Changes {% else %} Book Now {% endif %}
                             </button>
                             
-                            <!-- CANCEL BUTTON: Only shows for staff to let them get back to the dashboard -->
+                            <!--  Only shows for staff to let them get back to the dashboard -->
                             {% if booking %}
                                 <a href="{% url 'staff_dashboard' %}" class="btn btn-outline-secondary btn-lg py-3 fw-bold mt-2">
                                     Cancel & Return
@@ -60,7 +60,7 @@
                             {% endif %}
                         </div>
 
-                        <!-- LOGIN LINK: Only show for new guests, not during a staff edit -->
+                        <!-- Only show for new guests, not during a staff edit -->
                         {% if not booking %}
                         <div class="text-center mt-4">
                             <hr class="text-muted">
