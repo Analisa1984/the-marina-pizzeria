@@ -15,18 +15,19 @@
 9. [LightHouse Accessibility Checks](#lighthouse-accessibility-checks)
 10. [HTML Validation Checks](#html-validation-checks)
 11. [CSS Validation Checks and Explanation of Results](#css-validation-checks)
-10. [Fixed](#fixed)
-11. [Manual Testing of the website](#manual-testing)
-12. [Responsiveness](#responsive-testing)
-13. [Final Product](#final-product)
-14. [Mobile Screen Views](#mobile-screen-views)
-13. [Business Goals and User Stories met](#business-goals-and-user-stories-met)
-14. [Deployment](#deployment)
-15. [Issues](#issues)
-16. [Project Constraints or Limitations](#project-constraints-or-limitations)
-17. [References](#references)
-18. [Acknowlegements](#acknowlegements)
-19. [Thank You](#thank-you-for-reviewing-this-product)
+12. [Python Validation Checks and Explanation of Results](#python-validation-check)
+13. [Fixed](#fixed)
+14. [Manual Testing of the website](#manual-testing)
+15. [Responsiveness](#responsive-testing)
+16. [Final Product](#final-product)
+17. [Mobile Screen Views](#mobile-screen-views)
+18. [Business Goals and User Stories met](#business-goals-and-user-stories-met)
+19. [Deployment](#deployment)
+20. [Issues](#issues)
+21. [Project Constraints or Limitations](#project-constraints-or-limitations)
+22. [References](#references)
+23. [Acknowlegements](#acknowlegements)
+24. [Thank You](#thank-you-for-reviewing-this-product)
 
 
 ## About: 
@@ -48,15 +49,14 @@
 3. To give the public a method to contact the establishment.
 4. To allow patrons to find The Marina Pizzeria through the website. 
 5. Increase online awareness of The Marina Pizzeria through Search Engine Optimizarion.
-6. To allow the public to know about the history and operations of The Marina Pizzeria. 
-7. To allow patrons the ability to delete or edit their account information. 
-8. The Admin should be able to set the total number of tables that are functional/available at the Pizzeria.
-9. The admin should be able to set the seating capacity for every table so that each table is booked efficiently.
-10. The Admin or Staff should be able to create an account for a user.
-11. The Admin or Staff should be able to make a booking for any user. 
-12. The Admin or Staff should eb able to update any booking or cancel anybooking
-13. Whenever a booking is made, the pizzeria should receive an email of the booking made. 
-14. The Admin or Staff should be able to see all the bookings made at the Pizzeria.
+6. To allow the public to know about the history and operations of The Marina Pizzeria.  
+7. The Admin should be able to set the total number of tables that are functional/available at the Pizzeria.
+8. The admin should be able to set the seating capacity for every table so that each table is booked efficiently.
+9. The Admin or Staff should be able to create an account for a user.
+10. The Admin or Staff should be able to make a booking for any user. 
+11. The Admin or Staff should eb able to update any booking or cancel anybooking
+12. Whenever a booking is made, the pizzeria should receive an email of the booking made. 
+13. The Admin or Staff should be able to see all the bookings made at the Pizzeria.
 ------------------------------------------
 
 ## User Stories:
@@ -85,12 +85,6 @@ Although The Marina Pizzeria is a fictitious restaurant, to demonstrate a websit
 - Guests should be able to Update/edit their bookings for the date or time.
 - Guests should be able to cancel their booking or bookings entirely.
 ---------------------------------------
-
-4. As a user, I can add dietary restrictions so that the staff can properly prepare for my visit.
-
-   Acceptance Criteria: 
-- as a patron, i can inform staff while booking of my allergies so they can prepare adequately.
-----------------------------------------
 
 5. As a user, I can receive email confirmation of my booking so that I can have a record of my booking.
 
@@ -183,7 +177,7 @@ User Stories (MoSCoW):
 
 1. HTML
 2. CSS
-3. JavaScript
+3. Python Validation (PEP 8)
 4. Python 
 5. Django framework 
 6. Bootstrap version 5.3.8 Library - for navigation bar, footer and other body elements and class implementation for styling .
@@ -266,6 +260,13 @@ The Errors seen here are due to Bootstrap inhouse design strategies that were us
 css validity check.
 
 ![CSS Validation Check](assets/images/validation-checks/css-validation-pizzeria.png)
+
+## Python Validation Check
+
+All Python code was checked via the Flake8 and had zero problems. 
+
+![Python Validation Check](assets/images/validation-checks/python-validation-check.png)
+
 
 
 ## Design and How to Use the Website:
@@ -872,7 +873,7 @@ Fixed: This error was fixed by removing gaps between the fontawesome icons and t
 
 This error was a 500 Internal Server Error (TypeError) and it happened when a staff member tried to make a booking without selecting a date. This function was written in the bookings/forms.py file. The code(inside the clean methood) was trying to compare the booking date to "today" but the date field was empty(None), so it crashed.
 
-Fixed: the following code was added ... if not booking_date: return cleaned_data, that fixed the crash.
+Fixed: the following prevention code was added ... if not booking_date: return in forms.py that fixed the crash on empty submission.
 ------------------------
 
 4. Error Message: Deprecation warning in Admin Console 
