@@ -7,27 +7,27 @@
 3. [User Stories](#user-stories)
 4. [Wireframes](#wireframes)
 5. [Entity Relationship Diagrams](#entity-relationship-diagrams)
-5. [Design and How to use the website](#design-and-how-to-use-the-website)
-6. [Agile Methodology Followed](#agile-methodology-followed)
-6. [Languages and Technologies used](#languages-and-technologies-used)
-7. [Links Used](#links-used)
-8. [Media Used](#media-used)
-9. [LightHouse Accessibility Checks](#lighthouse-accessibility-checks)
-10. [HTML Validation Checks](#html-validation-checks)
-11. [CSS Validation Checks and Explanation of Results](#css-validation-checks)
-12. [Python Validation Checks and Explanation of Results](#python-validation-check)
-13. [Fixed](#fixed)
-14. [Manual Testing of the website](#manual-testing)
-15. [Responsiveness](#responsive-testing)
-16. [Final Product](#final-product)
-17. [Mobile Screen Views](#mobile-screen-views)
-18. [Business Goals and User Stories met](#business-goals-and-user-stories-met)
-19. [Deployment](#deployment)
-20. [Issues](#issues)
-21. [Project Constraints or Limitations](#project-constraints-or-limitations)
-22. [References](#references)
-23. [Acknowlegements](#acknowlegements)
-24. [Thank You](#thank-you-for-reviewing-this-product)
+6. [Design and How to use the website](#design-and-how-to-use-the-website)
+7. [Agile Methodology Followed](#agile-methodology-followed)
+8. [Languages and Technologies used](#languages-and-technologies-used)
+9. [Links Used](#links-used)
+10. [Media Used](#media-used)
+11. [LightHouse Accessibility Checks](#lighthouse-accessibility-checks)
+12. [HTML Validation Checks](#html-validation-checks)
+13. [CSS Validation Checks and Explanation of Results](#css-validation-checks)
+14. [Python Validation Checks and Explanation of Results](#python-validation-check)
+15. [Fixed](#fixed)
+16. [Manual Testing of the website](#manual-testing)
+17. [Responsiveness](#responsive-testing)
+18. [Final Product](#final-product)
+19. [Mobile Screen Views](#mobile-screen-views)
+20. [Business Goals and User Stories met](#business-goals-and-user-stories-met)
+21. [Deployment](#deployment)
+22. [Bug Fixes](#bug-fixes)
+23. [Project Constraints or Limitations](#project-constraints-or-limitations)
+24. [References](#references)
+25. [Acknowledgements](#acknowledgements)
+26. [Thank You](#thank-you-for-reviewing-this-product)
 
 
 ## About: 
@@ -54,7 +54,7 @@
 8. The admin should be able to set the seating capacity for every table so that each table is booked efficiently.
 9. The Admin or Staff should be able to create an account for a user.
 10. The Admin or Staff should be able to make a booking for any user. 
-11. The Admin or Staff should eb able to update any booking or cancel anybooking
+11. The Admin or Staff should be able to update any booking or cancel anybooking
 12. Whenever a booking is made, the pizzeria should receive an email of the booking made. 
 13. The Admin or Staff should be able to see all the bookings made at the Pizzeria.
 ------------------------------------------
@@ -86,27 +86,27 @@ Although The Marina Pizzeria is a fictitious restaurant, to demonstrate a websit
 - Guests should be able to cancel their booking or bookings entirely.
 ---------------------------------------
 
-5. As a user, I can receive email confirmation of my booking so that I can have a record of my booking.
+4. As a user, I can receive email confirmation of my booking so that I can have a record of my booking.
 
    Acceptance Criteria: 
 - Each Patron that logs into their account to book the Marina Pizzeria for a meal must be able to get an email confirmation.
 - Each patron that logs into their account to edit their booking at the Marina Pizzeria must be able to get an email confirmation of the new booking.
 --------------------------------------
 
-6. As a restaurant manager, I can set a fixed number of tables so that there is no overbooking.
+5. As a restaurant manager, I can set a fixed number of tables so that there is no overbooking.
 
       Acceptance Criteria: 
 - The Admin only should be able to set the number of tables at the restaurant.
 ---------------------------------------
 
-7. As a manager, I can ensure the correct number of seated tables are listed so that efficiency is maximized (e.g. a single person does not book a table for 6).
+6. As a manager, I can ensure the correct number of seated tables are listed so that efficiency is maximized (e.g. a single person does not book a table for 6).
 
    Acceptance Criteria:
 
 - The Admin only should be able to set the capacity of guests that can be accommodated at each table available in the restaurant.
 ---------------------------------------
 
-8. As a manager, I can see all bookings for all tables at the establishment so that the staff can make amendments, or cancel bookings on behalf of the patrons.
+7. As a manager, I can see all bookings for all tables at the establishment so that the staff can make amendments, or cancel bookings on behalf of the patrons.
 
    Acceptance Criteria:
 - The Staff and Admin can create a new profile for a guest
@@ -114,7 +114,7 @@ Although The Marina Pizzeria is a fictitious restaurant, to demonstrate a websit
 - The Staff or Admin can delete booking on behalf their guests if they are unable to be there at the allocated booked time.
 ---------------------------------------
 
-9. As a user, I can find the location of the pizzeria easily so that I can know if the pizzeria is in close proximity to me.
+8. As a user, I can find the location of the pizzeria easily so that I can know if the pizzeria is in close proximity to me.
 
    Acceptance Criteria: 
 - User should be able to find the location easily by checking their website for the address a location finder would be nice but not compulsory.
@@ -180,7 +180,7 @@ User Stories (MoSCoW):
 3. Python Validation (PEP 8)
 4. Python 
 5. Django framework 
-6. Bootstrap version 5.3.8 Library - for navigation bar, footer and other body elements and class implementation for styling .
+6. Bootstrap version 5.3.3 Library - for navigation bar, footer and other body elements and class implementation for styling .
 7. Font Awesome library for icons
 8. Bootstrap5 icon library for icons
 8. Google Fonts to import additional fonts
@@ -256,8 +256,7 @@ There were no errors or warning to show on the HTML validity check.
 
 ## CSS Validation Check
 
-The Errors seen here are due to Bootstrap inhouse design strategies that were used, no customized CSS gave any errors on the 
-css validity check.
+The Errors seen here are due to Bootstrap inhouse design strategies that were used, no customized CSS gave any errors on the css validity check.
 
 ![CSS Validation Check](assets/images/validation-checks/css-validation-pizzeria.png)
 
@@ -303,7 +302,9 @@ All Python code was checked via the Flake8 and had zero problems.
     - The STAFF PORTAL: when the staff logs in, only the username and password is sufficiant as the admin is aware already of which staff and their detail before giving them access to the portal to sign up users, make bookings (MANUAL BOOKING PAGE) for guests, update bookings, view all bookings (MASTER RESERVATIONS LIST) or delete bookings. 
 
 ##  Manual Testing
-NOTE:  Manual Testing is the process whereby all components, including functions, of a page are tested by manually going through each aspect of a page or software. This is done by also checking against the user stories to check if the program software complies. Manual testing is deployed if chosen as the only means to check if the application or software created (functions and or other implementations). However, manual testing can be done after automated testing is completed. Many software is tested by both manual and automated testing.  Automated testing is not done to check all components are working as intended. Automated testing does not test the user experience as this is usually subjective. In the Marina Pizzeria, manual testing was done as automated testing was not done and to check the user's experience. In most programs or software development, a combination of both manual and automated testing is done. 
+Manual testing is the process whereby all components, including functions, of a page are tested by manually going through each aspect of a page or software. This is done by also checking against the user stories to check if the program/ software complies. Manual testing is deployed if chosen as the only means to check the application or software created (functions and all other implementations). However, manual testing can be done after automated testing is completed. Many software is tested both by manual testing and automated testing. Automated testing tests the functions created. Automated testing does not test the user experience as this is usually subjective. In Marina Pizzeria, manual testing was done as automated testing was not done and to check the user experience. In most programs or software development, a combination of both manual and automated testing is done.
+
+Manual testing - The various parts of the website were checked such as the navigation bar, links, buttons. The various parts were also manually tested on mobile and tablet sizes using inspect and responsiveness checks on the page.
 
 Each part: 
  - Header 
@@ -493,7 +494,7 @@ Should be tested as one complete set of tests.
 | Enter a Username that already exists Click Create New account & Book Table | Error appears warning username is already taken | Y |
 | Enter the Username that is unique and select a password and enter a diffrent confirm password and press Click Create New account & Book Table | Error saying passwords need to be the same | Y |
 | Update the confirm password so its the same as the password | Error saying date is needed | Y |
-| Enter Username, Password (inline with the Password Policy on screen), date, Time and party size | Staff Dashboard loads showing all bookings, If there wasnt a table a message appears at the top with the user been regiersterd but with no table booked, If there is a table availible it registers the user and books the table | Y |
+| Enter Username, Password (inline with the Password Policy on screen), date, Time and party size | Staff Dashboard loads showing all bookings, If there wasnt a table a message appears at the top with the user been registered but with no table booked, If there is a table availible it registers the user and books the table | Y |
 
 ### Add Manual booking
 | Action | Expected Result | Pass |
@@ -515,6 +516,7 @@ Should be tested as one complete set of tests.
 | Choose a future booking and press the Cancel button to the right (red bin icon) | The booking is deleted. | Y |
 
 ## Responsive Testing
+Small Devices are ones that range from 320 to 768 pixels wide, Desktop views are for devices with larger screens.
 
 ## Header
 ### Logged Out
@@ -836,7 +838,7 @@ The database is hosted on AWS
 - Under Code Sinippets change the Programming language to Python and copy the details to the env.py file to form the URI for Django.
 
 ### Application
-Make sure gunicorn is in the project requirements and the code is upto date in github.
+Make sure gunicorn is in the project requirements and the code is upto date in github. To ensure gunicon runs in Heroku add a Procfile containing `web: gunicorn the_marina_pizzeria.wsgi`. Also check the requirements.txt file is upto date before deploying. 
 
 Login to Heroku
 Create the application
@@ -911,19 +913,52 @@ This error is due to "unload Event listeners are depracated". Since modern brows
 
 ----------------------------------------------
 
-## Reference: 
-    1. https://www.geeksforgeeks.org/python/django-sign-up-and-login-with-confirmation-email-python/ (django code for login, logout, registration form and email)
+## References 
 
-    2. Django documentation at https://docs.djangoproject.com/en/6.0/ (django for information about forms, users, authentication, deleting, queryset, models to create tables, migrations, views, template, messages, registration, timezone).
+   1. https://www.geeksforgeeks.org/python/django-sign-up-and-login-with-confirmation-email-python/ (django code for login, logout, registration form and email)
 
-    3. MDN - https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/Django/Forms (understanding form, authentication and creating users).
+   2. Django documentation at https://docs.djangoproject.com/en/6.0/ (django for information about forms, users, authentication, deleting, queryset, models to create tables, migrations, views, template, messages, registration, timezone).
 
-    4. W3Schools - https://www.w3schools.com/django/django_templates.php (templates)
+   3. MDN - https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/Django/Forms (understanding form, authentication and creating users).
 
-    5. W3Schools -  https://www.w3schools.com/django/django_create_app.php (create App, If..else loos, QuerySet order by, QuerySet filter, static files )
+   4. W3Schools - https://www.w3schools.com/django/django_templates.php (templates)
 
-    6. Geeks for Geeks - https://www.geeksforgeeks.org/python/django-basics/ (understanding Django basics, MVT structure, django ORM, QuerySet, order by, function base views, class based views )
+   5. W3Schools -  https://www.w3schools.com/django/django_create_app.php (create App, If..else loos, QuerySet order by, QuerySet filter, static files )
 
-    7. Django Poject - https://forum.djangoproject.com/t/django-filters/7608 (Understanding django filters and time pickers)
+   6. Geeks for Geeks - https://www.geeksforgeeks.org/python/django-basics/ (understanding Django basics, MVT structure, django ORM, QuerySet, order by, function base views, class based views )
 
+   7. Django Poject - https://forum.djangoproject.com/t/django-filters/7608 (Understanding django filters and time pickers)
+
+   8. Unsplash Images, marina image by Maria Bobrova.
+
+   9. Unsplash Image, clay oven with pizza inside by Anthony Lim. 
+
+   10. Unsplash Image, Spinach Mozarella Pizza by Saundarya Srinivasan.
+
+   11. Unsplash Image, we do catering image by Matthias Reding.
+
+   12. Unsplash Image, Happy Birthday image by Nahima Aparicio.
+
+   13. Unsplash Image, Come dine with us image by Klara Kulikove.
+
+   14. Unsplash Image, procuitto pizza by Ilinca Roman.
+
+   15. Unsplash Image, ham and pineapple pizza by Rimsh Noor.
+
+   16. Unsplash Image, Chicken and Mushroom pizza by Amadeus Moga.
+
+   17. Unsplash Image, pizza bar by Romain Chollet.
+
+   18. Unsplash Image, 2 pizzas on a table by Sarang Panda.
+
+
+   ## Acknowledgements
+
+   1. I thank God Almighty.
+   2. Code Institute and all staff for all lectures and learning materials provided throughout the course thus far.
+   3. Bootstrap 5 doc in learning how to add classes and other elements.
+   4. Unsplash for use of all royalty free images on the design of this webpage.
+   5. Figma software for free usage to create wireframes.
+
+## Thank You for reviewing this product
 
