@@ -14,6 +14,7 @@
 9. [LightHouse Accessibility Checks](#accessibility-checks)
 10. [Fixed](#fixed)
 11. [Manual Testing of the website](#manual-testing)
+12. [Responsiveness](#responsive-testing)
 12. [Final Product](#final-product)
 13. [Business Goals and User Stories met](#business-goals-and-user-stories-met)
 14. [Deployment](#deployment)
@@ -143,17 +144,13 @@ Although The Marina Pizzeria is a fictitious restaurant, to demonstrate a websit
 
 ## Entity Relationship Diagrams:
 
-1. Conceptual Data Model (ERD):
+1. Logical Data Model (ERD):
 
-    ![Conceptual Data Model](assets/images/entity-relationship-diagrams/concept-data-model.png)
+    ![Logical Data Model](assets/images/entity-relationship-diagrams/erd-logical.jpg)
 
-2. Logical Data Model (ERD):
+2. Physical Data Model (ERD):
 
-    ![Logical Data Model](assets/images/entity-relationship-diagrams/logical-data-model.png)
-
-3. Physical Data Model (ERD):
-
-    ![Physical Data Model](assets/images/entity-relationship-diagrams/physical-data-model.png)    
+    ![Physical Data Model](assets/images/entity-relationship-diagrams/erd-physical.jpg)    
 
 ## Languages and Technologies used:
 
@@ -164,14 +161,16 @@ Although The Marina Pizzeria is a fictitious restaurant, to demonstrate a websit
 5. Django framework 
 6. Bootstrap version 5.3.8 Library - for navigation bar, footer and other body elements and class implementation for styling .
 7. Font Awesome library for icons
+8. Bootstrap5 icon library for icons
 8. Google Fonts to import additional fonts
 9. Artificial Intelligence Technologies (Gemini) was used to create The Marina Pizzeria Logo as well as the favicons of various sizes.
-10. Chrome developer tools, Inspector, to get screenshots of the product webpage on varioussized devices.
-11. Nu HTML Validator to check the HTML code.
-12. W3C CSS Validator to check the CSS code.
-13. Accessibility Checker from accessibilitychecker.org to check the accessibility using WCAG 2.1 and WCAG 2.0 guidelines.
-14. Figma software was used to create the wireframes.
-15. dbdiagrams.io for Entity Relationship Diagrams (ERD).
+10. Chrome developer tools, Inspector, to get screenshots of the product webpage on various sized devices.
+11. LightHouse on Chrome Developer Tools to check for Accessibility.
+12. Nu HTML Validator to check the HTML code.
+13. W3C CSS Validator to check the CSS code.
+14. Amazon Web Services for the AWS database -Postgres
+15. Figma software was used to create the wireframes.
+16. draw.io for Entity Relationship Diagrams (ERD).
 
 
 ## Links used:
@@ -188,10 +187,44 @@ Although The Marina Pizzeria is a fictitious restaurant, to demonstrate a websit
    [X](https://www.twitter.com)
 
 ## Media Used:
+ 1. The location map finder using google maps
 
 ## Lighthouse Accessibility Checks:
 1. Homepage
-   ![Home Page Accessibility Check](assets/images/accessibility-checker/)
+   ![Home Page Accessibility Check](assets/images/accessibility-checker/access-12.png)
+
+2. About Us
+   ![About Us Page Accessibility Check](assets/images/accessibility-checker/access-10.png)
+
+3. Menu
+   ![Menu Page Accessibility Check](assets/images/accessibility-checker/access-9.png)
+
+4. Book Now
+   ![Book Now Page Accessibility Check](assets/images/accessibility-checker/access-1.png)  
+
+5. My Bookings
+   ![My Bookings Page Accessibility Check](assets/images/accessibility-checker/access-11.png)
+
+6. Staff Portal
+   ![Staff Portal Page Accessibility Check](assets/images/accessibility-checker/access-6.png)
+
+7. Staff Registration
+   ![Staff Registration Page Accessibility Check](assets/images/accessibility-checker/access-3.png)
+
+8. Staff Booking For Guest
+   ![Staff Booking for Guest Accessibility Check](assets/images/accessibility-checker/access-4.png)
+
+9. Staff Master Resevation List
+   ![Staff Master Reservation List Page Accessibility Check](assets/images/accessibility-checker/access-5.png)
+
+10. Contact Us 
+   ![Contact Us Page Accessibility Check](assets/images/accessibility-checker/access-1.png)
+
+11. Sign Up Page for Guests
+   ![Sign Up Page Accessibility Check](assets/images/accessibility-checker/access-7.png)
+
+12. Log In Page for Users
+   ![Log In Page Accessibility Check](assets/images/accessibility-checker/access-8.png)
 
 ## Design and How to Use the Website:
 
@@ -214,6 +247,406 @@ Although The Marina Pizzeria is a fictitious restaurant, to demonstrate a websit
     - In ALL pages there are links to the Home page and clicking on the logo (which is in all pages) will return the user to the home page.
     - The between section of the navigation bar on top and the footer below vary with each page. However the background color is the same and matches with the top and bottom color to give continuity.
 
+    - THE MENU PAGE: this page is a simple group of tables showing the pizzeria's foods served with the starters being in a table, the mains being in a table, the sides being in a table, the desserts being in a table and drinks options being present on a table with their respective prices on the opposite column. The navigation page is situated on the top and the footer is located in the below.
 
-    ## Reference: 
+    - THE ABOUT US PAGE: this page is a brief history of the pizzeria roots and the services they now provide and the location.
+
+    - THE LOCATION: this has a pin locator symbol and uses the google maps to help users find quickly where the pizzeria is located. As this is a fictitious pizzeria, an actual pizzeria loaction named Pizzeria by the Beach House located in sandsend, York near Whitby was used to show how to map a ldirect location. Apart from the location being in the navigation bar, it is also found with direct map view in the homepage. 
+
+    - The BOOK NOW form: is a form with username, date, time and party number. then the user clicks on the submit button and a reservation is made, the guest then get a confirmation notice with the information of the date time and table number. The guest also gets and email confirmation of booking. The admin also gets an email that lets them know another booking was made, with username, party number, date and time. 
+
+    THE CONTACT US form: this form has the username,, email and message field. once completeed the submit button is clicked and the guest as well as the admin get a copy of the email with messaage. The guest receives a generic email stating the team received the email message and will get back in touch soon.
+
+    - The STAFF PORTAL: when the staff logs in, only the username and password is sufficiant as the admin is aware already of which staff and their detail before giving them access to the portal to sign up users, make bookings (MANUAL BOOKING PAGE) for guests, update bookings, view all bookings (MASTER RESERVATIONS LIST) or delete bookings. 
+
+##  Manual Testing
+NOTE: 
+Each part: 
+ - Header 
+ - Footer
+ - Main Pages (Not Logged In)
+ - Standard User Journey
+ - Staff User Journey (requires a Staff User account)
+
+Should be tested as one complete set of tests.
+
+## Header 
+
+### Logged Out
+| Action | Expected Result | Pass |
+| ------ | ------ | ----- |
+| Load URL | Index Page loads | Y |
+| Click About Us | About us Page Loads | Y |
+| Click Logo Top Left | Index Page Loads | Y |
+| Click Menu | Menu Page loads | Y |
+| Click Home | Index Page Loads | Y |
+| Click Location | Google Maps Opens in new tab | Y |
+| Click Book Now | User redirected to Login Page | Y |
+| Click Signup | Signup Page Loads | Y |
+| Click Login | User Login Page loads | Y |
+| Note: Staff Portal page hidden | | Y |
+
+
+### User Logged In as Staff & Super Admin
+| Action | Expected Result | Pass |
+| ----- | ----- | -----|
+| Load URL | Index Page loads | Y |
+| Click About Us | About us Page Loads | Y |
+| Click Logo Top Left | Index Page Loads | Y |
+| Click Menu | Menu Page loads | Y |
+| Click Home | Index Page Loads | Y |
+| Click Location | Google Maps Opens in new tab | Y |
+| Click Book Now | User redirected to Login Page | Y |
+| Click Signup | Signup Page Loads | Y |
+| Click Login | User Login Page loads | Y |
+| Note: Staff Portal page hidden | | Y |
+
+### User Logged in as Staff & Super Admin
+| Action | Expected Result | Pass |
+| ----- | ----- | -----|
+| Load URL | Index Page loads | Y |
+| Click About Us | About us Page Loads | Y |
+| Click Logo Top Left | Index Page Loads | Y |
+| Click Menu | Menu Page loads | Y |
+| Click Home | Index Page Loads | Y |
+| Click Location | Google Maps Opens in new tab | Y |
+| Click Book Now | User Booking page loads | Y |
+| Click My Bookings | User Booking page loads | Y |
+| Click Staff Portal | Staff Portal Loads | Y |
+| Click Logout | User Login Page loads | Y |
+| Note: Signup Page Hidden| | Y |
+
+### User Logged In as User
+| Action | Expected Result | Pass |
+| ----- | ----- | -----|
+| Load URL | Index Page loads | Y |
+| Click About Us | About us Page Loads | Y |
+| Click Logo Top Left | Index Page Loads | Y |
+| Click Menu | Menu Page loads | Y |
+| Click Home | Index Page Loads | Y |
+| Click Location | Google Maps Opens in new tab | Y |
+| Click Book Now | User Booking page loads | Y |
+| Click My Bookings | User Booking page loads | Y |
+| Click Logout | User Login Page loads | Y |
+| Note: Staff Portal page hidden | | Y |
+| Note: Signup Page Hidden| | Y |
+
+## Footer (Same for all pages and User Types)
+| Action | Expected Result | Pass |
+| ----- | ----- | ----- |
+| Click Logo | Loads index page | Y |
+| Click Facebook Logo | Loads Facebook Home Page | Y |
+| Click Instagram Logo | Loads Instagram Page | Y |
+| Click X (Twitter Logo) | Loads X (Twitter Home Page) | Y |
+| Click Contact button | Loads Contact form | Y |
+
+## Main Pages (Not Logged In)
+### Index:
+| Action | Expected Result | Pass |
+| ----- | ----- | ----- |
+| Note: If user is logged in message appears welcoming them | Y |
+| Click each Carosel button | Skips to correct Image | Y |
+| Click Book Now under "Dine with Us" | Loads Login Page | Y |
+| Click Contact Us under "Catering" | Loads Contact Form | Y |
+| Click Contact Us under "Special Events" | Loads Contact Form | Y |
+| Note: Map Location is Whitby (the fictional Pizzeria) | | Y |
+
+### Contact:
+| Action | Expected Result | Pass |
+| ----- | ----- | ----- |
+| Click Contact link from Footer | Contact form Loads | Y |
+| Enter a valid Email address with No Name and any message then Click send | Error showing Name Field required | Y | 
+| Enter a Name change the email address to have no @ in it then Click send | Error requesting valid email address | Y |
+| Enter a Name and Valid email address but no Message then Click send | Error Requesting a message to be included | Y |
+| Enter a Name, Vaild Email address and at least 1 word in the Message then Click send | Email will send to the email address and the Admin email (themarinapizzeria@gmail.com) for this project Confirmation message appears at top of screen | Y |
+
+### About Us:
+| Action | Expected Result | Pass |
+| ----- | ----- | ----- |
+| Click Book table at bottom of content | Login page loads if unauthenticated, booking page loads if authenticated | Y |
+
+## Standard User Journey
+### Signup
+| Action | Expected Result | Pass |
+| ----- | ----- | ----- |
+| Access the Site Unathenticated and click SignUp (See Header Section) | Signup page loads | Y |
+| Leave the Username blank and click Sumbit | Warning popup asking for a username | Y |
+| Enter an invalid Email address (eg. no @ included) | Warning popup asking for a valid email address with an @ | Y |
+| Complete the email address with your email address leave the first name blank | warning asking to complete first name field press submit | Y |
+| Continue on and complete the first name and leave last name blank press submit | warning asking to complete last name field | Y |
+| Complete last name so Username, Email, First Name and Last Name are all complete but password blank | Warning asking for password | Y |
+| Add a password and confirmation thats less than 8 Charaters | Error asking for a stronger password | Y |
+| Add a Username thats been used before eg. `Trona` and a password thats two short | Error on Username saying its already in use & password error | Y |
+| Return the username to be Unique and enter 9 numbers in the password & confirmation fields | Error showing password is entirely Numeric | Y |
+| Enter the Username in the password and confirmation fields | Error showing its two short | Y |
+| Enter the password & confirmation as `qwertyuiop` and click Sumbit | Error showing password is two common | Y |
+| Enter a password that is valid but something diffrent one in Confirmation then click Sumbit | Error showing the two fields dont match | Y |
+| Enter a valid password and the same confirmation and click Submit | Redirected to the login page, Messgage showing account created for username, Welcome email sent to registed email address. | Y |
+
+### Login
+| Action | Expected Result | Pass |
+| ----- | ----- | ----- |
+| Navigate to the Login page using the button in the header (see header section) | Login page loads| Y |
+| Click Sign Up under the submit button | loads signup page | Y |
+| Click back in brower to return to login | Login page loads | Y |
+| Click Submit with both fields empty | warning asking for username | Y |
+| Enter an invalid username and password | Error asking for Correct username and password | Y |
+| Enter a correct Username an invalid password | Error asking for Correct username and password | Y |
+| Enter the valid Username and password | Logs user in and redirects to my bookings page, header also adjusts for a Logged In user (as above) | Y |
+
+### Book Now
+| Action | Expected Result | Pass |
+| ----- | ----- | ----- |
+| Navitage to the book now page (Link in header) Login as above if not already | Book now page loads | Y |
+| Click `Need to manage existing bookings?` | takes you to the Mange bookings page | Y |
+| Click back in browser to get back to book now page | book now loads | Y |
+| Choose a Date in the past and click Sumbit | Error showing you cant book in the past | Y |
+| From the date picker Choose Sunday for the date | Error showing the Pizzeria is closed on Sundays |
+| Change the date so its between Monday and Thursday set the time to 22:30 then Click Submit | Error showing the Pizzeria is only open between 12:00 and 22:00 | Y |
+| Either Change the date so its a weekend (Friday / Saturday) or set the time to before 22:00 then click Submit, keep the number of guest low so it finds you a table. | booking completes, booking confirmed page and email sent to user and admin email addresses | Y | 
+
+### Booked page
+| Action | Expected Result | Pass |
+| ----- | ----- | ----- |
+| Once booking complete note the following: | | |
+| Message shows correct username, date, time and automatically | assigned table number for the booking | Y |
+| Click Back To Home | loads index page with a Welcome back `Username` message | Y |
+
+### My Bookings
+| Action | Expected Result | Pass |
+| ----- | ----- | ----- |
+| If your not already, login as a user using login button in the header (as per header testing) | loads my bookings page | Y |
+| Note: Current Bookings show for today | | |
+| Future Bookings: All Future bookings with Edit and Cancel buttons | | |
+| Past bookings: All bookings for a previous date | | |
+| Click Update Details on any future booking | Pop Up appers to edit a booking with prepopulated booking information | Y |
+| Edit the booking to a date in the past | Error shows stating you cant book a table in the past | Y |
+| Update the booking again and edit the date to a Sunday and Click Save | Error appears show the Pizzeria is closed on a Sunday | Y |
+| Update the booking again and edit the date to another date (Not Sunday) & Click Save | Message confirming date and the Current Booking card has updated | Y |
+| Go Back to update details change the Party Size to 9 | Party Size changes in the card for the future booking | Y |
+| Go to Book Now create a new booking for 9 people same date, +/- 2 hours time as the previous booking | Error showing all tables of that size are occupied | Y |
+| On a Future booking click the Cancel (bin) icon | reserveration is removed from the screen | Y |
+
+## Staff User Journey
+### Dashboard
+| Action | Expected Result | Pass |
+| ----- | ----- | ----- |
+| From the login button in the header, Login as Staff or Super Admin User | Staff Dashboard loads Heading is Staff Command Portal and shows logged in User | Y |
+| Note: Header has changed as per the header testing above | | |
+| Click Register New Guest | Form loads to add a user and book them a table | Y |
+| Click Cancel & Return | returns to portal page | Y |
+| Click Manuel Guest Booking | Loads form to create a booking for an existing user | Y |
+| Click back to Portal | returns to portal page | Y |
+| Click View all reservations | List of all reservations for all patrons loads | Y |
+| Click Back to portal | returns to staff portal | Y |
+
+### Register New Guest
+| Action | Expected Result | Pass |
+| ----- | ----- | ----- |
+| If not already login as a Staff User and Navigate to the Staff Portal Page | | |
+| Click on the Register new User button | Loads register user and book table page. | Y |
+| Click Create New account & Book Table with no data entered | Error appears asking for required fields | Y |
+| Enter a Username that already exists Click Create New account & Book Table | Error appears warning username is already taken | Y |
+| Enter the Username that is unique and select a password and enter a diffrent confirm password and press Click Create New account & Book Table | Error saying passwords need to be the same | Y |
+| Update the confirm password so its the same as the password | Error saying date is needed | Y |
+| Enter Username, Password (inline with the Password Policy on screen), date, Time and party size | Staff Dashboard loads showing all bookings, If there wasnt a table a message appears at the top with the user been regiersterd but with no table booked, If there is a table availible it registers the user and books the table | Y |
+
+### Add Manual booking
+| Action | Expected Result | Pass |
+| ----- | ----- | ----- |
+| If not already login as a Staff User and Navigate to the Staff Portal Page (as before) | | |
+| Click on the manual guest booking | Loads book table page. | Y |
+| Select a Customer menu lists all registered users, select a user select a date in the past and press confirm reservation | Error saying You cannot book a table in the past. | Y |
+| Change the date to a future date, Select a time and party size and press confirm reservation | if there isnt Table availible at the time an warning No tables available for this time. appears. Otherwise the booking will save| Y |
+
+### View All Reservations
+| Action | Expected Result | Pass |
+| ----- | ----- | ----- |
+| If not already login as a Staff User and Navigate to the Staff Portal Page (as before) | | |
+| Click on the view all reservations button | Loads staff dashboard page. | Y |
+| Note: page consists of all bookings, username, date and time of booking, the table number assigned. | | Y |
+| Click Edit (Blue pencil icon to the right of each row) to a booking | Loads Update reservation page with pre populated data from the booking | Y |
+| Select a date in the past and click Save Changes | Warning appears asking for a date in the future | Y |
+| Change the date to a future date, Select a time and a different party size and press Save Changes | if there isnt Table availible at the time an warning No tables available for this time. appears. Otherwise the booking will save and take you back to the dashboard with a message that the booking has been updated, you can find the booking with the new detials here. the table number may change changed due to the party size | Y |
+| Choose a future booking and press the Cancel button to the right (red bin icon) | The booking is deleted. | Y |
+
+## Responsive Testing
+
+## Header
+### Logged Out
+| Device | Desired view | Pass |
+| ----- | ----- | ----- |
+| Desktop | Left Justified: Logo, Home Page, About Us, Menu. | Y |
+| | Right Justified: Location, Book now, Signup, Login. | Y |
+| Smaller Devices | Left Justified: Burger Menu with Home, About Us, Menu, Book Now, Sign Up underneath | Y |
+| | Logo in the middle | Y |
+| | Right Justified: Location Icon & Login button | Y |
+
+### Logged In Standard User
+| Device | Desired view | Pass |
+| ----- | ----- | ----- |
+| Desktop | Left Justified: Logo, Home Page, About Us, Menu. | Y |
+| | Right Justified: Location, Book now, My Bookings, Logout. | Y |
+| Smaller Devices | Left Justified: Burger Menu with Home, About Us, Menu, Book Now & My Bookings underneath | Y |
+| | Logo in the middle | Y |
+| | Right Justified: Location Icon & Login button | Y |
+
+### Logged In Staff Member
+| Device | Desired view | Pass |
+| ----- | ----- | ----- |
+| Desktop | Left Justified: Logo, Home Page, About Us, Menu. | Y |
+| | Right Justified: Location, Book now, My Bookings, Staff Portal, Logout. | Y |
+| Smaller Devices | Left Justified: Burger Menu with Home, About Us, Menu, Book Now, My Bookings & Staff Portal underneath | Y |
+| | Logo in the middle | Y |
+| | Right Justified: Location Icon & Logout button | Y |
+
+### Footer (Same for all Users and all pages)
+| Device | Desired view | Pass |
+| ----- | ----- | ----- |
+| Desktop | Left: Logo and Address | Y |
+| | Centre: Opening Times | Y |
+| | Right: Connect wtih Us, Socials and Contact Us | Y |
+| Smaller Devices | Scrolls down, Logo and Address, Opening Times streachs across screen, Connect with us socails underneath | Y |
+
+## Main Pages (Not Logged In)
+### Index
+| Device | Desired view | Pass |
+| ----- | ----- | ----- |
+| Desktop | The Services offered Dine with us, Catering and Speical Events are next to each other | Y |
+| Small Devices | The Services offered appear one after another as you scroll down. All other sections compress to fit in the screen size. | Y |
+
+### About
+| Device | Desired view | Pass |
+| ----- | ----- | ----- |
+| Desktop | The Services offered Dine with us, Catering and Speical Events are next to each other | Y |
+| Small Devices | The Services offered appear one after another as you scroll down. All other sections compress to fit in the screen size. | Y |
+
+### Menu
+| Device | Desired view | Pass |
+| ----- | ----- | ----- |
+| Desktop | Menu sections spread across the page | Y |
+| Small Devices | Menu Sections move to be in a list fitting the page width | Y |
+
+### Login
+| Device | Desired view | Pass |
+| ----- | ----- | ----- |
+| Desktop | Banner at top spans the page with login box central. | Y |
+| Small Devices | Banner at top fits the wideth of the login box | Y |
+
+### Sign Up
+| Device | Desired view | Pass |
+| ----- | ----- | ----- |
+| Desktop | Signup form is in the middle with boarder | Y |
+| Small Devices | the boarder reduces to a minimum and the form fits inside small width devices | Y |
+
+## User Pages
+### Booking Form
+| Device | Desired view | Pass |
+| ----- | ----- | ----- |
+| Desktop | Booking form is in the middle with boarder | Y |
+| Small Devices | the boarder reduces to a minimum and the form gets smaller so it fits inside small width devices | Y |
+
+### Booking Confirmation
+| Device | Desired view | Pass |
+| ----- | ----- | ----- |
+| Desktop | booking Confirmation message spans across the browser with a margin | Y |
+| Small Devices | the boader gets smaller as does the text box no horizonal scrolling requried | Y |
+
+### Manage Bookings
+| Device | Desired view | Pass |
+| ----- | ----- | ----- |
+| Desktop | The booking cards are two wide and get smaller depending on browser size if the Update Details modal is open it stays in the middle of the window with boarder each side the text all stays inside | Y |
+| Smaller Devices | The cards reduce to 1 wide and get smaller but text stays inside the box if the Update Details modal is open it stays in the middle of the window with boarder each side the text all stays inside | Y |
+
+## Staff Login (in addtion to User Pages)
+### Staff Portal
+| Device | Desired view | Pass |
+| ----- | ----- | ----- |
+| Desktop | Wide Board and buttons spanning the broswer window | Y |
+| Smaller Devices | The boarder gets smaller as do the buttons but the text always stays inside the buttons | Y |
+
+### Register and Book
+| Device | Desired view | Pass |
+| ----- | ----- | ----- |
+| Desktop | Register & booking form spans across the browser with a margin | Y |
+| Small Devices | the boader gets smaller as does the text fields stay inside the form with no horizonal scrolling requried | Y |
+
+### Manual Booking
+| Device | Desired view | Pass |
+| ----- | ----- | ----- |
+| Desktop | Booking form spans across the browser with a margin | Y |
+| Small Devices | The boader & form get smaller as does the text fields stay inside the form with no horizonal scrolling requried | Y |
+
+### View All bookings
+| Device | Desired view | Pass |
+| ----- | ----- | ----- |
+| Desktop | Table shows with each booking on a single Row, as the broswer size decreses the date text wraps to keep everything visible without Horizontal scrolling | Y |
+| Small Devices | On the smallest devices the date wraps to the maximum possible and some horizonal srolling is needed but rotating a device can mitigate this as a staff member would only need to find one booking at a time| Y | 
+
+
+## Deployment
+
+### Database
+The database is hosted on AWS
+
+#### To create the database:
+- Login to AWS as a root user or IAM with enough privileges to Use Auroa / RDS and Security Groups
+- In the search bar find RDS
+- Click Create with full configuration
+- Choose PostgressSQL
+- Set the database server size (small in this case)
+- Give the database a name that identifies it clearly.
+- Set the Master Username and a Self Managed password 
+- Enter a strong password (eg. 32 Charaters)
+- Set Public access to yes as it will be accessible by Heroku
+- Use a Default security group as its the first resource were creating
+- Minimise Monitoring and backups to save on cost as this is a demo project
+- Choose Create Database
+
+#### Setup the security group
+- As the database is creating at the bottom of the screen choose the default inbound security group 
+- Choose the Security Group ID
+- Click edit inbound rules
+- Add a rule with
+    Type: PostgresSQL
+    Source: Custom and 0.0.0.0/0 as we dont know Heroku's puiblic IP
+
+#### Go Back to RDS (From the Search Box)
+- Choose Databases from the left menu 
+- click into the new database that was created
+- Under Code Sinippets change the Programming language to Python and copy the details to the env.py file to form the URI for Django.
+
+### Application
+Make sure gunicorn is in the project requirements and the code is upto date in github.
+
+Login to Heroku
+Create the application
+- In Deploy link to the github repo for the project: the-marina-pizzeria
+- Click Setup and in config vars add:
+    - Database credentials = (the full URL from AWS incluing username & password)
+    - A Unique secret key for the project
+    - DISABLE_COLLECT_STATIC = 1
+    - EMAIL_HOST_PASSWORD = (Email service password)
+    - EMAIL_HOST_USER = (Email service username)
+- Go back to deploy and click the deploy button to deploy the application.
+- Confirm gunicorn is running in the resources tab.
+
+
+
+
+## Reference: 
     1. https://www.geeksforgeeks.org/python/django-sign-up-and-login-with-confirmation-email-python/ (django code information for login, logout, registration form and email)
+
+    2. Django documentation at https://docs.djangoproject.com/en/6.0/ (django for information about forms, users, authentication, deleting, queryset, models to create tables, migrations, views, template, messages, registration, timezone).
+
+    3. MDN - https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/Django/Forms (understanding form, authentication and creating users).
+
+    4. W3Schools - https://www.w3schools.com/django/django_templates.php (templates)
+
+    5. W3Schools -  https://www.w3schools.com/django/django_create_app.php (create App, If..else loos, QuerySet order by, QuerySet filter, static files )
+
+    6. Geeks for Geeks - https://www.geeksforgeeks.org/python/django-basics/ (understanding Django basics, MVT structure, django ORM, QuerySet, order by, function base views, class based views )
+
+    7. Django Poject - https://forum.djangoproject.com/t/django-filters/7608 (Understanding django filters and time pickers)
+
+
