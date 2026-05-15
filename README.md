@@ -629,6 +629,49 @@ Should be tested as one complete set of tests.
 
 Larger Screen View (tablets, Laptops, PC views:)
 
+Home page View: 
+![Homepage](assets/images/final-product/home-page.png)
+
+About Us View: 
+![About Us](assets/images/final-product/about.png)
+
+Menu View: 
+![Menu](assets/images/final-product/menu.png)
+
+Log In View:
+![Log In](assets/images/final-product/login.png)
+
+Header View:
+![Header](assets/images/final-product/header.png)
+
+Book now View:
+![Book Now](assets/images/final-product/book-now.png)
+
+My Bookings View seen by Guests:
+![Guests My Bookings Page](assets/images/final-product/my-bookings.png)
+
+Booked Confirmation on screen for Guests:
+![Booked view for guests](assets/images/final-product/booked.png)
+
+Guests View of Update Bookings 
+![Update Booking](assets/images/final-product/update-booking.png)
+
+Staff Portal View (where they can register a user, book a table for any user, update bookings or delete bookings)
+![Staff Portal](assets/images/final-product/staff-portal.png)
+
+Staff view to register a new guest to dine
+![Staff Register Guest](assets/images/final-product/staff-register-book.png)
+
+Staff view to book a guest in at the pizzeria
+![Staff Book a guest](assets/images/final-product/staff-manual-booking.png)
+
+View of all reservations seen by staff or admin only
+![View all Booking for Staff or Admin](assets/images/final-product/staff-view-all-bookings.png)
+
+Footer view
+![Footer](assets/images/final-product/footer.png)
+
+
 
 
 
