@@ -8,6 +8,7 @@
 4. [Wireframes](#wireframes)
 5. [Entity Relationship Diagrams](#entity-relationship-diagrams)
 5. [Design and How to use the website](#design-and-how-to-use-the-website)
+6. [Agile Methodology Followed](#agile-methodology-followed)
 6. [Languages and Technologies used](#languages-and-technologies-used)
 7. [Links Used](#links-used)
 8. [Media Used](#media-used)
@@ -21,7 +22,7 @@
 13. [Business Goals and User Stories met](#business-goals-and-user-stories-met)
 14. [Deployment](#deployment)
 15. [Issues](#issues)
-16. [Project Contraints or Limitations](#project-contraints-or-limitations)
+16. [Project Constraints or Limitations](#project-constraints-or-limitations)
 17. [References](#references)
 18. [Acknowlegements](#acknowlegements)
 19. [Thank You](#thank-you-for-reviewing-this-product)
@@ -46,16 +47,15 @@
 3. To give the public a method to contact the establishment.
 4. To allow patrons to find The Marina Pizzeria through the website. 
 5. Increase online awareness of The Marina Pizzeria through Search Engine Optimizarion.
-6. To allow the public to know about the history and operations of The Marina Pizzeria.
-7. To allow patrons to be able to edit or delete their bookings at The Marina Pizzeria. 
-8. To allow patrons the ability to delete or edit their account information. 
-9. The Admin should be able to set the total number of tables that are functional/available at the Pizzeria.
-10. The admin should be able to set the seating capacity for every table so that each table is booked efficiently.
-11. The Admin or Staff should be able to create an account for a user.
-12. The Admin or Staff should be able to make a booking for any user. 
-13. The Admin or Staff should eb able to update any booking or cancel anybooking
-14. Whenever a booking is made, the pizzeria should receive an email of the booking made. 
-15. The Admin or Staff should be able to see all the bookings made at the Pizzeria.
+6. To allow the public to know about the history and operations of The Marina Pizzeria. 
+7. To allow patrons the ability to delete or edit their account information. 
+8. The Admin should be able to set the total number of tables that are functional/available at the Pizzeria.
+9. The admin should be able to set the seating capacity for every table so that each table is booked efficiently.
+10. The Admin or Staff should be able to create an account for a user.
+11. The Admin or Staff should be able to make a booking for any user. 
+12. The Admin or Staff should eb able to update any booking or cancel anybooking
+13. Whenever a booking is made, the pizzeria should receive an email of the booking made. 
+14. The Admin or Staff should be able to see all the bookings made at the Pizzeria.
 ------------------------------------------
 
 ## User Stories:
@@ -111,13 +111,7 @@ Although The Marina Pizzeria is a fictitious restaurant, to demonstrate a websit
 - The Admin only should be able to set the capacity of guests that can be accommodated at each table available in the restaurant.
 ---------------------------------------
 
-8. As a manager, I can be know of any dietary restrictions of any patron so that the staff is well informed.
-
-   Acceptance Criteria: 
-   - The booking form should have a question that asks patrons if they have any allergies, dietary restrictions or dietary practices. 
----------------------------------------
-
-9. As a manager, I can see all bookings for all tables at the establishment so that the staff can make amendments, or cancel bookings on behalf of the patrons.
+8. As a manager, I can see all bookings for all tables at the establishment so that the staff can make amendments, or cancel bookings on behalf of the patrons.
 
    Acceptance Criteria:
 - The Staff and Admin can create a new profile for a guest
@@ -125,13 +119,7 @@ Although The Marina Pizzeria is a fictitious restaurant, to demonstrate a websit
 - The Staff or Admin can delete booking on behalf their guests if they are unable to be there at the allocated booked time.
 ---------------------------------------
 
-10. As a user, I can cancel my account so that I can have no personal information at the establishment should I move locations or decide I no longer want to dine there.
-
-   Acceptance criteria: 
- - Patron should be able to cancel their registration process by first contacting the staff/Admin and letting them know. This is to prevent ghost bookings that can be potentially left if the bookings were made and then the patron decides they will like to delete their registration. 
-------------------------------------------
-
-11. As a user, I can find the location of the pizzeria easily so that I can know if the pizzeria is in close proximity to me.
+9. As a user, I can find the location of the pizzeria easily so that I can know if the pizzeria is in close proximity to me.
 
    Acceptance Criteria: 
 - User should be able to find the location easily by checking their website for the address a location finder would be nice but not compulsory.
@@ -166,6 +154,29 @@ Although The Marina Pizzeria is a fictitious restaurant, to demonstrate a websit
 2. Physical Data Model (ERD):
 
     ![Physical Data Model](assets/images/entity-relationship-diagrams/erd-physical.jpg)    
+
+----------------------------------------------
+
+## Agile Methodology Followed 
+
+During the Developmental Phase of this product, The Marina Pizzeria, goals and user stories were determined and milestone were created and each user story were divied up using the MoSCoW method (Must have, Should have, Could have, Wont have). The poject board feature was then utilized to show the list of user stories, the ones in progress and the ones completed. Each user story was time-boxed. 
+
+Project Board Views: 
+![Project board View](assets/images/project-board/project-board-1.png)
+
+
+![Project board View](assets/images/project-board/project-board-2.png)
+
+
+![Project board View](assets/images/project-board/project-board-done.png)
+
+
+![Project board View](assets/images/project-board/user-stories-agile.png)
+
+User Stories (MoSCoW):
+
+![Project board View](assets/images/project-board/user-stories-agile.png)
+
 
 ## Languages and Technologies used:
 
@@ -290,7 +301,8 @@ css validity check.
     - The STAFF PORTAL: when the staff logs in, only the username and password is sufficiant as the admin is aware already of which staff and their detail before giving them access to the portal to sign up users, make bookings (MANUAL BOOKING PAGE) for guests, update bookings, view all bookings (MASTER RESERVATIONS LIST) or delete bookings. 
 
 ##  Manual Testing
-NOTE: 
+NOTE:  Manual Testing is the process whereby all components, including functions, of a page are tested by manually going through each aspect of a page or software. This is done by also checking against the user stories to check if the program software complies. Manual testing is deployed if chosen as the only means to check if the application or software created (functions and or other implementations). However, manual testing can be done after automated testing is completed. Many software is tested by both manual and automated testing.  Automated testing is not done to check all components are working as intended. Automated testing does not test the user experience as this is usually subjective. In the Marina Pizzeria, manual testing was done as automated testing was not done and to check the user's experience. In most programs or software development, a combination of both manual and automated testing is done. 
+
 Each part: 
  - Header 
  - Footer
@@ -613,6 +625,12 @@ Should be tested as one complete set of tests.
 | Desktop | Table shows with each booking on a single Row, as the broswer size decreses the date text wraps to keep everything visible without Horizontal scrolling | Y |
 | Small Devices | On the smallest devices the date wraps to the maximum possible and some horizonal srolling is needed but rotating a device can mitigate this as a staff member would only need to find one booking at a time| Y | 
 
+## Final Product
+
+Larger Screen View (tablets, Laptops, PC views:)
+
+
+
 
 ## Business Goals and User Stories Met
 
@@ -719,7 +737,34 @@ Create the application
 - Go back to deploy and click the deploy button to deploy the application.
 - Confirm gunicorn is running in the resources tab.
 
-Project Constraints or Limitations 
+## Bug Fixes:
+
+1. Error Message: Page not found (404)
+![Page not found](assets/images/bugs/bug.png)
+
+This error was due to an anchor tag href="contact.html"
+
+Fixed: this error was fixed by putting in the format of {% url %} also, to look nicer a 404 Error page was added in so it does not look like that.
+-------------------------
+
+2. Facebook and Instagram Underscore next to the icons
+![Underscore next to icons](assets/images/bugs/bug-2.png)
+
+This error was due to the fontawesome icons having a space before the closing anchor tag 
+
+Fixed: This error was fixed by removing gaps between the fontawesome icons and the closing anchor tags.
+-------------------------
+
+3. Error Message: TypeError during Staff Registration (NoneTypeComparison)
+![TypeError](assets/images/bugs/bug-3.png)
+
+This error was a 500 Internal Server Error (TypeError) and it happened when a staff member tried to make a booking without selecting a date. This function was written in the bookings/forms.py file. The code(inside the clean methood) was trying to compare the booking date to "today" but the date field was empty(None), so it crashed.
+
+Fixed: the following code was added ... if not booking_date: return cleaned_data, that fixed the crash.
+------------------------
+
+
+## Project Constraints or Limitations 
 
 (Area for Future Features and Future Developement):
 1. Capacity and Party Size maximum number:
@@ -742,7 +787,14 @@ Project Constraints or Limitations
    - Currently: We are being very hopeful that guests that make their bookings will actually show up for their meals. 
    - In Reality: Many restaurants that have a booking system have a non-refundable fee charge for booking a table and this fee can sometimes contribute towards their total bill for meals on that day or it can be separate just for booking only. 
    - Solution: A pre-payment system can be done so that the booking wont be complete unless the booking fee is paid first. 
-   
+
+5. Allergies and Dietary Restrictions: 
+   - The code can be revised to allow for patrons and users to fill out a Dietary requirements and allergies section each time they are booking as some patrons would be vegan, pescatarian, vegetarian, eat kosher or halal only, gluten free, diary free etc. 
+
+----------------------------------------------
+
+Issues: 
+1.    
 
 ## Reference: 
     1. https://www.geeksforgeeks.org/python/django-sign-up-and-login-with-confirmation-email-python/ (django code information for login, logout, registration form and email)
