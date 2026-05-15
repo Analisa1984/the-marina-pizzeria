@@ -50,9 +50,13 @@
 
   <title>{{ title|default:"The Marina Pizzeria" }}</title>
 
-  <!-- External Styles -->
+  <!-- bootstrap5 CSS link -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  
+  <!-- Bootstrap 5 icons link -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  
+  <!-- customised css links -->
   <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}"/>
 </head>
 
@@ -108,7 +112,7 @@
                 {% if user.is_authenticated %}
                   <li class="nav-item"><a class="nav-link px-3" href="{% url 'my_bookings' %}">My Bookings</a></li>
                   
-                  <!-- STAFF PANEL ACCESS -->
+                  <!-- Staff panel access -->
                   {% if user.is_staff %}
                     <li class="nav-item"><a class="nav-link px-3 text-warning fw-bold" href="{% url 'staff_portal' %}">Staff Portal</a></li>
                   {% endif %}
@@ -130,7 +134,7 @@
     </nav>
   </header>
 
-  <!-- MAIN GLOBAL MESSAGE SYSTEM (Resolves buried messages) -->
+  <!-- alert messages -->
   {% if messages %}
     <div class="container mt-4">
       {% for message in messages %}
@@ -148,7 +152,7 @@
   {% endif %}
 
   <main class="flex-grow-1 container py-4">
-    <!-- Welcome Header: Only shows on the Home Page -->
+    <!--  Only shows on the Home Page -->
     {% if request.path == '/' %}
     <div class="welcome-text mb-5 text-center">
       {% if user.is_authenticated %}
@@ -167,7 +171,7 @@
     <div class="container">
       <div class="row g-4 text-center text-md-start">
         
-        <!-- Brand Section -->
+        <!-- The Marina Pizzeria Logo -->
         <div class="col-md-4">
           <a href="{% url 'index' %}" class="d-flex align-items-center text-decoration-none mb-3">
             <img src="{% static 'images/marina-pizzeria-logo.png' %}" alt="Logo" height="80" class="me-3">
@@ -185,7 +189,7 @@
           </p>
         </div>
 
-        <!-- Hours Section -->
+        <!-- Opening Hours Section -->
         <div class="col-md-4">
           <h5 class="text-uppercase mb-3 small fw-bold text-center">Opening Hours</h5>
           <table class="table table-sm table-borderless text-light mb-0" style="font-size: 0.9rem;">
@@ -201,9 +205,9 @@
         <div class="col-md-4 text-center text-md-end">
           <h5 class="text-uppercase mb-3 small fw-bold">Connect With Us</h5>
           <div class="fs-4 mb-3">
-            <a href="https://facebook.com/themarinapizzeria" target="_blank" class="text-light me-3"><i class="bi bi-facebook"></i></a>
-<a href="https://instagram.com/themarinapizzeria" target="_blank" class="text-light me-3"><i class="bi bi-instagram"></i></a>
-<a href="https://twitter.com/marinapizzeria" target="_blank" class="text-light"><i class="bi bi-twitter-x"></i></a>
+            <a href="https://facebook.com" target="_blank" class="text-light me-3"><i class="bi bi-facebook"></i></a>
+<a href="https://instagram.com" target="_blank" class="text-light me-3"><i class="bi bi-instagram"></i></a>
+<a href="https://twitter.com" target="_blank" class="text-light"><i class="bi bi-twitter-x"></i></a>
           </div>
           <a href="{% url 'contact' %}" class="btn btn-sm btn-outline-light px-4 rounded-pill">Contact Us</a>
         </div>
@@ -217,7 +221,8 @@
     </div>
   </footer>
 
-  <!-- Scripts -->
+
+   <!-- Bootstrap5 JS bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
