@@ -11,7 +11,9 @@
 6. [Languages and Technologies used](#languages-and-technologies-used)
 7. [Links Used](#links-used)
 8. [Media Used](#media-used)
-9. [LightHouse Accessibility Checks](#accessibility-checks)
+9. [LightHouse Accessibility Checks](#lighthouse-accessibility-checks)
+10. [HTML Validation Checks](#html-validation-checks)
+11. [CSS Validsation Checks](#css-validation-checks)
 10. [Fixed](#fixed)
 11. [Manual Testing of the website](#manual-testing)
 12. [Responsiveness](#responsive-testing)
@@ -225,6 +227,21 @@ Although The Marina Pizzeria is a fictitious restaurant, to demonstrate a websit
 
 12. Log In Page for Users
    ![Log In Page Accessibility Check](assets/images/accessibility-checker/access-8.png)
+
+
+## HTML Validation Check
+
+There were no errors or warning to show on the HTML validity check. 
+
+![HTML Validation Check](assets/images/validation-checks/html-validation-pizzeria.png)
+
+## CSS Validation Check
+
+The Errors seen here are due to Bootstrap inhouse design strategies that were used, no customized CSS gave any errors on the 
+css validity check.
+
+![CSS Validation Check](assets/images/validation-checks/css-validation-pizzeria.png)
+
 
 ## Design and How to Use the Website:
 
