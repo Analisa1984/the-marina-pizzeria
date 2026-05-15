@@ -21,7 +21,7 @@
 13. [Business Goals and User Stories met](#business-goals-and-user-stories-met)
 14. [Deployment](#deployment)
 15. [Issues](#issues)
-16. [Limitations](#limitations)
+16. [Limitations](#project-contraints-or-limitations)
 17. [References](#references)
 18. [Acknowlegements](#acknowlegements)
 19. [Thank You](#thank-you-for-reviewing-this-product)
@@ -719,7 +719,8 @@ Create the application
 - Go back to deploy and click the deploy button to deploy the application.
 - Confirm gunicorn is running in the resources tab.
 
-Project Constraints or Limitations (Area for Future Features and Future Developement):
+Project Constraints or Limitations 
+(Area for Future Features and Future Developement):
 1. Capacity and Party Size maximum number:
    - Currently:  the maximum number of guests that a person can book in one booking is 10. The reason for this is that the largest table available for booking a 10 seat table. Therefore, the maximum number of guests that I allowed a single person booking was 10 persons. Also, if a person has a party of 10 and that particular table of 10 is already booked (there is only one table oif 10). Then the booking app will respond with no available tables at that time, try another time. 
    - Real occurrence: Perhaps in restuarants, the staff will check how many guests are in the party and join tables together. However, those systems are usually non-booked entry. 
