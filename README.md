@@ -49,6 +49,13 @@
 6. To allow the public to know about the history and operations of The Marina Pizzeria.
 7. To allow patrons to be able to edit or delete their bookings at The Marina Pizzeria. 
 8. To allow patrons the ability to delete or edit their account information. 
+9. The Admin should be able to set the total number of tables that are functional/available at the Pizzeria.
+10. The admin should be able to set the seating capacity for every table so that each table is booked efficiently.
+11. The Admin or Staff should be able to create an account for a user.
+12. The Admin or Staff should be able to make a booking for any user. 
+13. The Admin or Staff should eb able to update any booking or cancel anybooking
+14. Whenever a booking is made, the pizzeria should receive an email of the booking made. 
+
 
 ## User Stories:
 
@@ -122,6 +129,11 @@ Although The Marina Pizzeria is a fictitious restaurant, to demonstrate a websit
    Acceptance criteria: 
  - Patron should be able to cancel their registration process by first contacting the staff/Admin and letting them know. This is to prevent ghost bookings that can be potentially left if the bookings were made and then the patron decides they will like to delete their registration. 
 ------------------------------------------
+
+11. As a user, I can find the location of the pizzeria easily so that I can know if the pizzeria is in close proximity to me.
+
+   Acceptance Criteria: 
+- User should be able to find the location easily by checking their website for the address a location finder would be nice but not compulsory.
 
 ## Wireframes:
 
@@ -599,6 +611,41 @@ Should be tested as one complete set of tests.
 | ----- | ----- | ----- |
 | Desktop | Table shows with each booking on a single Row, as the broswer size decreses the date text wraps to keep everything visible without Horizontal scrolling | Y |
 | Small Devices | On the smallest devices the date wraps to the maximum possible and some horizonal srolling is needed but rotating a device can mitigate this as a staff member would only need to find one booking at a time| Y | 
+
+
+## Business Goals and User Stories Met
+
+1. Business Goal #1 & User Story #2: Users can make their own bookings
+![Booking Form](assets/images/goals-met/book-now.png)
+![Book Now button in Header](assets/images/goals-met/book-now-header.png)
+![Book Now button in the body ](assets/images/goals-met/dine-with-us-book-now.png)
+
+2. Business Goal #2 # User Story #1: Menu available before users book. 
+![Menu Options](assets/images/goals-met/menu.png)
+
+3. Business Goal #3: Public can contact the pizzeria via a contact form
+![Contact Form](assets/images/goals-met/contact-us.png)
+
+4. User Story #5: Email Confirmation of bookings
+![Email confirmation of bookings](assets/images/goals-met/email-confirmation.png)
+
+5. Business Goal #9: Allow Admin to set the number of tables present in the pizzeria (avoid overbooking)
+![Admin set number of tables](assets/images/goals-met/number-of-tables.png)
+
+6. Business Goal #10: Admin to be able to set number of seats per table (avoid overbooking)
+![Admin to set number of seats per table](assets/images/goals-met/seats-per-table.png)
+
+7. Business Goals #4: Allow Patrons to find the establishment via a location finder on the site
+![Google maps location finder in nav bar](assets/images/goals-met/location-header.png)
+![Google maps location finder in home page and footer](assets/images/goals-met/location-index-and-footer.png)
+
+8. Business Goals #6: To allow the public to know the history and operations of The Marina Pizzeria
+![About Us Page](assets/images/goals-met/about-us.png)
+
+9. Business Goals #7 & User story 3:: allow guests to update or delete their bookings
+![Guests can edit their bookings or delete it](assets/images/goals-met/cancel-booking.png)
+![Guests can update their bookings](assets/images/goals-met/update-booking.png)
+
 
 
 ## Deployment
