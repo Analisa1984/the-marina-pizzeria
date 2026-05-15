@@ -243,13 +243,6 @@ def about(request):
     return render(request, 'bookings/about.html', {'title': 'about'})
 
 
-# for contact us
-# class ContactForm(forms.Form):
-#     name = forms.CharField(max_length=100)
-#     email = forms.EmailField()
-#     message = forms.CharField(widget=forms.Textarea)
-
-
 def contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
@@ -384,7 +377,7 @@ def login_redirect(request):
 @staff_member_required
 def staff_portal_view(request):
     """
-    This opens the 'staff_portal.html' file built.
+    This opens the 'staff_portal.html' file.
     """
     # Security check for staff only
     if not request.user.groups.filter(
