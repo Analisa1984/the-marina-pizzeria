@@ -875,6 +875,11 @@ This error was a 500 Internal Server Error (TypeError) and it happened when a st
 Fixed: the following code was added ... if not booking_date: return cleaned_data, that fixed the crash.
 ------------------------
 
+4. Error Message: Deprecation warning in Admin Console 
+![Deprecation Warning](assets/images/bugs/bug-4.png)
+
+This error is due to "unload Event listeners are depracated". Since modern browsers like Chrome are aiming to phase out the use of unload event. The unload is problematic as it can hinder the browsers from using the "Back/Forward Cache". The Specific file causing this is the RelatedObjectLookups.js (as seen in the error page provided above). This is a JavaScript file used by Django Admin interface. Therefore, this is a django framework issue. 
+
 
 ## Project Constraints or Limitations 
 
@@ -904,9 +909,6 @@ Fixed: the following code was added ... if not booking_date: return cleaned_data
    - The code can be revised to allow for patrons and users to fill out a Dietary requirements and allergies section each time they are booking as some patrons would be vegan, pescatarian, vegetarian, eat kosher or halal only, gluten free, diary free etc. 
 
 ----------------------------------------------
-
-Issues: 
-1.    
 
 ## Reference: 
     1. https://www.geeksforgeeks.org/python/django-sign-up-and-login-with-confirmation-email-python/ (django code for login, logout, registration form and email)
