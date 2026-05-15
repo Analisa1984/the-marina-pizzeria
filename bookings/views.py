@@ -1,20 +1,18 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
-from django.contrib.auth import login  # authenticate, login
+from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import BookingForm, UpdateBookingForm, RegistrationForm
 from .forms import StaffBookingForm, ContactForm
 from django.core.mail import EmailMultiAlternatives, send_mail
 from django.template.loader import get_template
-#  from django.template import Context
 from .models import Booking, Table
-# from django import forms
 from django.utils import timezone
 from django.conf import settings
 from datetime import datetime, timedelta
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import Group  # , User
+from django.contrib.auth.models import Group
 from django.contrib.auth import get_user_model
 from django.contrib.admin.views.decorators import staff_member_required
 
@@ -64,12 +62,12 @@ def bookings(request):
                     booking_time__range=(start_buffer, end_buffer)
                 ).exists()
 
-                # If the table is NOT occupied, we've found our winner!
+                # If the table is NOT occupied, assign the user to the table
                 if not is_occupied:
                     assigned_table = table
                     break
 
-            #  If we successfully assigned a table, proceed
+            #  If we successfully assigned a table, continue
             if assigned_table:
                 booking = form_booking.save(commit=False)
                 booking.User_id = request.user
@@ -243,6 +241,7 @@ def about(request):
     return render(request, 'bookings/about.html', {'title': 'about'})
 
 
+# The Contact form to send enquiry emails
 def contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
@@ -361,11 +360,9 @@ def Login(request):
     )
 
 
+# For guests to login
 @login_required
 def login_redirect(request):
-    """
-    As soon as someone logs in, this function runs.
-    """
     if request.user.groups.filter(
         name='Staff'
     ).exists() or request.user.is_staff:
@@ -374,11 +371,9 @@ def login_redirect(request):
         return redirect('my_bookings')
 
 
+# Open the staff portal if Staff member is verified
 @staff_member_required
 def staff_portal_view(request):
-    """
-    This opens the 'staff_portal.html' file.
-    """
     # Security check for staff only
     if not request.user.groups.filter(
         name='Staff'
@@ -484,7 +479,7 @@ def staff_dashboard_view(request):
 
     # Get today date
     today = timezone.now().date()
-    # Grab everything, sorted so the most recent dates are at the top
+    # return all bookings and sort so the most recent dates are at the top
     all_bookings = Booking.objects.all().order_by(
         'booking_date', 'booking_time'
     )
@@ -496,7 +491,7 @@ def staff_dashboard_view(request):
     })
 
 
-# function for staff to be able to updatemake a guest booking
+# function for staff to be able to update a guest booking
 @staff_member_required
 def staff_manual_booking(request):
     if not request.user.is_staff:
@@ -564,7 +559,7 @@ def staff_cancel_booking(request, booking_id):
     ).exists():
         messages.error(request, "Access denied.")
         return redirect('index')
-
+    # Add error page if object not found
     booking = get_object_or_404(Booking, booking_id=booking_id)
 
     if request.method == "POST":
@@ -577,7 +572,7 @@ def staff_cancel_booking(request, booking_id):
 # function for staff to be able to update guest bookings
 @staff_member_required
 def staff_update_booking(request, booking_id):
-    # Get the booking (Staff can edit ANY booking, not just their own)
+    # Get the booking (Staff can edit A booking, not just their own)
     booking = get_object_or_404(Booking, booking_id=booking_id)
 
     if request.method == "POST":

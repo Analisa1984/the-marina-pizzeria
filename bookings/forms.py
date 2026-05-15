@@ -7,7 +7,8 @@ from .models import Booking
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Row, Column
 
-# 1. Choices for Time and Party Size
+# Set Time Choices for 30 minute invervals between noon and 11pm
+# This is Global as its for all Time selectors
 TIME_CHOICES = [
     (
         time(hour, minute).strftime('%H:%M'),
@@ -17,6 +18,7 @@ TIME_CHOICES = [
     for minute in (0, 30)
 ]
 
+# Set party size to 10 for all party size selectors
 PARTY_SIZE_CHOICES = [(i, str(i)) for i in range(1, 11)]
 
 
@@ -31,13 +33,11 @@ class RegistrationForm(UserCreationForm):
 
 
 class BookingForm(forms.ModelForm):
-    # Time dropdown (30 min intervals)
     booking_time = forms.ChoiceField(
         choices=TIME_CHOICES,
         widget=forms.Select(attrs={'class': 'form-control'})
     )
 
-    # NEW: Party size dropdown (1-10)
     party_number = forms.ChoiceField(
         choices=PARTY_SIZE_CHOICES,
         widget=forms.Select(attrs={'class': 'form-control'}),
@@ -106,7 +106,6 @@ class BookingForm(forms.ModelForm):
 
 
 class UpdateBookingForm(forms.ModelForm):
-    # We define these explicitly to override the model's default text inputs
     booking_time = forms.ChoiceField(
         choices=TIME_CHOICES,
         widget=forms.Select(attrs={'class': 'form-control'})
@@ -129,14 +128,14 @@ class UpdateBookingForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        # KEY STEP: Set the initial dropdown value to the existing booking time
+        # Set the initial dropdown value to the existing booking time
         if self.instance and self.instance.booking_time:
             self.initial['booking_time'] = self.instance.booking_time.strftime(
                 '%H:%M'
             )
             self.initial['party_number'] = self.instance.party_number
 
-        # Keep your Crispy Forms layout for that professional look
+        # Keep the Crispy Forms layout
         self.helper = FormHelper()
         self.helper.layout = Layout(
             Row(
@@ -156,17 +155,15 @@ class UpdateBookingForm(forms.ModelForm):
         booking_time_str = cleaned_data.get('booking_time')
         party_number = cleaned_data.get('party_number')
 
-        # Convert the dropdown string back into a Python time object
         if booking_date and booking_time_str:
             try:
-                # Handle cases where it might be a time object or a string
                 if isinstance(booking_time_str, str):
                     hour, minute = map(int, booking_time_str.split(':'))
                     booking_time = time(hour, minute)
                 else:
                     booking_time = booking_time_str
 
-                # Pizzeria Hours Logic
+                # Pizzeria opening hours logic (exclude Sunday)
                 if booking_date.weekday() == 6:
                     raise ValidationError(
                         "The Marina Pizzeria is closed on Sundays."
@@ -217,7 +214,6 @@ class ContactForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # Using FormHelper to ensure Crispy Forms and Bootstrap 5 work together
         self.helper = FormHelper()
         self.helper.form_show_labels = True
 
@@ -230,7 +226,6 @@ class StaffBookingForm(BookingForm):
         widget=forms.Select(attrs={'class': 'form-control'})
     )
 
-    # Force these to be Select dropdowns, even in the staff view
     booking_time = forms.ChoiceField(
         choices=TIME_CHOICES,
         widget=forms.Select(attrs={'class': 'form-control'}),
