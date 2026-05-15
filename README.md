@@ -627,7 +627,7 @@ Should be tested as one complete set of tests.
 
 ## Final Product
 
-Larger Screen View (tablets, Laptops, PC views:)
+### Larger Screen View (tablets, Laptops, PC views:)
 
 Home page View: 
 ![Homepage](assets/images/final-product/home-page.png)
@@ -670,6 +670,74 @@ View of all reservations seen by staff or admin only
 
 Footer view
 ![Footer](assets/images/final-product/footer.png)
+
+
+### Mobile Screen Views
+
+Home Page Mobile View
+![Home Page MObile](assets/images/final-product/final-product-mobile/mobile-home-page-1.png)
+
+![Home Page MObile](assets/images/final-product/final-product-mobile/mobile-home-page-2.png)
+
+![Home Page MObile](assets/images/final-product/final-product-mobile/mobile-home-page-3.png)
+
+![Home Page MObile](assets/images/final-product/final-product-mobile/mobile-home-page-4.png)
+
+About Us Mobile View
+![About Us Page MObile](assets/images/final-product/final-product-mobile/mobile-about-us-1.png)
+
+![About Us Page MObile](assets/images/final-product/final-product-mobile/mobile-about-us-2.png)
+
+![About Us Page MObile](assets/images/final-product/final-product-mobile/mobile-home-page-3.png)
+
+--------------------------------
+Menu Page Mobile View
+![Menu Page MObile](assets/images/final-product/final-product-mobile/mobile-menu-1.png)
+
+![Menu Page MObile](assets/images/final-product/final-product-mobile/mobile-menu-2.png)
+
+-------------------------------
+
+Sign Up Mobile View
+![Sign Up Page MObile](assets/images/final-product/final-product-mobile/mobile-sign-up-1.png)
+
+![Sign Up Page MObile](assets/images/final-product/final-product-mobile/mobile-sign-up-2.png)
+
+--------------------------------
+
+Log In View in Mobile
+![Log In Page MObile](assets/images/final-product/final-product-mobile/mobile-login.png)
+
+---------------------------------
+
+Book Now View in Mobile
+![Book Now Page MObile](assets/images/final-product/final-product-mobile/mobile-book-now.png)
+
+-----------------------------------
+
+Staff Portal View in Mobiles
+![Staff Portal Page MObile](assets/images/final-product/final-product-mobile/mobile-staff-portal-1.png)
+
+![Staff Portal Page MObile](assets/images/final-product/final-product-mobile/mobile-staff-portal-2.png)
+
+----------------------------------
+
+Staff Register Guests View in Mobiles
+![Staff Register Page MObile](assets/images/final-product/final-product-mobile/mobile-staff-register-and-book-1.png)
+
+![Staff Register Page MObile](assets/images/final-product/final-product-mobile/mobile-staff-register-and-book-2.png)
+
+----------------------------------
+
+Master Reservations List in MObile View seen by Staff and Admin Only:
+![Master Reservations List Page MObile](assets/images/final-product/final-product-mobile/mobile-staff-view-all-left-1.png)
+
+![Master Reservations List Page MObile](assets/images/final-product/final-product-mobile/mobile-staff-view-all-left-2.png)
+
+-----------------------------------
+
+
+
 
 
 
